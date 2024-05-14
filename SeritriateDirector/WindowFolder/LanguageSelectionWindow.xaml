@@ -1,0 +1,65 @@
+﻿<Window x:Class="SeritriateDirector.WindowFolder.LanguageSelectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SeritriateDirector.WindowFolder"
+        mc:Ignorable="d"                  
+    Height="260" Width="400"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    AllowsTransparency="True"
+    ResizeMode="CanMinimize"
+    Background="{x:Null}"
+        Icon="/SeritriateDirector;component/ResourceFolder/ImageFolder/Logo.png"
+        Loaded="Window_Loaded">
+    <Border Style="{DynamicResource FonBorder}"
+        MouseDown="BorderMouseDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Border Style="{DynamicResource BorderTop}"
+                Grid.ColumnSpan="4"/>
+            <Label x:Name="LanguageSelectionLb"
+                Content="LANGUAGE SELECTION"
+               Style="{DynamicResource LabelLogo}"
+               Grid.Column="1"
+               Grid.ColumnSpan="2"
+               Foreground="{DynamicResource FillFont}"/>
+
+            <Image Style="{DynamicResource CloseIm}"
+            Grid.Column="2"
+            MouseLeftButtonDown="ImageMouseLeftButtonDown"/>
+            <Image x:Name="LogoIm"
+Grid.Row="0"
+Style="{DynamicResource LogoIm}"
+Margin="0,10,0,8" Grid.Column="1"/>
+
+
+            <Image Source="/SeritriateDirector;component/ResourceFolder/ImageFolder/Russia.jpg"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   MouseMove="ImageMouseMoveRussia"
+                   MouseLeftButtonDown="ImageMouseLeftButtonDownRussia"/>
+
+
+            <Image Source="/SeritriateDirector;component/ResourceFolder/ImageFolder/English.png"
+                   Grid.Row="2"
+                   Grid.Column="2"
+                   MouseMove="ImageMouseMoveEnglish"
+                   MouseLeftButtonDown="ImageMouseLeftButtonDownEnglish"/>
+
+
+        </Grid>
+    </Border>
+</Window>
