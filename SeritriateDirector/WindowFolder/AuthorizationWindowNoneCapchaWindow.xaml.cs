@@ -67,7 +67,6 @@ namespace SeritriateDirector.WindowFolder
         {
             string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
-
             if (globalSettingLanguage == "ru")
             {
                 leng = "Вы действительно желаете выйти?";

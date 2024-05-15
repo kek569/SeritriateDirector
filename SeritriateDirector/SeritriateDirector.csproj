@@ -65,14 +65,32 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ClassFolder\MBClass.cs" />
+    <Compile Include="PageFolder\AdminPageFolder\ListStaffPage.xaml.cs">
+      <DependentUpon>ListStaffPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\DirectorPageFolder\ListOrdersPage.xaml.cs">
+      <DependentUpon>ListOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\SecretaryPageFolder\ListOrdersPage.xaml.cs">
+      <DependentUpon>ListOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\AdminWindowFolder\MainWindowAdmin.xaml.cs">
+      <DependentUpon>MainWindowAdmin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowFolder\AuthorizationWindowCapchaWindow.xaml.cs">
       <DependentUpon>AuthorizationWindowCapchaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowFolder\AuthorizationWindowNoneCapchaWindow.xaml.cs">
       <DependentUpon>AuthorizationWindowNoneCapchaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowFolder\DirectorWindowFolder\MainWindowDirector.xaml.cs">
+      <DependentUpon>MainWindowDirector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowFolder\LanguageSelectionWindow.xaml.cs">
       <DependentUpon>LanguageSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\SecretaryWindowFolder\MainWindowSecretary.xaml.cs">
+      <DependentUpon>MainWindowSecretary.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -107,7 +125,23 @@
     <Resource Include="ResourceFolder\ImageFolder\Russia.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="PageFolder\AdminPageFolder\ListStaffPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\DirectorPageFolder\ListOrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\SecretaryPageFolder\ListOrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResourceFolder\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\AdminWindowFolder\MainWindowAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,14 +153,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowFolder\DirectorWindowFolder\MainWindowDirector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowFolder\LanguageSelectionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\SecretaryWindowFolder\MainWindowSecretary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataFolder\" />
-    <Folder Include="PageFolder\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ResourceFolder\ImageFolder\Close.png" />
