@@ -265,6 +265,7 @@ namespace SeritriateDirector.WindowFolder
         private int Fail = 0;
         private string text;
         private int Disable = 0;
+        private string path = (App.Current as App).Path;
 
         private void Login()
         {
@@ -348,7 +349,7 @@ namespace SeritriateDirector.WindowFolder
                     {
                         if (SaveMe == true)
                         {
-                            using (StreamWriter newTask = new StreamWriter("Save.txt", false))
+                            using (StreamWriter newTask = new StreamWriter(path + "Save.txt", false))
                             {
                                 newTask.WriteLine(LoginSave + "\n" + PasswordSave);
                             }
@@ -379,11 +380,37 @@ namespace SeritriateDirector.WindowFolder
         {
             CaptchaEs.CreateCaptcha(Captcha.LetterOption.Alphanumeric, 5);
             text = CaptchaEs.CaptchaText;
+
+            using (StreamReader newTask = new StreamReader(path + "Save.txt", true))
+            {
+                if (newTask == null || newTask.ReadToEnd() == "")
+                {
+                    SaveFileNull = true;
+                }
+                else
+                {
+                    SaveFileNull = false;
+                }
+            }
+            if (SaveFileNull == false)
+            {
+                using (StreamReader newTask = new StreamReader(path + "Save.txt", false))
+                {
+                    LoginSave = newTask.ReadLine();
+                    PasswordSave = System.IO.File.ReadLines(path + "Save.txt").Skip(1).First();
+
+                    LoginTB.Text = LoginSave;
+                    PasswordPB.Password = PasswordSave;
+                    SaveMeCb.IsChecked = true;
+
+                    //Login();
+                }
+            }
         }
 
         private void LanguageBtn_Click(object sender, RoutedEventArgs e)
         {
-            using (StreamWriter newTask = new StreamWriter("SaveLanguageSetting.txt", false))
+            using (StreamWriter newTask = new StreamWriter(path + "SaveLanguageSetting.txt", false))
             {
                 newTask.WriteLine("");
             }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace SeritriateDirector.WindowFolder
 {
@@ -28,6 +30,7 @@ namespace SeritriateDirector.WindowFolder
 
         private bool SaveFileNull = true;
         private bool capcha = false;
+        private string path;
 
         private void BorderMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -60,7 +63,7 @@ namespace SeritriateDirector.WindowFolder
         {
             (App.Current as App).GlobalSettingLanguage = "ru";
 
-            using (StreamWriter newTask = new StreamWriter("SaveLanguageSetting.txt", false))
+            using (StreamWriter newTask = new StreamWriter(path + "SaveLanguageSetting.txt", false))
             {
                 newTask.WriteLine("ru");
             }
@@ -81,7 +84,7 @@ namespace SeritriateDirector.WindowFolder
         {
             (App.Current as App).GlobalSettingLanguage = "en";
 
-            using (StreamWriter newTask = new StreamWriter("SaveLanguageSetting.txt", false))
+            using (StreamWriter newTask = new StreamWriter(path + "SaveLanguageSetting.txt", false))
             {
                 newTask.WriteLine("en");
             }
@@ -100,7 +103,13 @@ namespace SeritriateDirector.WindowFolder
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            using (StreamReader newTask = new StreamReader("SaveLanguageSetting.txt", false))
+            path = Directory.GetCurrentDirectory();
+            path = path.Remove(path.Length - 9);
+            path = path + "SaveFolder\\";
+
+            (App.Current as App).Path = path;
+
+            using (StreamReader newTask = new StreamReader(path + "SaveLanguageSetting.txt", false))
             {
                 if (newTask == null || newTask.ReadLine() == "")
                 {
@@ -119,7 +128,7 @@ namespace SeritriateDirector.WindowFolder
             }
             if (SaveFileNull == false)
             {
-                using (StreamReader newTask = new StreamReader("SaveLanguageSetting.txt", false))
+                using (StreamReader newTask = new StreamReader(path + "SaveLanguageSetting.txt", false))
                 {
                     (App.Current as App).GlobalSettingLanguage = newTask.ReadLine();
                     new AuthorizationWindowNoneCapchaWindow().Show();

@@ -14,5 +14,6 @@ namespace SeritriateDirector
     public partial class App : Application
     {
         public string GlobalSettingLanguage { get; set; }
+        public string Path { get; set; }
     }
 }

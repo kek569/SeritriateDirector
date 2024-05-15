@@ -175,5 +175,9 @@
   <ItemGroup>
     <Resource Include="ResourceFolder\ImageFolder\Logo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SaveFolder\Save.txt" />
+    <Resource Include="SaveFolder\SaveLanguageSetting.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
