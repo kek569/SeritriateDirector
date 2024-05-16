@@ -52,7 +52,7 @@
                Style="{DynamicResource LabelLogo}"
                Grid.Column="1"
                Grid.ColumnSpan="2"
-               Foreground="{DynamicResource FillFont}"/>
+               Foreground="{DynamicResource FillFontOne}"/>
 
                 <Image Style="{DynamicResource CloseIm}"
             Grid.Column="2"

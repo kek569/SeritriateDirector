@@ -29,7 +29,7 @@ namespace SeritriateDirector.PageFolder.DirectorPageFolder
 
             if (globalSettingLanguage == "ru")
             {
-                Title = "Список сотрудников";
+                Title = "Список приказов";
             }
             else if (globalSettingLanguage == "en")
             {
@@ -37,7 +37,7 @@ namespace SeritriateDirector.PageFolder.DirectorPageFolder
             }
             else
             {
-                Title = "Список сотрудников";
+                Title = "Список приказов";
 
                 MBClass.ErrorMB("Языковая настройка слетела! Язык по умолчанию русский!\n\n" +
                     "The language setting is gone! The default language is Russian!");

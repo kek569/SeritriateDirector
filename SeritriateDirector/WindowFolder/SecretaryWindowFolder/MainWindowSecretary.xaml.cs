@@ -24,9 +24,15 @@ namespace SeritriateDirector.WindowFolder.SecretaryWindowFolder
     {
         public MainWindowSecretary()
         {
+            string pathDictionary = (App.Current as App).PathDictionary;
+
+            if (pathDictionary != null && pathDictionary != "")
+            {
+                this.Resources = new ResourceDictionary() { Source = new Uri(pathDictionary) };
+            }
             InitializeComponent();
 
-            MainFrame.Navigate(new ListOrdersPage());
+            MainFrame.Navigate(new ListLettersPage());
 
             string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
@@ -122,10 +128,6 @@ namespace SeritriateDirector.WindowFolder.SecretaryWindowFolder
                             "выйти в окно авторизации?");
                 if (ret == true)
                 {
-                    using (StreamWriter newTask = new StreamWriter("Save.txt", false))
-                    {
-                        newTask.WriteLine("");
-                    }
                     new AuthorizationWindowNoneCapchaWindow().Show();
                     this.Close();
                 }
@@ -134,12 +136,12 @@ namespace SeritriateDirector.WindowFolder.SecretaryWindowFolder
 
         private void ListOfLettersBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new ListOrdersPage());
+            MainFrame.Navigate(new ListLettersPage());
         }
 
         private void ListOfOrdersBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new ListOrdersPage());
         }
 
         private void ListOfChartsBtn_Click(object sender, RoutedEventArgs e)

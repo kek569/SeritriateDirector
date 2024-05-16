@@ -25,6 +25,12 @@ namespace SeritriateDirector.WindowFolder.AdminWindowFolder
     {
         public MainWindowAdmin()
         {
+            string pathDictionary = (App.Current as App).PathDictionary;
+
+            if (pathDictionary != null && pathDictionary != "")
+            {
+                this.Resources = new ResourceDictionary() { Source = new Uri(pathDictionary) };
+            }
             InitializeComponent();
 
             MainFrame.Navigate(new ListStaffPage());
@@ -125,10 +131,6 @@ namespace SeritriateDirector.WindowFolder.AdminWindowFolder
                             "выйти в окно авторизации?");
                 if (ret == true)
                 {
-                    using (StreamWriter newTask = new StreamWriter("Save.txt", false))
-                    {
-                        newTask.WriteLine("");
-                    }
                     new AuthorizationWindowNoneCapchaWindow().Show();
                     this.Close();
                 }

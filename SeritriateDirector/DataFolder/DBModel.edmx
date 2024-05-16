@@ -1,0 +1,865 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IdGender" />
+          </Key>
+          <Property Name="IdGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameGender" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Graphics">
+          <Key>
+            <PropertyRef Name="IdGraphics" />
+          </Key>
+          <Property Name="IdGraphics" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameEvents" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="PlaceEvents" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="DateEvents" Type="date" Nullable="false" />
+          <Property Name="TimeEvents" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TargetEvents" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="PhotoEvents" Type="varbinary(max)" />
+          <Property Name="IdStaff" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobTitle">
+          <Key>
+            <PropertyRef Name="IdJobTitle" />
+          </Key>
+          <Property Name="IdJobTitle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameJobTitle" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Letters">
+          <Key>
+            <PropertyRef Name="IdLetters" />
+          </Key>
+          <Property Name="IdLetters" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTypeLetters" Type="int" Nullable="false" />
+          <Property Name="WhereLetters" Type="nvarchar" MaxLength="150" />
+          <Property Name="IdStaff" Type="int" Nullable="false" />
+          <Property Name="SubjectLetters" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="DateReceivingOrDeparturesLetters" Type="date" Nullable="false" />
+          <Property Name="TextLetters" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="FromWhomLetters" Type="nvarchar" MaxLength="150" />
+          <Property Name="ToWhomLetters" Type="nvarchar" MaxLength="150" />
+          <Property Name="IdResponseToTheLetters" Type="int" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="IdOrders" />
+          </Key>
+          <Property Name="IdOrders" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTypeOrders" Type="int" Nullable="false" />
+          <Property Name="WhereOrders" Type="nvarchar" MaxLength="150" />
+          <Property Name="IdStaff" Type="int" Nullable="false" />
+          <Property Name="SubjectOrders" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="DateReceivingOrDeparturesOrders" Type="date" Nullable="false" />
+          <Property Name="TextOrders" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="FromWhomOrders" Type="nvarchar" MaxLength="150" />
+          <Property Name="ToWhomOrders" Type="nvarchar" MaxLength="150" />
+          <Property Name="IdResponseToTheOrders" Type="int" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="IdPassport" />
+          </Key>
+          <Property Name="IdPassport" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SeriesPassport" Type="int" Nullable="false" />
+          <Property Name="NumberPassport" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameRole" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="IdStaff" />
+          </Key>
+          <Property Name="IdStaff" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstNameStaff" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="SurNameStaff" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="80" />
+          <Property Name="NumberPhoneStaff" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="DateOfBirthStaff" Type="date" Nullable="false" />
+          <Property Name="SeriesPassport" Type="int" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="IdJobTitle" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdSecretary" Type="int" />
+          <Property Name="AdressStaff" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="PhotoStaff" Type="varbinary(max)" />
+          <Property Name="NumberPassport" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeLetters">
+          <Key>
+            <PropertyRef Name="IdTypeLetters" />
+          </Key>
+          <Property Name="IdTypeLetters" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameTypeLetters" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOrders">
+          <Key>
+            <PropertyRef Name="IdTypeOrders" />
+          </Key>
+          <Property Name="IdTypeOrders" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameTypeOrders" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginUser" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="PasswordUser" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="IdRole" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Graphics_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Graphics" Type="Self.Graphics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Graphics">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Letters_Letters1">
+          <End Role="Letters" Type="Self.Letters" Multiplicity="0..1" />
+          <End Role="Letters1" Type="Self.Letters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Letters">
+              <PropertyRef Name="IdLetters" />
+            </Principal>
+            <Dependent Role="Letters1">
+              <PropertyRef Name="IdResponseToTheLetters" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Letters_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Letters" Type="Self.Letters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Letters">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Letters_TypeLetters">
+          <End Role="TypeLetters" Type="Self.TypeLetters" Multiplicity="1" />
+          <End Role="Letters" Type="Self.Letters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeLetters">
+              <PropertyRef Name="IdTypeLetters" />
+            </Principal>
+            <Dependent Role="Letters">
+              <PropertyRef Name="IdTypeLetters" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Orders1" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IdOrders" />
+            </Principal>
+            <Dependent Role="Orders1">
+              <PropertyRef Name="IdResponseToTheOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_TypeOrders">
+          <End Role="TypeOrders" Type="Self.TypeOrders" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOrders">
+              <PropertyRef Name="IdTypeOrders" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IdOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_JobTitle">
+          <End Role="JobTitle" Type="Self.JobTitle" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTitle">
+              <PropertyRef Name="IdJobTitle" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="IdJobTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Staff1" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Staff1">
+              <PropertyRef Name="IdSecretary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DBModelContainer">
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Graphics" EntityType="Self.Graphics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobTitle" EntityType="Self.JobTitle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Letters" EntityType="Self.Letters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passport" EntityType="Self.Passport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeLetters" EntityType="Self.TypeLetters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOrders" EntityType="Self.TypeOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Graphics_Staff" Association="Self.FK_Graphics_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Graphics" EntitySet="Graphics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Letters_Letters1" Association="Self.FK_Letters_Letters1">
+            <End Role="Letters" EntitySet="Letters" />
+            <End Role="Letters1" EntitySet="Letters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Letters_Staff" Association="Self.FK_Letters_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Letters" EntitySet="Letters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Letters_TypeLetters" Association="Self.FK_Letters_TypeLetters">
+            <End Role="TypeLetters" EntitySet="TypeLetters" />
+            <End Role="Letters" EntitySet="Letters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Orders" Association="Self.FK_Orders_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Orders1" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Staff" Association="Self.FK_Orders_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_TypeOrders" Association="Self.FK_Orders_TypeOrders">
+            <End Role="TypeOrders" EntitySet="TypeOrders" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Gender" Association="Self.FK_Staff_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_JobTitle" Association="Self.FK_Staff_JobTitle">
+            <End Role="JobTitle" EntitySet="JobTitle" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Staff" Association="Self.FK_Staff_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Staff1" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_User" Association="Self.FK_Staff_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IdGender" />
+          </Key>
+          <Property Name="IdGender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameGender" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_Gender" FromRole="Gender" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Graphics">
+          <Key>
+            <PropertyRef Name="IdGraphics" />
+          </Key>
+          <Property Name="IdGraphics" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameEvents" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PlaceEvents" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateEvents" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TimeEvents" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TargetEvents" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhotoEvents" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdStaff" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Graphics_Staff" FromRole="Graphics" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="JobTitle">
+          <Key>
+            <PropertyRef Name="IdJobTitle" />
+          </Key>
+          <Property Name="IdJobTitle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameJobTitle" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_JobTitle" FromRole="JobTitle" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Letters">
+          <Key>
+            <PropertyRef Name="IdLetters" />
+          </Key>
+          <Property Name="IdLetters" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTypeLetters" Type="Int32" Nullable="false" />
+          <Property Name="WhereLetters" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdStaff" Type="Int32" Nullable="false" />
+          <Property Name="SubjectLetters" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateReceivingOrDeparturesLetters" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TextLetters" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FromWhomLetters" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ToWhomLetters" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdResponseToTheLetters" Type="Int32" />
+          <NavigationProperty Name="Letters1" Relationship="Self.FK_Letters_Letters1" FromRole="Letters" ToRole="Letters1" />
+          <NavigationProperty Name="Letters2" Relationship="Self.FK_Letters_Letters1" FromRole="Letters1" ToRole="Letters" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Letters_Staff" FromRole="Letters" ToRole="Staff" />
+          <NavigationProperty Name="TypeLetters" Relationship="Self.FK_Letters_TypeLetters" FromRole="Letters" ToRole="TypeLetters" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="IdOrders" />
+          </Key>
+          <Property Name="IdOrders" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTypeOrders" Type="Int32" Nullable="false" />
+          <Property Name="WhereOrders" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdStaff" Type="Int32" Nullable="false" />
+          <Property Name="SubjectOrders" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateReceivingOrDeparturesOrders" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TextOrders" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FromWhomOrders" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ToWhomOrders" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdResponseToTheOrders" Type="Int32" />
+          <NavigationProperty Name="Orders1" Relationship="Self.FK_Orders_Orders" FromRole="Orders" ToRole="Orders1" />
+          <NavigationProperty Name="Orders2" Relationship="Self.FK_Orders_Orders" FromRole="Orders1" ToRole="Orders" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Orders_Staff" FromRole="Orders" ToRole="Staff" />
+          <NavigationProperty Name="TypeOrders" Relationship="Self.FK_Orders_TypeOrders" FromRole="Orders" ToRole="TypeOrders" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="IdPassport" />
+          </Key>
+          <Property Name="IdPassport" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SeriesPassport" Type="Int32" Nullable="false" />
+          <Property Name="NumberPassport" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameRole" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="IdStaff" />
+          </Key>
+          <Property Name="IdStaff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstNameStaff" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SurNameStaff" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="NumberPhoneStaff" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirthStaff" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SeriesPassport" Type="Int32" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="IdJobTitle" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdSecretary" Type="Int32" />
+          <Property Name="AdressStaff" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhotoStaff" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NumberPassport" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Staff_Gender" FromRole="Staff" ToRole="Gender" />
+          <NavigationProperty Name="Graphics" Relationship="Self.FK_Graphics_Staff" FromRole="Staff" ToRole="Graphics" />
+          <NavigationProperty Name="JobTitle" Relationship="Self.FK_Staff_JobTitle" FromRole="Staff" ToRole="JobTitle" />
+          <NavigationProperty Name="Letters" Relationship="Self.FK_Letters_Staff" FromRole="Staff" ToRole="Letters" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Staff" FromRole="Staff" ToRole="Orders" />
+          <NavigationProperty Name="Staff1" Relationship="Self.FK_Staff_Staff" FromRole="Staff" ToRole="Staff1" />
+          <NavigationProperty Name="Staff2" Relationship="Self.FK_Staff_Staff" FromRole="Staff1" ToRole="Staff" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Staff_User" FromRole="Staff" ToRole="User" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeLetters">
+          <Key>
+            <PropertyRef Name="IdTypeLetters" />
+          </Key>
+          <Property Name="IdTypeLetters" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameTypeLetters" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Letters" Relationship="Self.FK_Letters_TypeLetters" FromRole="TypeLetters" ToRole="Letters" />
+        </EntityType>
+        <EntityType Name="TypeOrders">
+          <Key>
+            <PropertyRef Name="IdTypeOrders" />
+          </Key>
+          <Property Name="IdTypeOrders" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameTypeOrders" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_TypeOrders" FromRole="TypeOrders" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginUser" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordUser" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_User" FromRole="User" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK_Staff_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Graphics_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Graphics" Type="Self.Graphics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Graphics">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_JobTitle">
+          <End Role="JobTitle" Type="Self.JobTitle" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTitle">
+              <PropertyRef Name="IdJobTitle" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="IdJobTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Letters_Letters1">
+          <End Role="Letters" Type="Self.Letters" Multiplicity="0..1" />
+          <End Role="Letters1" Type="Self.Letters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Letters">
+              <PropertyRef Name="IdLetters" />
+            </Principal>
+            <Dependent Role="Letters1">
+              <PropertyRef Name="IdResponseToTheLetters" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Letters_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Letters" Type="Self.Letters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Letters">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Letters_TypeLetters">
+          <End Role="TypeLetters" Type="Self.TypeLetters" Multiplicity="1" />
+          <End Role="Letters" Type="Self.Letters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeLetters">
+              <PropertyRef Name="IdTypeLetters" />
+            </Principal>
+            <Dependent Role="Letters">
+              <PropertyRef Name="IdTypeLetters" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Orders1" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IdOrders" />
+            </Principal>
+            <Dependent Role="Orders1">
+              <PropertyRef Name="IdResponseToTheOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_TypeOrders">
+          <End Role="TypeOrders" Type="Self.TypeOrders" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOrders">
+              <PropertyRef Name="IdTypeOrders" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IdOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Staff1" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Staff1">
+              <PropertyRef Name="IdSecretary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="Graphics" EntityType="Self.Graphics" />
+          <EntitySet Name="JobTitle" EntityType="Self.JobTitle" />
+          <EntitySet Name="Letters" EntityType="Self.Letters" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Passport" EntityType="Self.Passport" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TypeLetters" EntityType="Self.TypeLetters" />
+          <EntitySet Name="TypeOrders" EntityType="Self.TypeOrders" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Staff_Gender" Association="Self.FK_Staff_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Graphics_Staff" Association="Self.FK_Graphics_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Graphics" EntitySet="Graphics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_JobTitle" Association="Self.FK_Staff_JobTitle">
+            <End Role="JobTitle" EntitySet="JobTitle" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Letters_Letters1" Association="Self.FK_Letters_Letters1">
+            <End Role="Letters" EntitySet="Letters" />
+            <End Role="Letters1" EntitySet="Letters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Letters_Staff" Association="Self.FK_Letters_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Letters" EntitySet="Letters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Letters_TypeLetters" Association="Self.FK_Letters_TypeLetters">
+            <End Role="TypeLetters" EntitySet="TypeLetters" />
+            <End Role="Letters" EntitySet="Letters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Orders" Association="Self.FK_Orders_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Orders1" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Staff" Association="Self.FK_Orders_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_TypeOrders" Association="Self.FK_Orders_TypeOrders">
+            <End Role="TypeOrders" EntitySet="TypeOrders" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Staff" Association="Self.FK_Staff_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Staff1" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_User" Association="Self.FK_Staff_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DBModelContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="DBModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="NameGender" ColumnName="NameGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Graphics">
+            <EntityTypeMapping TypeName="DBModel.Graphics">
+              <MappingFragment StoreEntitySet="Graphics">
+                <ScalarProperty Name="IdGraphics" ColumnName="IdGraphics" />
+                <ScalarProperty Name="NameEvents" ColumnName="NameEvents" />
+                <ScalarProperty Name="PlaceEvents" ColumnName="PlaceEvents" />
+                <ScalarProperty Name="DateEvents" ColumnName="DateEvents" />
+                <ScalarProperty Name="TimeEvents" ColumnName="TimeEvents" />
+                <ScalarProperty Name="TargetEvents" ColumnName="TargetEvents" />
+                <ScalarProperty Name="PhotoEvents" ColumnName="PhotoEvents" />
+                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobTitle">
+            <EntityTypeMapping TypeName="DBModel.JobTitle">
+              <MappingFragment StoreEntitySet="JobTitle">
+                <ScalarProperty Name="IdJobTitle" ColumnName="IdJobTitle" />
+                <ScalarProperty Name="NameJobTitle" ColumnName="NameJobTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Letters">
+            <EntityTypeMapping TypeName="DBModel.Letters">
+              <MappingFragment StoreEntitySet="Letters">
+                <ScalarProperty Name="IdLetters" ColumnName="IdLetters" />
+                <ScalarProperty Name="IdTypeLetters" ColumnName="IdTypeLetters" />
+                <ScalarProperty Name="WhereLetters" ColumnName="WhereLetters" />
+                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
+                <ScalarProperty Name="SubjectLetters" ColumnName="SubjectLetters" />
+                <ScalarProperty Name="DateReceivingOrDeparturesLetters" ColumnName="DateReceivingOrDeparturesLetters" />
+                <ScalarProperty Name="TextLetters" ColumnName="TextLetters" />
+                <ScalarProperty Name="FromWhomLetters" ColumnName="FromWhomLetters" />
+                <ScalarProperty Name="ToWhomLetters" ColumnName="ToWhomLetters" />
+                <ScalarProperty Name="IdResponseToTheLetters" ColumnName="IdResponseToTheLetters" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="DBModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="IdOrders" ColumnName="IdOrders" />
+                <ScalarProperty Name="IdTypeOrders" ColumnName="IdTypeOrders" />
+                <ScalarProperty Name="WhereOrders" ColumnName="WhereOrders" />
+                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
+                <ScalarProperty Name="SubjectOrders" ColumnName="SubjectOrders" />
+                <ScalarProperty Name="DateReceivingOrDeparturesOrders" ColumnName="DateReceivingOrDeparturesOrders" />
+                <ScalarProperty Name="TextOrders" ColumnName="TextOrders" />
+                <ScalarProperty Name="FromWhomOrders" ColumnName="FromWhomOrders" />
+                <ScalarProperty Name="ToWhomOrders" ColumnName="ToWhomOrders" />
+                <ScalarProperty Name="IdResponseToTheOrders" ColumnName="IdResponseToTheOrders" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passport">
+            <EntityTypeMapping TypeName="DBModel.Passport">
+              <MappingFragment StoreEntitySet="Passport">
+                <ScalarProperty Name="IdPassport" ColumnName="IdPassport" />
+                <ScalarProperty Name="SeriesPassport" ColumnName="SeriesPassport" />
+                <ScalarProperty Name="NumberPassport" ColumnName="NumberPassport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="DBModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="NameRole" ColumnName="NameRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="DBModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
+                <ScalarProperty Name="FirstNameStaff" ColumnName="FirstNameStaff" />
+                <ScalarProperty Name="SurNameStaff" ColumnName="SurNameStaff" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="NumberPhoneStaff" ColumnName="NumberPhoneStaff" />
+                <ScalarProperty Name="DateOfBirthStaff" ColumnName="DateOfBirthStaff" />
+                <ScalarProperty Name="SeriesPassport" ColumnName="SeriesPassport" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="IdJobTitle" ColumnName="IdJobTitle" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdSecretary" ColumnName="IdSecretary" />
+                <ScalarProperty Name="AdressStaff" ColumnName="AdressStaff" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="PhotoStaff" ColumnName="PhotoStaff" />
+                <ScalarProperty Name="NumberPassport" ColumnName="NumberPassport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeLetters">
+            <EntityTypeMapping TypeName="DBModel.TypeLetters">
+              <MappingFragment StoreEntitySet="TypeLetters">
+                <ScalarProperty Name="IdTypeLetters" ColumnName="IdTypeLetters" />
+                <ScalarProperty Name="NameTypeLetters" ColumnName="NameTypeLetters" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOrders">
+            <EntityTypeMapping TypeName="DBModel.TypeOrders">
+              <MappingFragment StoreEntitySet="TypeOrders">
+                <ScalarProperty Name="IdTypeOrders" ColumnName="IdTypeOrders" />
+                <ScalarProperty Name="NameTypeOrders" ColumnName="NameTypeOrders" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="DBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="LoginUser" ColumnName="LoginUser" />
+                <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

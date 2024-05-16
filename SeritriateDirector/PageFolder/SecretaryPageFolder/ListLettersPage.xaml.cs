@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace SeritriateDirector.PageFolder.SecretaryPageFolder
 {
     /// <summary>
-    /// Логика взаимодействия для ListOrdersPage.xaml
+    /// Логика взаимодействия для ListLettersPage.xaml
     /// </summary>
-    public partial class ListOrdersPage : Page
+    public partial class ListLettersPage : Page
     {
-        public ListOrdersPage()
+        public ListLettersPage()
         {
             InitializeComponent();
 
@@ -29,15 +29,15 @@ namespace SeritriateDirector.PageFolder.SecretaryPageFolder
 
             if (globalSettingLanguage == "ru")
             {
-                Title = "Список приказов";
+                Title = "Список писем";
             }
             else if (globalSettingLanguage == "en")
             {
-                Title = "List orders";
+                Title = "List letters";
             }
             else
             {
-                Title = "Список приказов";
+                Title = "Список писем";
 
                 MBClass.ErrorMB("Языковая настройка слетела! Язык по умолчанию русский!\n\n" +
                     "The language setting is gone! The default language is Russian!");

@@ -30,7 +30,7 @@
                         Style="{DynamicResource LabelLogo}"
                Content="ДИРЕКТОР"
                Grid.Row="1"
-               Foreground="{DynamicResource FillFont}"/>
+               Foreground="{DynamicResource FillFontOne}"/>
                     <Image x:Name="CloseIm"
                Grid.Row="1"
                Style="{DynamicResource CloseIm}"
@@ -61,9 +61,8 @@ Margin="10,4,0,14"/>
                                     Grid.Column="1"
                                     Grid.Row="1">
 
-                            <Button x:Name="ListOfLettersBtn"
+                            <ToggleButton x:Name="ListOfLettersBtn"
                                     Content="Список писем"
-                                    Style="{StaticResource InvisibleButton}"
                                     Click="ListOfLettersBtn_Click"/>
 
                             <StackPanel Width="20"/>
@@ -89,16 +88,23 @@ Margin="10,4,0,14"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="810"/>
+                            <RowDefinition/>
                             <RowDefinition Height="10"/>
                             <RowDefinition Height="50"/>
-                            <RowDefinition/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="10"/>
                         </Grid.RowDefinitions>
                         <Button x:Name="BackBtn"
-                    Grid.Row="2"
+                    Grid.Row="4"
                     Grid.Column="1"
                     Content="Назад"
                     Click="BackBtn_Click"/>
+                        <Button x:Name="ThemeBtn"
+                                Content="Тема"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                                Click="ThemeBtn_Click"/>
                     </Grid>
                     <Grid Grid.Row="3">
                         <Grid.RowDefinitions>

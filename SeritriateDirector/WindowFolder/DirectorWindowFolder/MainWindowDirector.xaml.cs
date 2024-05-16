@@ -2,6 +2,7 @@
 using SeritriateDirector.PageFolder.DirectorPageFolder;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,9 +25,15 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
     {
         public MainWindowDirector()
         {
+            string pathDictionary = (App.Current as App).PathDictionary;
+
+            if (pathDictionary != null && pathDictionary != "")
+            {
+                this.Resources = new ResourceDictionary() { Source = new Uri(pathDictionary) };
+            }
             InitializeComponent();
 
-            MainFrame.Navigate(new ListOrdersPage());
+            MainFrame.Navigate(new ListLettersPage());
 
             string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
@@ -36,6 +43,7 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
                 ListOfLettersBtn.Content = "Список писем";
                 ListOfOrdersBtn.Content = "Список приказов";
                 ListOfChartsBtn.Content = "Список графиков";
+                ThemeBtn.Content = "Тема";
                 BackBtn.Content = "Назад";
             }
             else if (globalSettingLanguage == "en")
@@ -44,6 +52,7 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
                 ListOfLettersBtn.Content = "List letters";
                 ListOfOrdersBtn.Content = "List orders";
                 ListOfChartsBtn.Content = "List charts";
+                ThemeBtn.Content = "Theme";
                 BackBtn.Content = "Back";
             }
             else
@@ -122,10 +131,6 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
                             "выйти в окно авторизации?");
                 if (ret == true)
                 {
-                    using (StreamWriter newTask = new StreamWriter("Save.txt", false))
-                    {
-                        newTask.WriteLine("");
-                    }
                     new AuthorizationWindowNoneCapchaWindow().Show();
                     this.Close();
                 }
@@ -134,17 +139,25 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
 
         private void ListOfLettersBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new ListOrdersPage());
+            MainFrame.Navigate(new ListLettersPage());
         }
 
         private void ListOfOrdersBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new ListOrdersPage());
         }
 
         private void ListOfChartsBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ThemeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            (App.Current as App).MainWindowDirector = new MainWindowDirector();
+
+            new ThemeSelectionWindow().Show();
+            this.Close();
         }
     }
 }

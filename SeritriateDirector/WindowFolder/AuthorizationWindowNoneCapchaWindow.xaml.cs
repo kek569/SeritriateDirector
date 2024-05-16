@@ -1,4 +1,5 @@
 ﻿using SeritriateDirector.ClassFolder;
+using SeritriateDirector.DataFolder;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,7 +27,14 @@ namespace SeritriateDirector.WindowFolder
     {
         public AuthorizationWindowNoneCapchaWindow()
         {
+            string pathDictionary = (App.Current as App).PathDictionary;
+
+            if (pathDictionary != null && pathDictionary != "")
+            {
+                this.Resources = new ResourceDictionary() { Source = new Uri(pathDictionary) };
+            }
             InitializeComponent();
+
 
             string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
@@ -106,20 +114,12 @@ namespace SeritriateDirector.WindowFolder
                     leng = "Введите логин";
                 }
 
-                faille = faille + 1;
-
-                if (faille >= 3)
-                {
-                    Capcha();
-                }
-
                 MBClass.ErrorMB(leng);
                 LoginTB.Focus();
             }
             else if (string.IsNullOrWhiteSpace(PasswordPB.Password))
             {
                 string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
-
 
                 if (globalSettingLanguage == "ru")
                 {
@@ -165,6 +165,7 @@ namespace SeritriateDirector.WindowFolder
         private int faille = 0;
         private string leng;
         private string path = (App.Current as App).Path;
+        
 
         private void Login()
         {
@@ -179,6 +180,10 @@ namespace SeritriateDirector.WindowFolder
                 else if (globalSettingLanguage == "en")
                 {
                     leng = "Enter login";
+                }
+                else
+                {
+                    leng = "Введите логин";
                 }
 
                 MBClass.ErrorMB(leng);
@@ -197,6 +202,10 @@ namespace SeritriateDirector.WindowFolder
                 {
                     leng = "Enter password";
                 }
+                else
+                {
+                    leng = "Введите пароль";
+                }
 
                 MBClass.ErrorMB(leng);
                 PasswordPB.Focus();
@@ -204,7 +213,7 @@ namespace SeritriateDirector.WindowFolder
             }
             else
             {
-                /*try
+                try
                 {
                     var user = DBEntities.GetContext()
                         .User
@@ -213,27 +222,57 @@ namespace SeritriateDirector.WindowFolder
                     if (user == null)
                     {
                         faille = faille + 1;
-                        MBClass.ErrorMB("Введен не правильный логин или пароль");
-                        LoginTB.Focus();
 
                         if (faille >= 3)
                         {
                             Capcha();
                         }
 
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введен не правильный логин или пароль";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Incorrect login or password entered";
+                        }
+                        else
+                        {
+                            leng = "Введен не правильный логин или пароль";
+                        }
+
+                        MBClass.ErrorMB(leng);
+                        LoginTB.Focus();
                         return;
                     }
                     if (user.PasswordUser != PasswordSave)
                     {
                         faille = faille + 1;
-                        MBClass.ErrorMB("Введен не правильный логин или пароль");
-                        PasswordPB.Focus();
 
                         if (faille >= 3)
                         {
                             Capcha();
                         }
 
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введен не правильный логин или пароль";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Incorrect login or password entered";
+                        }
+                        else
+                        {
+                            leng = "Введен не правильный логин или пароль";
+                        }
+
+                        MBClass.ErrorMB(leng);
+                        PasswordPB.Focus();
                         return;
                     }
                     else
@@ -249,21 +288,26 @@ namespace SeritriateDirector.WindowFolder
                         switch (user.IdRole)
                         {
                             case 1:
-                                new AdminWindowFolder.AdminWindow().Show();
+                                new AdminWindowFolder.MainWindowAdmin().Show();
                                 this.Close();
                                 break;
                             case 2:
                                 (App.Current as App).DeptName = LoginSave;
-                                new StaffWindowFolder.StaffWindow().Show();
+                                new SecretaryWindowFolder.MainWindowSecretary().Show();
                                 this.Close();
                                 break;
+                            case 3:
+                                (App.Current as App).DeptName = LoginSave;
+                                new DirectorWindowFolder.MainWindowDirector().Show();
+                                this.Close();
+                                break;
+                        }
+                    }
                 }
-            }
-        }
-        catch (Exception ex)
-        {
-            MBClass.ErrorMB(ex);
-        }*/
+                catch (Exception ex)
+                {
+                    MBClass.ErrorMB(ex);
+                }
             }
         }
 
@@ -296,7 +340,7 @@ namespace SeritriateDirector.WindowFolder
                     LoginTB.Text = LoginSave;
                     PasswordPB.Password = PasswordSave;
                     SaveMeCb.IsChecked = true;
-
+                    
                     //Login();
                 }
             }

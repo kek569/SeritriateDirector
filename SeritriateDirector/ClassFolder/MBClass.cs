@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
+using System.Data.Entity.Validation;
 
 namespace SeritriateDirector.ClassFolder
 {
@@ -48,7 +49,7 @@ namespace SeritriateDirector.ClassFolder
             }
         }
 
-        /*public static void ErrorMB(DbEntityValidationException ex)
+        public static void ErrorMB(DbEntityValidationException ex)
         {
             foreach (DbEntityValidationResult validationError in
                 ex.EntityValidationErrors)
@@ -60,6 +61,6 @@ namespace SeritriateDirector.ClassFolder
                         .Entry.Entity.ToString());
                 }
             }
-        }*/
+        }
     }
 }

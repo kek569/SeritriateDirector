@@ -1,5 +1,6 @@
 ﻿using EasyCaptcha.Wpf;
 using SeritriateDirector.ClassFolder;
+using SeritriateDirector.DataFolder;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,12 @@ namespace SeritriateDirector.WindowFolder
     {
         public AuthorizationWindowCapchaWindow()
         {
+            string pathDictionary = (App.Current as App).PathDictionary;
+
+            if (pathDictionary != null && pathDictionary != "")
+            {
+                this.Resources = new ResourceDictionary() { Source = new Uri(pathDictionary) };
+            }
             InitializeComponent();
 
             string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
@@ -313,7 +320,7 @@ namespace SeritriateDirector.WindowFolder
             }
             else
             {
-                /*try
+                try
                 {
                     var user = DBEntities.GetContext()
                         .User
@@ -321,28 +328,52 @@ namespace SeritriateDirector.WindowFolder
 
                     if (user == null)
                     {
-                        faille = faille + 1;
-                        MBClass.ErrorMB("Введен не правильный логин или пароль");
-                        LoginTB.Focus();
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
-                        if (faille >= 3)
+                        if (globalSettingLanguage == "ru")
                         {
-                            Capcha();
+                            leng = "Введен не правильный логин или пароль";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Incorrect login or password entered";
+                        }
+                        else
+                        {
+                            leng = "Введен не правильный логин или пароль";
                         }
 
+                        CaptchaEs.CreateCaptcha(Captcha.LetterOption.Alphanumeric, 5);
+                        CheckTb.Text = "";
+                        text = CaptchaEs.CaptchaText;
+
+                        MBClass.ErrorMB(leng);
+                        LoginTB.Focus();
                         return;
                     }
                     if (user.PasswordUser != PasswordSave)
                     {
-                        faille = faille + 1;
-                        MBClass.ErrorMB("Введен не правильный логин или пароль");
-                        PasswordPB.Focus();
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
-                        if (faille >= 3)
+                        if (globalSettingLanguage == "ru")
                         {
-                            Capcha();
+                            leng = "Введен не правильный логин или пароль";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Incorrect login or password entered";
+                        }
+                        else
+                        {
+                            leng = "Введен не правильный логин или пароль";
                         }
 
+                        CaptchaEs.CreateCaptcha(Captcha.LetterOption.Alphanumeric, 5);
+                        CheckTb.Text = "";
+                        text = CaptchaEs.CaptchaText;
+
+                        MBClass.ErrorMB(leng);
+                        PasswordPB.Focus();
                         return;
                     }
                     else
@@ -358,21 +389,26 @@ namespace SeritriateDirector.WindowFolder
                         switch (user.IdRole)
                         {
                             case 1:
-                                new AdminWindowFolder.AdminWindow().Show();
+                                new AdminWindowFolder.MainWindowAdmin().Show();
                                 this.Close();
                                 break;
                             case 2:
                                 (App.Current as App).DeptName = LoginSave;
-                                new StaffWindowFolder.StaffWindow().Show();
+                                new SecretaryWindowFolder.MainWindowSecretary().Show();
                                 this.Close();
                                 break;
+                            case 3:
+                                (App.Current as App).DeptName = LoginSave;
+                                new DirectorWindowFolder.MainWindowDirector().Show();
+                                this.Close();
+                                break;
+                        }
+                    }
                 }
-            }
-        }
-        catch (Exception ex)
-        {
-            MBClass.ErrorMB(ex);
-        }*/
+                catch (Exception ex)
+                {
+                    MBClass.ErrorMB(ex);
+                }
             }
         }
 
@@ -424,6 +460,7 @@ namespace SeritriateDirector.WindowFolder
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
         {
             CaptchaEs.CreateCaptcha(Captcha.LetterOption.Alphanumeric, 5);
+            CheckTb.Text = "";
             text = CaptchaEs.CaptchaText;
         }
     }
