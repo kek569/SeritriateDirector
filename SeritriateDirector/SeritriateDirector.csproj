@@ -129,6 +129,12 @@
     <Compile Include="DataFolder\User.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\AdminPageFolder\AddStaffPage.xaml.cs">
+      <DependentUpon>AddStaffPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\AdminPageFolder\EditStaffPage.xaml.cs">
+      <DependentUpon>EditStaffPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\AdminPageFolder\ListStaffPage.xaml.cs">
       <DependentUpon>ListStaffPage.xaml</DependentUpon>
     </Compile>
@@ -205,6 +211,14 @@
     <Resource Include="ResourceFolder\ImageFolder\Russia.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="PageFolder\AdminPageFolder\AddStaffPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\AdminPageFolder\EditStaffPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\AdminPageFolder\ListStaffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -312,6 +326,9 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="ResourceFolder\ImageFolder\Theme.png" />
+    <Resource Include="ResourceFolder\ImageFolder\BackDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\BackLight.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -14,14 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SeritriateDirector.PageFolder.DirectorPageFolder
+namespace SeritriateDirector.PageFolder.AdminPageFolder
 {
     /// <summary>
-    /// Логика взаимодействия для ListLettersPage.xaml
+    /// Логика взаимодействия для AddStaffPage.xaml
     /// </summary>
-    public partial class ListLettersPage : Page
+    public partial class AddStaffPage : Page
     {
-        public ListLettersPage()
+        public AddStaffPage()
         {
             InitializeComponent();
 
@@ -29,15 +29,15 @@ namespace SeritriateDirector.PageFolder.DirectorPageFolder
 
             if (globalSettingLanguage == "ru")
             {
-                Title = "Список писем";
+                Title = "Добавления сотрудника";
             }
             else if (globalSettingLanguage == "en")
             {
-                Title = "List letters";
+                Title = "Adding staff";
             }
             else
             {
-                Title = "Список писем";
+                Title = "Добавления сотрудника";
 
                 MBClass.ErrorMB("Языковая настройка слетела! Язык по умолчанию русский!\n\n" +
                     "The language setting is gone! The default language is Russian!", "");

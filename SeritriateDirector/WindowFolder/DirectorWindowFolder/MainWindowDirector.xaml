@@ -67,9 +67,8 @@ Margin="10,4,0,14"/>
 
                             <StackPanel Width="20"/>
 
-                            <Button x:Name="ListOfOrdersBtn"
+                            <ToggleButton x:Name="ListOfOrdersBtn"
                                     Content="Список приказов"
-                                    Style="{StaticResource InvisibleButton}"
                                     Click="ListOfOrdersBtn_Click"/>
 
                             <StackPanel Width="20"/>
@@ -85,26 +84,58 @@ Margin="10,4,0,14"/>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="10"/>
                             <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="20"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
+                            <RowDefinition Height="55"/>
                             <RowDefinition Height="10"/>
-                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="55"/>
                             <RowDefinition Height="10"/>
-                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="55"/>
                             <RowDefinition Height="10"/>
                         </Grid.RowDefinitions>
-                        <Button x:Name="BackBtn"
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Content="Назад"
-                    Click="BackBtn_Click"/>
+                        <Button x:Name="BugsBtn"
+Grid.Row="1"
+Grid.Column="1"
+            Click="BugsBtn_Click">
+                            <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="5">
+                                <TextBlock x:Name="BugsTb" Text="  Баги" VerticalAlignment="Center" 
+                Style="{StaticResource TextBlockInBtn}"/>
+                            </StackPanel>
+                        </Button>
+
                         <Button x:Name="ThemeBtn"
-                                Content="Тема"
-                    Grid.Row="2"
+Grid.Row="3"
+Grid.Column="1"
+            Click="ThemeBtn_Click">
+                            <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="5">
+                                <Image Style="{StaticResource ThemeIm}"/>
+                                <TextBlock x:Name="ThemeTb" Text="  Тема" VerticalAlignment="Center" 
+                Style="{StaticResource TextBlockInBtn}"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="BackBtn"
+                    Grid.Row="5"
                     Grid.Column="1"
-                                Click="ThemeBtn_Click"/>
+                    Click="BackBtn_Click">
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Margin="5">
+                                <Image x:Name="BackIm" Style="{StaticResource BackIm}"/>
+                                <TextBlock x:Name="BackTb" Text="  Назад" VerticalAlignment="Center" 
+                                           Style="{StaticResource TextBlockInBtn}"/>
+                            </StackPanel>
+                        </Button>
                     </Grid>
                     <Grid Grid.Row="3">
                         <Grid.RowDefinitions>
@@ -113,7 +144,7 @@ Margin="10,4,0,14"/>
                             <RowDefinition Height="700"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="120"/>
                             <ColumnDefinition Width="1200"/>
                             <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>

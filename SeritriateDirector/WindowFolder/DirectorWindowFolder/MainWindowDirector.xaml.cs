@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -34,6 +37,7 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
             InitializeComponent();
 
             MainFrame.Navigate(new ListLettersPage());
+            ListOfLettersBtn.IsChecked = true;
 
             string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
@@ -43,8 +47,8 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
                 ListOfLettersBtn.Content = "Список писем";
                 ListOfOrdersBtn.Content = "Список приказов";
                 ListOfChartsBtn.Content = "Список графиков";
-                ThemeBtn.Content = "Тема";
-                BackBtn.Content = "Назад";
+                ThemeTb.Text = "  Тема";
+                BackTb.Text = "  Назад";
             }
             else if (globalSettingLanguage == "en")
             {
@@ -52,13 +56,13 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
                 ListOfLettersBtn.Content = "List letters";
                 ListOfOrdersBtn.Content = "List orders";
                 ListOfChartsBtn.Content = "List charts";
-                ThemeBtn.Content = "Theme";
-                BackBtn.Content = "Back";
+                ThemeTb.Text = "  Theme";
+                BackTb.Text = "  Back";
             }
             else
             {
                 MBClass.ErrorMB("Языковая настройка слетела! Язык по умолчанию русский!\n\n" +
-                    "The language setting is gone! The default language is Russian!");
+                    "The language setting is gone! The default language is Russian!", "");
             }
         }
 
@@ -74,26 +78,7 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
 
         private void CloseIm_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
-
-            if (globalSettingLanguage == "ru")
-            {
-                leng = "Вы действительно желаете выйти?";
-            }
-            else if (globalSettingLanguage == "en")
-            {
-                leng = "Do you really want to go out?";
-            }
-            else
-            {
-                leng = "Вы действительно желаете выйти?";
-            }
-
-            bool ret = MBClass.QestionMB(leng);
-            if (ret == true)
-            {
-                this.Close();
-            }
+            MBClass.ExitMB("");
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
@@ -127,8 +112,7 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
                     leng = "Вы действительно желаете выйти в окно авторизации?";
                 }
 
-                bool ret = MBClass.QestionMB("Вы действительно желаете " +
-                            "выйти в окно авторизации?");
+                bool ret = MBClass.QestionMB(leng, "");
                 if (ret == true)
                 {
                     new AuthorizationWindowNoneCapchaWindow().Show();
@@ -139,12 +123,36 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
 
         private void ListOfLettersBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new ListLettersPage());
+            string check = this.MainFrame.Content.ToString();
+            check = new string(check.Reverse().ToArray()).Remove(15);
+            check = new string(check.Reverse().ToArray());
+
+            if (check == "ListLettersPage")
+            {
+                ListOfLettersBtn.IsChecked = true;
+            }
+            else
+            {
+                MainFrame.Navigate(new ListLettersPage());
+                ListOfOrdersBtn.IsChecked = false;
+            }
         }
 
         private void ListOfOrdersBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new ListOrdersPage());
+            string check = this.MainFrame.Content.ToString();
+            check = new string(check.Reverse().ToArray()).Remove(14);
+            check = new string(check.Reverse().ToArray());
+
+            if (check == "ListOrdersPage")
+            {
+                ListOfOrdersBtn.IsChecked = true;
+            }
+            else
+            {
+                MainFrame.Navigate(new ListOrdersPage());
+                ListOfLettersBtn.IsChecked = false;
+            }
         }
 
         private void ListOfChartsBtn_Click(object sender, RoutedEventArgs e)
@@ -158,6 +166,31 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
 
             new ThemeSelectionWindow().Show();
             this.Close();
+        }
+
+        private void BugsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MailAddress from = new MailAddress("somemail@gmail.com", "Tom");
+            MailAddress to = new MailAddress("somemail@yandex.ru");
+            MailMessage m = new MailMessage(from, to);
+            m.Subject = "Тест";
+            m.Body = "<h2>Письмо-тест работы smtp-клиента</h2>";
+            m.AlternateViews.Add(getEmbeddedImage("c:/image.png"));
+            m.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.Credentials = new NetworkCredential("somemail@gmail.com", "mypassword");
+            smtp.EnableSsl = true;
+            smtp.Send(m);
+        }
+
+        private AlternateView getEmbeddedImage(String filePath)
+        {
+            LinkedResource res = new LinkedResource(filePath);
+            res.ContentId = Guid.NewGuid().ToString();
+            string htmlBody = @"<img src='cid:" + res.ContentId + @"'/>";
+            AlternateView alternateView = AlternateView.CreateAlternateViewFromString(htmlBody, null, MediaTypeNames.Text.Html);
+            alternateView.LinkedResources.Add(res);
+            return alternateView;
         }
     }
 }

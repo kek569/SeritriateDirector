@@ -1,1 +1,2 @@
-
+en
+pack://application:,,,/ResourceFolder/DictionaryDark.xaml

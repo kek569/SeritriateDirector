@@ -40,7 +40,7 @@ namespace SeritriateDirector.PageFolder.SecretaryPageFolder
                 Title = "Список писем";
 
                 MBClass.ErrorMB("Языковая настройка слетела! Язык по умолчанию русский!\n\n" +
-                    "The language setting is gone! The default language is Russian!");
+                    "The language setting is gone! The default language is Russian!", "");
             }
         }
     }

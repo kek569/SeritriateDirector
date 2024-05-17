@@ -1,7 +1,10 @@
 ﻿using SeritriateDirector.ClassFolder;
+using SeritriateDirector.WindowFolder.AdminWindowFolder;
 using SeritriateDirector.WindowFolder.DirectorWindowFolder;
+using SeritriateDirector.WindowFolder.SecretaryWindowFolder;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -26,43 +29,46 @@ namespace SeritriateDirector.WindowFolder
     {
         public ThemeSelectionWindow()
         {
-            string pathDictionary = (App.Current as App).PathDictionary;
+            string selected_pathDictionary = (App.Current as App).PathDictionary;
 
-            if (pathDictionary != null && pathDictionary != "")
+            if (selected_pathDictionary != null && selected_pathDictionary != "")
             {
-                this.Resources = new ResourceDictionary() { Source = new Uri(pathDictionary) };
-                if (pathDictionary == "pack://application:,,,/ResourceFolder/DictionaryDark.xaml")
-                {
-                    ThemeCb.IsChecked = true;
-                }
+                this.Resources = new ResourceDictionary() { Source = new Uri(selected_pathDictionary) };
             }
 
             InitializeComponent();
+
+            if (selected_pathDictionary == "pack://application:,,,/ResourceFolder/DictionaryDark.xaml")
+            {
+                ThemeCb.IsChecked = true;
+            }
 
             string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
             if (globalSettingLanguage == "ru")
             {
                 LanguageSelectionLb.Content = "ВЫБОР ТЕМЫ";
-                SaveSettingsBtn.Content = "Сохранить настройки";
+                SaveSettingsBtn.Content = "  Сохранить настройки  ";
                 LightLb.Content = "Светлый";
                 DarkLb.Content = "Темный";
             }
             else if (globalSettingLanguage == "en")
             {
                 LanguageSelectionLb.Content = "CHOOSING THEME";
-                SaveSettingsBtn.Content = "Save settings";
+                SaveSettingsBtn.Content = "  Save settings  ";
                 LightLb.Content = "Light";
                 DarkLb.Content = "Dark";
             }
             else
             {
                 MBClass.ErrorMB("Языковая настройка слетела! Язык по умолчанию русский!\n\n" +
-                    "The language setting is gone! The default language is Russian!");
+                    "The language setting is gone! The default language is Russian!", "");
             }
         }
 
-        private string pathDictionary;
+        private string pathDictionary = (App.Current as App).PathDictionary;
+        private string path = (App.Current as App).Path;
+        private string leng;
 
         private void BorderMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -74,11 +80,7 @@ namespace SeritriateDirector.WindowFolder
 
         private void ImageMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            bool ret = MBClass.QestionMB("Вы действительно желаете выйти?");
-            if (ret == true)
-            {
-                this.Close();
-            }
+            MBClass.ExitMB("");
         }
 
         private void ThemeCb_Click(object sender, RoutedEventArgs e)
@@ -87,6 +89,7 @@ namespace SeritriateDirector.WindowFolder
             if (ThemeCb.IsChecked == true)
             {
                 ThemeCb.IsEnabled = false;
+                SaveSettingsBtn.IsEnabled = false;
                 var timer = new DispatcherTimer
                 { Interval = TimeSpan.FromSeconds(0.45) };
                 timer.Start();
@@ -96,11 +99,13 @@ namespace SeritriateDirector.WindowFolder
                     Resources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/ResourceFolder/DictionaryDark.xaml") };
                     pathDictionary = "pack://application:,,,/ResourceFolder/DictionaryDark.xaml";
                     ThemeCb.IsEnabled = true;
+                    SaveSettingsBtn.IsEnabled = true;
                 };
             }
             else if (ThemeCb.IsChecked == false)
             {
                 ThemeCb.IsEnabled = false;
+                SaveSettingsBtn.IsEnabled = false;
                 var timer = new DispatcherTimer
                 { Interval = TimeSpan.FromSeconds(0.45) };
                 timer.Start();
@@ -110,18 +115,61 @@ namespace SeritriateDirector.WindowFolder
                     Resources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/ResourceFolder/DictionaryLight.xaml") };
                     pathDictionary = "pack://application:,,,/ResourceFolder/DictionaryLight.xaml";
                     ThemeCb.IsEnabled = true;
+                    SaveSettingsBtn.IsEnabled = true;
                 };
             }
         }
 
         private void SaveSettingsBtn_Click(object sender, RoutedEventArgs e)
         {
+            string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
             (App.Current as App).PathDictionary = pathDictionary;
 
-            var a = new MainWindowDirector();
-            a.Show();
+            using (StreamWriter newTask = new StreamWriter(path + "SaveLanguageSetting.txt", false))
+            {
+                newTask.WriteLine(globalSettingLanguage + "\n" + pathDictionary);
+            }
 
-            this.Close();
+                var AdminWindow = (App.Current as App).MainWindowAdmin;
+                var SecrWindow = (App.Current as App).MainWindowSecretary;
+                var DirWindow = (App.Current as App).MainWindowDirector;
+
+
+            if (AdminWindow != null)
+            {
+                (App.Current as App).MainWindowAdmin = null;
+                new MainWindowAdmin().Show();
+                this.Close();
+            }
+            else if (SecrWindow != null)
+            {
+                (App.Current as App).MainWindowSecretary = null;
+                new MainWindowSecretary().Show();
+                this.Close();
+            }
+            else if (DirWindow != null)
+            {
+                (App.Current as App).MainWindowDirector = null;
+                new MainWindowDirector().Show();
+                this.Close();
+            }
+            else
+            {
+                if (globalSettingLanguage == "ru")
+                {
+                    leng = "Ошибка перехода окна";
+                }
+                else if (globalSettingLanguage == "en")
+                {
+                    leng = "Window transition error";
+                }
+                else
+                {
+                    leng = "Ошибка перехода окна";
+                }
+
+                MBClass.ErrorMB(leng, "");
+            }
         }
     }
 }

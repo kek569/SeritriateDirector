@@ -58,7 +58,7 @@ namespace SeritriateDirector.WindowFolder
             else
             {
                 MBClass.ErrorMB("Языковая настройка слетела! Язык по умолчанию русский!\n\n" +
-                    "The language setting is gone! The default language is Russian!");
+                    "The language setting is gone! The default language is Russian!", "");
             }
         }
 
@@ -72,27 +72,7 @@ namespace SeritriateDirector.WindowFolder
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
-
-
-            if (globalSettingLanguage == "ru")
-            {
-                leng = "Вы действительно желаете выйти?";
-            }
-            else if (globalSettingLanguage == "en")
-            {
-                leng = "Do you really want to go out?";
-            }
-            else
-            {
-                leng = "Вы действительно желаете выйти?";
-            }
-
-            bool ret = MBClass.QestionMB(leng);
-            if (ret == true)
-            {
-                this.Close();
-            }
+            MBClass.ExitMB("");
         }
 
         private void LogInBtn_Click(object sender, RoutedEventArgs e)
@@ -114,7 +94,7 @@ namespace SeritriateDirector.WindowFolder
                     leng = "Введите логин";
                 }
 
-                MBClass.ErrorMB(leng);
+                MBClass.ErrorMB(leng, "");
                 LoginTB.Focus();
             }
             else if (string.IsNullOrWhiteSpace(PasswordPB.Password))
@@ -134,7 +114,7 @@ namespace SeritriateDirector.WindowFolder
                     leng = "Введите пароль";
                 }
 
-                MBClass.ErrorMB(leng);
+                MBClass.ErrorMB(leng, "");
                 PasswordPB.Focus();
                 return;
             }
@@ -155,7 +135,7 @@ namespace SeritriateDirector.WindowFolder
                     leng = "Пройдите капчу";
                 }
 
-                MBClass.ErrorMB(leng);
+                MBClass.ErrorMB(leng, "");
                 CheckTb.Focus();
                 return;
             }
@@ -194,7 +174,7 @@ namespace SeritriateDirector.WindowFolder
                     leng = "Капча не пройдено";
                 }
 
-                MBClass.ErrorMB(leng);
+                MBClass.ErrorMB(leng, "");
                 CaptchaEs.CreateCaptcha(Captcha.LetterOption.Alphanumeric, 5);
                 text = CaptchaEs.CaptchaText;
                 CheckTb.Text = "";
@@ -293,7 +273,7 @@ namespace SeritriateDirector.WindowFolder
                     leng = "Введите логин";
                 }
 
-                MBClass.ErrorMB(leng);
+                MBClass.ErrorMB(leng, "");
                 LoginTB.Focus();
             }
             else if (string.IsNullOrWhiteSpace(PasswordSave))
@@ -314,7 +294,7 @@ namespace SeritriateDirector.WindowFolder
                     leng = "Введите пароль";
                 }
 
-                MBClass.ErrorMB(leng);
+                MBClass.ErrorMB(leng, "");
                 PasswordPB.Focus();
                 return;
             }
@@ -347,7 +327,7 @@ namespace SeritriateDirector.WindowFolder
                         CheckTb.Text = "";
                         text = CaptchaEs.CaptchaText;
 
-                        MBClass.ErrorMB(leng);
+                        MBClass.ErrorMB(leng, "");
                         LoginTB.Focus();
                         return;
                     }
@@ -372,7 +352,7 @@ namespace SeritriateDirector.WindowFolder
                         CheckTb.Text = "";
                         text = CaptchaEs.CaptchaText;
 
-                        MBClass.ErrorMB(leng);
+                        MBClass.ErrorMB(leng, "");
                         PasswordPB.Focus();
                         return;
                     }
@@ -407,7 +387,7 @@ namespace SeritriateDirector.WindowFolder
                 }
                 catch (Exception ex)
                 {
-                    MBClass.ErrorMB(ex);
+                    MBClass.ErrorMB(ex, "");
                 }
             }
         }

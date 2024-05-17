@@ -51,14 +51,16 @@ Margin="0,10,0,8" Grid.Column="1"/>
 
             
             
-            <Image Source="/SeritriateDirector;component/ResourceFolder/ImageFolder/Russia.jpg"
+            <Image x:Name="RussiaLanguageIm"
+                   Source="/SeritriateDirector;component/ResourceFolder/ImageFolder/Russia.jpg"
                    Grid.Row="2"
                    Grid.Column="1"
                    MouseMove="ImageMouseMoveRussia"
                    MouseLeftButtonDown="ImageMouseLeftButtonDownRussia"/>
 
 
-            <Image Source="/SeritriateDirector;component/ResourceFolder/ImageFolder/English.png"
+            <Image x:Name="EnglishLanguageIm"
+                   Source="/SeritriateDirector;component/ResourceFolder/ImageFolder/English.png"
                    Grid.Row="2"
                    Grid.Column="2"
                    MouseMove="ImageMouseMoveEnglish"

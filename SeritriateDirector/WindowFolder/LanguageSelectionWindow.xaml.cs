@@ -26,15 +26,13 @@ namespace SeritriateDirector.WindowFolder
     {
         public LanguageSelectionWindow()
         {
-            string pathDictionary = (App.Current as App).PathDictionary;
+            string selected_pathDictionary = (App.Current as App).PathDictionary;
 
-            if (pathDictionary != null && pathDictionary != "")
+            if (selected_pathDictionary != null && selected_pathDictionary != "")
             {
-                this.Resources = new ResourceDictionary() { Source = new Uri(pathDictionary) };
-                if (pathDictionary == "pack://application:,,,/ResourceFolder/DictionaryDark.xaml")
-                {
-                    ThemeCb.IsChecked = true;
-                }
+                this.Resources = new ResourceDictionary() { Source = new Uri(selected_pathDictionary) };
+                pathDictionary = selected_pathDictionary;
+                isChecked = true;
             }
             else
             {
@@ -43,13 +41,19 @@ namespace SeritriateDirector.WindowFolder
 
             InitializeComponent();
 
-            
+
+            if (selected_pathDictionary == "pack://application:,,,/ResourceFolder/DictionaryDark.xaml" &&
+                isChecked == true)
+            {
+                ThemeCb.IsChecked = true;
+            }
         }
 
         private bool SaveFileNull = true;
         private bool capcha = false;
         private string path;
         private string pathDictionary = "pack://application:,,,/ResourceFolder/DictionaryLight.xaml";
+        private bool isChecked = false;
 
         private void BorderMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -61,7 +65,7 @@ namespace SeritriateDirector.WindowFolder
 
         private void ImageMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            bool ret = MBClass.QestionMB("Вы действительно желаете выйти?");
+            bool ret = MBClass.QestionMB("Вы действительно желаете выйти?", "");
             if (ret == true)
             {
                 this.Close();
@@ -175,6 +179,8 @@ namespace SeritriateDirector.WindowFolder
             if (ThemeCb.IsChecked == true)
             {
                 ThemeCb.IsEnabled = false;
+                RussiaLanguageIm.IsEnabled = false;
+                EnglishLanguageIm.IsEnabled = false;
                 var timer = new DispatcherTimer
                 { Interval = TimeSpan.FromSeconds(0.45) };
                 timer.Start();
@@ -184,11 +190,15 @@ namespace SeritriateDirector.WindowFolder
                     Resources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/ResourceFolder/DictionaryDark.xaml") };
                     pathDictionary = "pack://application:,,,/ResourceFolder/DictionaryDark.xaml";
                     ThemeCb.IsEnabled = true;
+                    RussiaLanguageIm.IsEnabled = true;
+                    EnglishLanguageIm.IsEnabled = true;
                 };
             }
             else if (ThemeCb.IsChecked == false)
             {
                 ThemeCb.IsEnabled = false;
+                RussiaLanguageIm.IsEnabled = false;
+                EnglishLanguageIm.IsEnabled = false;
                 var timer = new DispatcherTimer
                 { Interval = TimeSpan.FromSeconds(0.45) };
                 timer.Start();
@@ -198,6 +208,8 @@ namespace SeritriateDirector.WindowFolder
                     Resources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/ResourceFolder/DictionaryLight.xaml") };
                     pathDictionary = "pack://application:,,,/ResourceFolder/DictionaryLight.xaml";
                     ThemeCb.IsEnabled = true;
+                    RussiaLanguageIm.IsEnabled = true;
+                    EnglishLanguageIm.IsEnabled = true;
                 };
             }
         }

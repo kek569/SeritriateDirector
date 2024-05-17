@@ -1,5 +1,7 @@
 ﻿using SeritriateDirector.Properties;
+using SeritriateDirector.WindowFolder.AdminWindowFolder;
 using SeritriateDirector.WindowFolder.DirectorWindowFolder;
+using SeritriateDirector.WindowFolder.SecretaryWindowFolder;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,8 +17,6 @@ namespace SeritriateDirector
     /// </summary>
     public partial class App : Application
     {
-        private object sss1;
-
         public string GlobalSettingLanguage { get; set; }
 
         public string Path { get; set; }
@@ -27,6 +27,10 @@ namespace SeritriateDirector
 
         public string PathDictionary { get; set; }
 
-        public MainWindowDirector MainWindowDirector { get; internal set; }
+        public MainWindowDirector MainWindowDirector { get; set; }
+
+        public MainWindowAdmin MainWindowAdmin { get; set; }
+
+        public MainWindowSecretary MainWindowSecretary { get; set; }
     }
 }

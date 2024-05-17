@@ -1,5 +1,6 @@
 ﻿using SeritriateDirector.ClassFolder;
 using SeritriateDirector.PageFolder.SecretaryPageFolder;
+using SeritriateDirector.WindowFolder.DirectorWindowFolder;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -55,7 +56,7 @@ namespace SeritriateDirector.WindowFolder.SecretaryWindowFolder
             else
             {
                 MBClass.ErrorMB("Языковая настройка слетела! Язык по умолчанию русский!\n\n" +
-                    "The language setting is gone! The default language is Russian!");
+                    "The language setting is gone! The default language is Russian!", "");
             }
         }
 
@@ -71,26 +72,7 @@ namespace SeritriateDirector.WindowFolder.SecretaryWindowFolder
 
         private void CloseIm_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
-
-            if (globalSettingLanguage == "ru")
-            {
-                leng = "Вы действительно желаете выйти?";
-            }
-            else if (globalSettingLanguage == "en")
-            {
-                leng = "Do you really want to go out?";
-            }
-            else
-            {
-                leng = "Вы действительно желаете выйти?";
-            }
-
-            bool ret = MBClass.QestionMB(leng);
-            if (ret == true)
-            {
-                this.Close();
-            }
+            MBClass.ExitMB("");
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
@@ -124,8 +106,7 @@ namespace SeritriateDirector.WindowFolder.SecretaryWindowFolder
                     leng = "Вы действительно желаете выйти в окно авторизации?";
                 }
 
-                bool ret = MBClass.QestionMB("Вы действительно желаете " +
-                            "выйти в окно авторизации?");
+                bool ret = MBClass.QestionMB(leng, "");
                 if (ret == true)
                 {
                     new AuthorizationWindowNoneCapchaWindow().Show();
@@ -147,6 +128,14 @@ namespace SeritriateDirector.WindowFolder.SecretaryWindowFolder
         private void ListOfChartsBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ThemeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            (App.Current as App).MainWindowSecretary = new MainWindowSecretary();
+
+            new ThemeSelectionWindow().Show();
+            this.Close();
         }
     }
 }
