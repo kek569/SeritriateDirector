@@ -1,8 +1,11 @@
-﻿using SeritriateDirector.ClassFolder;
+﻿using Microsoft.Office.Interop.Excel;
+using SeritriateDirector.ClassFolder;
 using SeritriateDirector.PageFolder.DirectorPageFolder;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -24,7 +27,7 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
     /// <summary>
     /// Логика взаимодействия для MainWindowDirector.xaml
     /// </summary>
-    public partial class MainWindowDirector : Window
+    public partial class MainWindowDirector : System.Windows.Window
     {
         public MainWindowDirector()
         {
@@ -170,27 +173,49 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
 
         private void BugsBtn_Click(object sender, RoutedEventArgs e)
         {
-            MailAddress from = new MailAddress("somemail@gmail.com", "Tom");
-            MailAddress to = new MailAddress("somemail@yandex.ru");
+            /*MailAddress from = new MailAddress("amongass281@gmail.com", "ඞAmogusඞ");
+            MailAddress to = new MailAddress("qwertikj@mail.ru");
             MailMessage m = new MailMessage(from, to);
             m.Subject = "Тест";
             m.Body = "<h2>Письмо-тест работы smtp-клиента</h2>";
-            m.AlternateViews.Add(getEmbeddedImage("c:/image.png"));
+            //m.AlternateViews.Add(getEmbeddedImage("c:/image.png"));
             m.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential("somemail@gmail.com", "mypassword");
+            SmtpClient smtp = new SmtpClient("smtp.mail.com", 25);
+            smtp.Credentials = new NetworkCredential("amongass281@gmail.com", "183256ss");
             smtp.EnableSsl = true;
-            smtp.Send(m);
-        }
+            smtp.Send(m);*/
 
-        private AlternateView getEmbeddedImage(String filePath)
-        {
-            LinkedResource res = new LinkedResource(filePath);
-            res.ContentId = Guid.NewGuid().ToString();
-            string htmlBody = @"<img src='cid:" + res.ContentId + @"'/>";
-            AlternateView alternateView = AlternateView.CreateAlternateViewFromString(htmlBody, null, MediaTypeNames.Text.Html);
-            alternateView.LinkedResources.Add(res);
-            return alternateView;
+            string smtpServer = "smtp-mail.outlook.com"; //smpt сервер(зависит от почты отправителя)
+            int smtpPort = 587; // Обычно используется порт 587 для TLS
+            string smtpUsername = "bugsSender@outlook.com"; //твоя почта, с которой отправляется сообщение
+            string smtpPassword = "183256ss";//пароль приложения (от почты)
+
+            // Создаем объект клиента SMTP
+            using (SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort))
+            {
+                // Настройки аутентификации
+                smtpClient.Credentials = new NetworkCredential(smtpUsername, smtpPassword);
+                smtpClient.EnableSsl = true;
+
+                using (MailMessage mailMessage = new MailMessage())
+                {
+                    mailMessage.From = new MailAddress(smtpUsername);
+                    mailMessage.To.Add("qwertikj@mail.ru"); // Укажите адрес получателя
+                    mailMessage.Subject = "Заголовок сообщения (тема)";
+                    mailMessage.Body = $"Текст сообщения";
+
+                    try
+                    {
+                        // Отправляем сообщение
+                        smtpClient.Send(mailMessage);
+                        MBClass.InfoMB("Сообщение успешно отправлено.", "");
+                    }
+                    catch (Exception ex)
+                    {
+                        MBClass.ErrorMB($"Ошибка отправки сообщения: {ex.Message}", "");
+                    }
+                }
+            }
         }
     }
 }
