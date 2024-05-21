@@ -61,11 +61,17 @@ Margin="10,4,0,14"/>
                                     Grid.Column="1"
                                     Grid.Row="1">
 
+                            <Image Style="{StaticResource LettersIm}"/>
+                            <StackPanel Width="5"/>
+
                             <ToggleButton x:Name="ListOfLettersBtn"
                                     Content="Список писем"
                                     Click="ListOfLettersBtn_Click"/>
 
                             <StackPanel Width="20"/>
+
+                            <Image Style="{StaticResource OrdersIm}"/>
+                            <StackPanel Width="5"/>
 
                             <ToggleButton x:Name="ListOfOrdersBtn"
                                     Content="Список приказов"
@@ -73,9 +79,11 @@ Margin="10,4,0,14"/>
 
                             <StackPanel Width="20"/>
 
-                            <Button x:Name="ListOfChartsBtn"
+                            <Image Style="{StaticResource ScheduleIm}"/>
+                            <StackPanel Width="5"/>
+
+                            <ToggleButton x:Name="ListOfChartsBtn"
                                     Content="Список графиков"
-                                    Style="{StaticResource InvisibleButton}"
                                     Click="ListOfChartsBtn_Click"/>
                         </StackPanel>
 
@@ -97,13 +105,14 @@ Margin="10,4,0,14"/>
                             <RowDefinition Height="10"/>
                         </Grid.RowDefinitions>
                         <Button x:Name="BugsBtn"
-Grid.Row="1"
-Grid.Column="1"
-            Click="BugsBtn_Click">
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Click="BugsBtn_Click">
                             <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Margin="5">
+                                <Image Style="{StaticResource BugsIm}"/>
                                 <TextBlock x:Name="BugsTb" Text="  Баги" VerticalAlignment="Center" 
                 Style="{StaticResource TextBlockInBtn}"/>
                             </StackPanel>

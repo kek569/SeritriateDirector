@@ -48,14 +48,14 @@ namespace SeritriateDirector.WindowFolder
             if (globalSettingLanguage == "ru")
             {
                 LanguageSelectionLb.Content = "ВЫБОР ТЕМЫ";
-                SaveSettingsBtn.Content = "  Сохранить настройки  ";
+                SaveSettingsTb.Text = "  Сохранить настройки  ";
                 LightLb.Content = "Светлый";
                 DarkLb.Content = "Темный";
             }
             else if (globalSettingLanguage == "en")
             {
                 LanguageSelectionLb.Content = "CHOOSING THEME";
-                SaveSettingsBtn.Content = "  Save settings  ";
+                SaveSettingsTb.Text = "  Save settings  ";
                 LightLb.Content = "Light";
                 DarkLb.Content = "Dark";
             }
@@ -98,6 +98,15 @@ namespace SeritriateDirector.WindowFolder
                     timer.Stop();
                     Resources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/ResourceFolder/DictionaryDark.xaml") };
                     pathDictionary = "pack://application:,,,/ResourceFolder/DictionaryDark.xaml";
+
+                    var bitmapImage = new BitmapImage();
+
+                    bitmapImage.BeginInit();
+                    bitmapImage.UriSource = new Uri("/SeritriateDirector;component/ResourceFolder/ImageFolder/DarkThemeImageFolder/SaveDark.png", UriKind.RelativeOrAbsolute);
+                    bitmapImage.EndInit();
+
+                    SaveIm.Source = bitmapImage;
+                    SaveSettingsTb.Foreground = Brushes.White;
                     ThemeCb.IsEnabled = true;
                     SaveSettingsBtn.IsEnabled = true;
                 };
@@ -114,6 +123,15 @@ namespace SeritriateDirector.WindowFolder
                     timer.Stop();
                     Resources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/ResourceFolder/DictionaryLight.xaml") };
                     pathDictionary = "pack://application:,,,/ResourceFolder/DictionaryLight.xaml";
+
+                    var bitmapImage = new BitmapImage();
+
+                    bitmapImage.BeginInit();
+                    bitmapImage.UriSource = new Uri("/SeritriateDirector;component/ResourceFolder/ImageFolder/LightThemeImageFolder/SaveLight.png", UriKind.RelativeOrAbsolute);
+                    bitmapImage.EndInit();
+
+                    SaveIm.Source = bitmapImage;
+                    SaveSettingsTb.Foreground = Brushes.Black;
                     ThemeCb.IsEnabled = true;
                     SaveSettingsBtn.IsEnabled = true;
                 };

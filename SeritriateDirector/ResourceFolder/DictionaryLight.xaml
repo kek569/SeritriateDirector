@@ -36,12 +36,47 @@
 
     <Style x:Key="BackIm" TargetType="Image">
         <Setter Property="Source" 
-Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/BackLight.png"/>
+Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/LightThemeImageFolder/BackLight.png"/>
     </Style>
 
     <Style x:Key="ThemeIm" TargetType="Image">
         <Setter Property="Source" 
 Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/Theme.png"/>
+    </Style>
+
+    <Style x:Key="BugsIm" TargetType="Image">
+        <Setter Property="Source" 
+             Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/LightThemeImageFolder/BugsLight.png"/>
+    </Style>
+
+    <Style x:Key="LettersIm" TargetType="Image">
+        <Setter Property="Source" 
+                    Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/LightThemeImageFolder/LettersLight.png"/>
+    </Style>
+
+    <Style x:Key="OrdersIm" TargetType="Image">
+        <Setter Property="Source" 
+            Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/LightThemeImageFolder/OrdersLight.png"/>
+    </Style>
+
+    <Style x:Key="ScheduleIm" TargetType="Image">
+        <Setter Property="Source" 
+            Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/LightThemeImageFolder/ScheduleLight.png"/>
+    </Style>
+
+    <Style x:Key="EnerIm" TargetType="Image">
+        <Setter Property="Source" 
+            Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/LightThemeImageFolder/EnerLight.png"/>
+    </Style>
+
+    <Style x:Key="LanguageIm" TargetType="Image">
+        <Setter Property="Source" 
+            Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/LightThemeImageFolder/LanguageLight.png"/>
+    </Style>
+
+    <Style x:Key="SaveIm" TargetType="Image">
+        <Setter Property="Source" 
+    Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/LightThemeImageFolder/SaveLight.png"/>
     </Style>
 
     <Style x:Key="InvisibleButton" TargetType="Button">

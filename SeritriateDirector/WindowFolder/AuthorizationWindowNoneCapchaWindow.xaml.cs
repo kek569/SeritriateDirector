@@ -44,8 +44,8 @@ namespace SeritriateDirector.WindowFolder
                 LoginLb.Content = "Логин";
                 Passwordlb.Content = "Пароль";
                 SaveMeLb.Content = "Запомнить меня";
-                LogInBtn.Content = "Войти";
-                LanguageBtn.Content = "Язык";
+                LogInTb.Text = "Войти";
+                LanguageTb.Text = "Язык";
             }
             else if (globalSettingLanguage == "en")
             {
@@ -53,8 +53,8 @@ namespace SeritriateDirector.WindowFolder
                 LoginLb.Content = "Login";
                 Passwordlb.Content = "Password";
                 SaveMeLb.Content = "Remember me";
-                LogInBtn.Content = "To come in";
-                LanguageBtn.Content = "Language";
+                LogInTb.Text = "To come in";
+                LanguageTb.Text = "Language  ";
             }
             else
             {

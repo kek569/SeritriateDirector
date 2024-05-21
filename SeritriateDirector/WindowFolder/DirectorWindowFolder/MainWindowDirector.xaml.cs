@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using SeritriateDirector.ClassFolder;
+using SeritriateDirector.PageFolder;
 using SeritriateDirector.PageFolder.DirectorPageFolder;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -50,6 +53,7 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
                 ListOfLettersBtn.Content = "Список писем";
                 ListOfOrdersBtn.Content = "Список приказов";
                 ListOfChartsBtn.Content = "Список графиков";
+                BugsTb.Text = "  Баги";
                 ThemeTb.Text = "  Тема";
                 BackTb.Text = "  Назад";
             }
@@ -59,6 +63,7 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
                 ListOfLettersBtn.Content = "List letters";
                 ListOfOrdersBtn.Content = "List orders";
                 ListOfChartsBtn.Content = "List charts";
+                BugsTb.Text = "  Bugs";
                 ThemeTb.Text = "  Theme";
                 BackTb.Text = "  Back";
             }
@@ -138,6 +143,7 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
             {
                 MainFrame.Navigate(new ListLettersPage());
                 ListOfOrdersBtn.IsChecked = false;
+                ListOfChartsBtn.IsChecked = false;
             }
         }
 
@@ -155,12 +161,26 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
             {
                 MainFrame.Navigate(new ListOrdersPage());
                 ListOfLettersBtn.IsChecked = false;
+                ListOfChartsBtn.IsChecked = false;
             }
         }
 
         private void ListOfChartsBtn_Click(object sender, RoutedEventArgs e)
         {
+            string check = this.MainFrame.Content.ToString();
+            check = new string(check.Reverse().ToArray()).Remove(16);
+            check = new string(check.Reverse().ToArray());
 
+            if (check == "ListGraphicsPage")
+            {
+                ListOfChartsBtn.IsChecked = true;
+            }
+            else
+            {
+                MainFrame.Navigate(new ListGraphicsPage());
+                ListOfLettersBtn.IsChecked = false;
+                ListOfOrdersBtn.IsChecked = false;
+            }
         }
 
         private void ThemeBtn_Click(object sender, RoutedEventArgs e)
@@ -173,49 +193,8 @@ namespace SeritriateDirector.WindowFolder.DirectorWindowFolder
 
         private void BugsBtn_Click(object sender, RoutedEventArgs e)
         {
-            /*MailAddress from = new MailAddress("amongass281@gmail.com", "ඞAmogusඞ");
-            MailAddress to = new MailAddress("qwertikj@mail.ru");
-            MailMessage m = new MailMessage(from, to);
-            m.Subject = "Тест";
-            m.Body = "<h2>Письмо-тест работы smtp-клиента</h2>";
-            //m.AlternateViews.Add(getEmbeddedImage("c:/image.png"));
-            m.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient("smtp.mail.com", 25);
-            smtp.Credentials = new NetworkCredential("amongass281@gmail.com", "183256ss");
-            smtp.EnableSsl = true;
-            smtp.Send(m);*/
-
-            string smtpServer = "smtp-mail.outlook.com"; //smpt сервер(зависит от почты отправителя)
-            int smtpPort = 587; // Обычно используется порт 587 для TLS
-            string smtpUsername = "bugsSender@outlook.com"; //твоя почта, с которой отправляется сообщение
-            string smtpPassword = "183256ss";//пароль приложения (от почты)
-
-            // Создаем объект клиента SMTP
-            using (SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort))
-            {
-                // Настройки аутентификации
-                smtpClient.Credentials = new NetworkCredential(smtpUsername, smtpPassword);
-                smtpClient.EnableSsl = true;
-
-                using (MailMessage mailMessage = new MailMessage())
-                {
-                    mailMessage.From = new MailAddress(smtpUsername);
-                    mailMessage.To.Add("qwertikj@mail.ru"); // Укажите адрес получателя
-                    mailMessage.Subject = "Заголовок сообщения (тема)";
-                    mailMessage.Body = $"Текст сообщения";
-
-                    try
-                    {
-                        // Отправляем сообщение
-                        smtpClient.Send(mailMessage);
-                        MBClass.InfoMB("Сообщение успешно отправлено.", "");
-                    }
-                    catch (Exception ex)
-                    {
-                        MBClass.ErrorMB($"Ошибка отправки сообщения: {ex.Message}", "");
-                    }
-                }
-            }
+            MainFrame.Navigate(new SendingBugsPage());
         }
     }
 }
+

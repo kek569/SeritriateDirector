@@ -35,12 +35,47 @@
 
     <Style x:Key="BackIm" TargetType="Image">
         <Setter Property="Source" 
-    Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/BackDark.png"/>
+                    Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/DarkThemeImageFolder/BackDark.png"/>
+    </Style>
+
+    <Style x:Key="BugsIm" TargetType="Image">
+        <Setter Property="Source" 
+                 Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/DarkThemeImageFolder/BugsDark.png"/>
     </Style>
 
     <Style x:Key="ThemeIm" TargetType="Image">
         <Setter Property="Source" 
-Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/Theme.png"/>
+                    Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/Theme.png"/>
+    </Style>
+
+    <Style x:Key="LettersIm" TargetType="Image">
+        <Setter Property="Source" 
+                    Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/DarkThemeImageFolder/LettersDark.png"/>
+    </Style>
+
+    <Style x:Key="OrdersIm" TargetType="Image">
+        <Setter Property="Source" 
+                Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/DarkThemeImageFolder/OrdersDark.png"/>
+    </Style>
+
+    <Style x:Key="ScheduleIm" TargetType="Image">
+        <Setter Property="Source" 
+            Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/DarkThemeImageFolder/ScheduleDark.png"/>
+    </Style>
+
+    <Style x:Key="EnerIm" TargetType="Image">
+        <Setter Property="Source" 
+            Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/DarkThemeImageFolder/EnerDark.png"/>
+    </Style>
+
+    <Style x:Key="LanguageIm" TargetType="Image">
+        <Setter Property="Source" 
+            Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/DarkThemeImageFolder/LanguageDark.png"/>
+    </Style>
+
+    <Style x:Key="SaveIm" TargetType="Image">
+        <Setter Property="Source" 
+        Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/DarkThemeImageFolder/SaveDark.png"/>
     </Style>
 
     <Style x:Key="FocusVisual">
@@ -52,9 +87,6 @@ Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/Theme.png"/>
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
-    
     
     <Style x:Key="InvisibleButton" TargetType="Button">
         <Setter Property="Margin" Value="1"/>

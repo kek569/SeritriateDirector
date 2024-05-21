@@ -25,6 +25,12 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
     {
         public ListStaffPage()
         {
+            string pathDictionary = (App.Current as App).PathDictionary;
+
+            if (pathDictionary != null && pathDictionary != "")
+            {
+                this.Resources = new ResourceDictionary() { Source = new Uri(pathDictionary) };
+            }
             InitializeComponent();
 
             string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;

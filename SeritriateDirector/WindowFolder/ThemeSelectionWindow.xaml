@@ -70,12 +70,23 @@ Margin="0,10,0,8" Grid.Column="1"/>
             </StackPanel>
 
             <Button x:Name="SaveSettingsBtn"
-                Content="  Save settings  "
                     Grid.Column="1"
                     Grid.Row="3"
                     Grid.ColumnSpan="2"
                     HorizontalAlignment="Center"
-                    Click="SaveSettingsBtn_Click"/>
+                    Click="SaveSettingsBtn_Click">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <StackPanel Width="5"/>
+
+                    <Image x:Name="SaveIm" 
+                           Style="{StaticResource SaveIm}"
+                           Margin="5"/>
+                    <TextBlock x:Name="SaveSettingsTb" Text="  Save settings  "
+                           Style="{StaticResource TextBlockInBtn}"/>
+                </StackPanel>
+            </Button>
         </Grid>
     </Border>
 </Window>

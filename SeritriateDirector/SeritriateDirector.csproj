@@ -138,6 +138,9 @@
     <Compile Include="PageFolder\AdminPageFolder\ListStaffPage.xaml.cs">
       <DependentUpon>ListStaffPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\DirectorPageFolder\ListGraphicsPage.xaml.cs">
+      <DependentUpon>ListGraphicsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\DirectorPageFolder\ListLettersPage.xaml.cs">
       <DependentUpon>ListLettersPage.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,9 @@
     </Compile>
     <Compile Include="PageFolder\SecretaryPageFolder\ListOrdersPage.xaml.cs">
       <DependentUpon>ListOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\SendingBugsPage.xaml.cs">
+      <DependentUpon>SendingBugsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowFolder\AdminWindowFolder\MainWindowAdmin.xaml.cs">
       <DependentUpon>MainWindowAdmin.xaml</DependentUpon>
@@ -223,6 +229,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\DirectorPageFolder\ListGraphicsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\DirectorPageFolder\ListLettersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -236,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageFolder\SecretaryPageFolder\ListOrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\SendingBugsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -326,9 +340,23 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\SaveDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\SaveLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\LanguageLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\LanguageDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\EnerLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\EnerDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\ScheduleDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\ScheduleLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\OrdersDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\OrdersLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\LettersLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\LettersDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\BugsLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\BugsDark.png" />
     <Resource Include="ResourceFolder\ImageFolder\Theme.png" />
-    <Resource Include="ResourceFolder\ImageFolder\BackDark.png" />
-    <Resource Include="ResourceFolder\ImageFolder\BackLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\BackDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\BackLight.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
