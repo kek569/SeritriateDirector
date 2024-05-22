@@ -1,4 +1,5 @@
 ﻿using SeritriateDirector.ClassFolder;
+using SeritriateDirector.PageFolder;
 using SeritriateDirector.PageFolder.AdminPageFolder;
 using SeritriateDirector.WindowFolder.DirectorWindowFolder;
 using System;
@@ -35,6 +36,7 @@ namespace SeritriateDirector.WindowFolder.AdminWindowFolder
             InitializeComponent();
 
             MainFrame.Navigate(new ListStaffPage());
+            ListStaffBtn.IsChecked = true;
 
             string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
@@ -45,8 +47,9 @@ namespace SeritriateDirector.WindowFolder.AdminWindowFolder
                 ListOfLettersBtn.Content = "Список писем";
                 ListOfOrdersBtn.Content = "Список приказов";
                 ListOfChartsBtn.Content = "Список графиков";
-                ThemeBtn.Content = "Тема";
-                BackBtn.Content = "Назад";
+                BugsTb.Text = "  Баги";
+                ThemeTb.Text = "  Тема";
+                BackTb.Text = "  Назад";
             }
             else if (globalSettingLanguage == "en")
             {
@@ -55,8 +58,9 @@ namespace SeritriateDirector.WindowFolder.AdminWindowFolder
                 ListOfLettersBtn.Content = "List letters";
                 ListOfOrdersBtn.Content = "List orders";
                 ListOfChartsBtn.Content = "List charts";
-                ThemeBtn.Content = "Theme";
-                BackBtn.Content = "Back";
+                BugsTb.Text = "  Bugs";
+                ThemeTb.Text = "  Theme";
+                BackTb.Text = "  Back";
             }
             else
             {
@@ -122,7 +126,30 @@ namespace SeritriateDirector.WindowFolder.AdminWindowFolder
 
         private void ListStaffBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new ListStaffPage());
+            string check = this.MainFrame.Content.ToString();
+            check = new string(check.Reverse().ToArray()).Remove(14);
+            check = new string(check.Reverse().ToArray());
+
+            if (check == ".ListStaffPage")
+            {
+                ListStaffBtn.IsChecked = true;
+            }
+            else
+            {
+                MainFrame.Navigate(new ListStaffPage());
+
+                if (check == "r.AddStaffPage" ||
+                        check == ".EditStaffPage")
+                {
+                    ListStaffBtn.IsChecked = true;
+                }
+                else
+                {
+                    ListOfLettersBtn.IsChecked = false;
+                    ListOfOrdersBtn.IsChecked = false;
+                    ListOfChartsBtn.IsChecked = false;
+                }
+            }
         }
 
         private void ListOfLettersBtn_Click(object sender, RoutedEventArgs e)
@@ -146,6 +173,11 @@ namespace SeritriateDirector.WindowFolder.AdminWindowFolder
 
             new ThemeSelectionWindow().Show();
             this.Close();
+        }
+
+        private void BugsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new SendingBugsPage());
         }
     }
 }

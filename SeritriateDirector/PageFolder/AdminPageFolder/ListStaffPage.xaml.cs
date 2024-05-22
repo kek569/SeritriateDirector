@@ -201,23 +201,6 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
             }
         }
 
-        private void Update()
-        {
-            var timer = new DispatcherTimer
-            { Interval = TimeSpan.FromSeconds(0.1) };
-            timer.Start();
-            timer.Tick += (sender, args) =>
-            {
-                timer.Stop();
-                if (SearchTb.Text == "Поиск")
-                {
-                    StaffListB.ItemsSource = DataFolder.DBEntities.GetContext().Staff.
-                      Where(s => s.FirstNameStaff.StartsWith("")).ToList();
-                }
-                else { }
-            };
-        }
-
         private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -225,7 +208,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 StaffListB.ItemsSource = DataFolder.DBEntities.GetContext().Staff.
                     Where(s => s.FirstNameStaff.StartsWith(SearchTb.Text) ||
                     s.SurNameStaff.StartsWith(SearchTb.Text) ||
-                    s.MiddleName.StartsWith(SearchTb.Text) ||
+                    s.MiddleNameStaff.StartsWith(SearchTb.Text) ||
                     s.NumberPhoneStaff.StartsWith(SearchTb.Text) ||
                     s.Gender.NameGender.StartsWith(SearchTb.Text)).ToList();
             }

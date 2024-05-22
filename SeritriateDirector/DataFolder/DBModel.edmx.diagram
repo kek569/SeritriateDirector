@@ -4,31 +4,50 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a011791415d241f7bed3bfab1961cfff" Name="Diagram1">
-        <EntityTypeShape EntityType="DBModel.Gender" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.Graphics" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.JobTitle" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.Letters" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.Orders" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.Passport" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.Role" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.Staff" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.TypeLetters" Width="1.5" PointX="8.25" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.TypeOrders" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.User" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+      <Diagram DiagramId="30af7da21206464ebc21c85a7a09c143" Name="Diagram1">
+        <EntityTypeShape EntityType="DBModel.Director" Width="1.5" PointX="9.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Gender" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Graphics" Width="1.5" PointX="7.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.JobTitle" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Letters" Width="1.5" PointX="10.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Orders" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.ResponseToTheLetters" Width="1.5" PointX="12.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.ResponseToTheOrders" Width="1.5" PointX="9.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Role" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Secretary" Width="1.5" PointX="7.5" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Staff" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Test" Width="1.5" PointX="9.75" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.TestTwo" Width="1.5" PointX="7.5" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.TypeLetters" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.TypeOrders" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.User" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.WhoAnswersToWhomLetters" Width="1.5" PointX="15" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.WhoAnswersToWhomOrders" Width="1.5" PointX="12" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="DBModel.FK_Director_Secretary2" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Director_Staff1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Staff_Director1" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_Staff_Gender" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_Graphics_Staff" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_Staff_JobTitle" ManuallyRouted="false" />
-        <AssociationConnector Association="DBModel.FK_Letters_Letters1" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_Letters_Staff" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_Letters_TypeLetters" ManuallyRouted="false" />
-        <AssociationConnector Association="DBModel.FK_Orders_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Letters_WhoAnswersToWhomLetters" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_ResponseToTheLetters_Letters" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_WhoAnswersToWhomLetters_Letters" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_Orders_Staff" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_Orders_TypeOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Orders_WhoAnswersToWhomOrders1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_ResponseToTheOrders_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_WhoAnswersToWhomOrders_Orders1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_WhoAnswersToWhomLetters_ResponseToTheLetters1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_WhoAnswersToWhomOrders_ResponseToTheOrders" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_User_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="DBModel.FK_Staff_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Secretary_Staff1" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_Staff_User" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Test_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_TestTwo_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Test_TestTwo" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

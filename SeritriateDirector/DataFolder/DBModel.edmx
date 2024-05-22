@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Director">
+          <Key>
+            <PropertyRef Name="IdDirector" />
+          </Key>
+          <Property Name="IdDirector" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdStaff" Type="int" Nullable="false" />
+          <Property Name="IdSecretary" Type="int" />
+        </EntityType>
         <EntityType Name="Gender">
           <Key>
             <PropertyRef Name="IdGender" />
@@ -45,7 +53,7 @@
           <Property Name="TextLetters" Type="nvarchar" MaxLength="350" Nullable="false" />
           <Property Name="FromWhomLetters" Type="nvarchar" MaxLength="150" />
           <Property Name="ToWhomLetters" Type="nvarchar" MaxLength="150" />
-          <Property Name="IdResponseToTheLetters" Type="int" />
+          <Property Name="IdWhoAnswersToWhomLetters" Type="int" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -60,15 +68,21 @@
           <Property Name="TextOrders" Type="nvarchar" MaxLength="350" Nullable="false" />
           <Property Name="FromWhomOrders" Type="nvarchar" MaxLength="150" />
           <Property Name="ToWhomOrders" Type="nvarchar" MaxLength="150" />
-          <Property Name="IdResponseToTheOrders" Type="int" />
+          <Property Name="IdWhoAnswersToWhomOrders" Type="int" />
         </EntityType>
-        <EntityType Name="Passport">
+        <EntityType Name="ResponseToTheLetters">
           <Key>
-            <PropertyRef Name="IdPassport" />
+            <PropertyRef Name="IdResponseToTheLetters" />
           </Key>
-          <Property Name="IdPassport" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SeriesPassport" Type="int" Nullable="false" />
-          <Property Name="NumberPassport" Type="int" Nullable="false" />
+          <Property Name="IdResponseToTheLetters" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdLetters" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ResponseToTheOrders">
+          <Key>
+            <PropertyRef Name="IdResponseToTheOrders" />
+          </Key>
+          <Property Name="IdResponseToTheOrders" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdOrders" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -77,6 +91,13 @@
           <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameRole" Type="nvarchar" MaxLength="80" Nullable="false" />
         </EntityType>
+        <EntityType Name="Secretary">
+          <Key>
+            <PropertyRef Name="IdSecretary" />
+          </Key>
+          <Property Name="IdSecretary" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdStaff" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Staff">
           <Key>
             <PropertyRef Name="IdStaff" />
@@ -84,18 +105,18 @@
           <Property Name="IdStaff" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstNameStaff" Type="nvarchar" MaxLength="80" Nullable="false" />
           <Property Name="SurNameStaff" Type="nvarchar" MaxLength="80" Nullable="false" />
-          <Property Name="MiddleName" Type="nvarchar" MaxLength="80" />
-          <Property Name="NumberPhoneStaff" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="MiddleNameStaff" Type="nvarchar" MaxLength="80" />
+          <Property Name="NumberPhoneStaff" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="DateOfBirthStaff" Type="date" Nullable="false" />
           <Property Name="SeriesPassport" Type="int" Nullable="false" />
           <Property Name="IdGender" Type="int" Nullable="false" />
           <Property Name="IdJobTitle" Type="int" Nullable="false" />
           <Property Name="IdUser" Type="int" Nullable="false" />
-          <Property Name="IdSecretary" Type="int" />
           <Property Name="AdressStaff" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="PhotoStaff" Type="varbinary(max)" />
           <Property Name="NumberPassport" Type="int" Nullable="false" />
+          <Property Name="IdDirector" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -106,6 +127,21 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="IdTest" />
+          </Key>
+          <Property Name="IdTest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdStaff" Type="int" Nullable="false" />
+          <Property Name="IdTestTwo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestTwo">
+          <Key>
+            <PropertyRef Name="IdTestTwo" />
+          </Key>
+          <Property Name="IdTestTwo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdStaff" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TypeLetters">
           <Key>
@@ -130,6 +166,46 @@
           <Property Name="PasswordUser" Type="nvarchar" MaxLength="80" Nullable="false" />
           <Property Name="IdRole" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="WhoAnswersToWhomLetters">
+          <Key>
+            <PropertyRef Name="IdWhoAnswersToWhomLetters" />
+          </Key>
+          <Property Name="IdWhoAnswersToWhomLetters" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdLetters" Type="int" Nullable="false" />
+          <Property Name="IdResponseToTheLetters" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WhoAnswersToWhomOrders">
+          <Key>
+            <PropertyRef Name="IdWhoAnswersToWhomOrders" />
+          </Key>
+          <Property Name="IdWhoAnswersToWhomOrders" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdOrders" Type="int" Nullable="false" />
+          <Property Name="IdResponseToTheOrders" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Director_Secretary2">
+          <End Role="Secretary" Type="Self.Secretary" Multiplicity="0..1" />
+          <End Role="Director" Type="Self.Director" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Secretary">
+              <PropertyRef Name="IdSecretary" />
+            </Principal>
+            <Dependent Role="Director">
+              <PropertyRef Name="IdSecretary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Director_Staff1">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Director" Type="Self.Director" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Director">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Graphics_Staff">
           <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
           <End Role="Graphics" Type="Self.Graphics" Multiplicity="*" />
@@ -139,18 +215,6 @@
             </Principal>
             <Dependent Role="Graphics">
               <PropertyRef Name="IdStaff" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Letters_Letters1">
-          <End Role="Letters" Type="Self.Letters" Multiplicity="0..1" />
-          <End Role="Letters1" Type="Self.Letters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Letters">
-              <PropertyRef Name="IdLetters" />
-            </Principal>
-            <Dependent Role="Letters1">
-              <PropertyRef Name="IdResponseToTheLetters" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -178,15 +242,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Orders_Orders">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
-          <End Role="Orders1" Type="Self.Orders" Multiplicity="*" />
+        <Association Name="FK_Letters_WhoAnswersToWhomLetters">
+          <End Role="WhoAnswersToWhomLetters" Type="Self.WhoAnswersToWhomLetters" Multiplicity="0..1" />
+          <End Role="Letters" Type="Self.Letters" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Orders">
-              <PropertyRef Name="IdOrders" />
+            <Principal Role="WhoAnswersToWhomLetters">
+              <PropertyRef Name="IdWhoAnswersToWhomLetters" />
             </Principal>
-            <Dependent Role="Orders1">
-              <PropertyRef Name="IdResponseToTheOrders" />
+            <Dependent Role="Letters">
+              <PropertyRef Name="IdWhoAnswersToWhomLetters" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -214,6 +278,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Orders_WhoAnswersToWhomOrders1">
+          <End Role="WhoAnswersToWhomOrders" Type="Self.WhoAnswersToWhomOrders" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WhoAnswersToWhomOrders">
+              <PropertyRef Name="IdWhoAnswersToWhomOrders" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IdWhoAnswersToWhomOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResponseToTheLetters_Letters">
+          <End Role="Letters" Type="Self.Letters" Multiplicity="1" />
+          <End Role="ResponseToTheLetters" Type="Self.ResponseToTheLetters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Letters">
+              <PropertyRef Name="IdLetters" />
+            </Principal>
+            <Dependent Role="ResponseToTheLetters">
+              <PropertyRef Name="IdLetters" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResponseToTheOrders_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="ResponseToTheOrders" Type="Self.ResponseToTheOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IdOrders" />
+            </Principal>
+            <Dependent Role="ResponseToTheOrders">
+              <PropertyRef Name="IdOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Secretary_Staff1">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Secretary" Type="Self.Secretary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Secretary">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Director1">
+          <End Role="Director" Type="Self.Director" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Director">
+              <PropertyRef Name="IdDirector" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="IdDirector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Staff_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
@@ -238,18 +362,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Staff_Staff">
-          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
-          <End Role="Staff1" Type="Self.Staff" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="IdStaff" />
-            </Principal>
-            <Dependent Role="Staff1">
-              <PropertyRef Name="IdSecretary" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Staff_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
@@ -259,6 +371,42 @@
             </Principal>
             <Dependent Role="Staff">
               <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_TestTwo">
+          <End Role="TestTwo" Type="Self.TestTwo" Multiplicity="1" />
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestTwo">
+              <PropertyRef Name="IdTestTwo" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="IdTestTwo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestTwo_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="TestTwo" Type="Self.TestTwo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="TestTwo">
+              <PropertyRef Name="IdStaff" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -274,26 +422,85 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WhoAnswersToWhomLetters_Letters">
+          <End Role="Letters" Type="Self.Letters" Multiplicity="1" />
+          <End Role="WhoAnswersToWhomLetters" Type="Self.WhoAnswersToWhomLetters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Letters">
+              <PropertyRef Name="IdLetters" />
+            </Principal>
+            <Dependent Role="WhoAnswersToWhomLetters">
+              <PropertyRef Name="IdLetters" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WhoAnswersToWhomLetters_ResponseToTheLetters1">
+          <End Role="ResponseToTheLetters" Type="Self.ResponseToTheLetters" Multiplicity="1" />
+          <End Role="WhoAnswersToWhomLetters" Type="Self.WhoAnswersToWhomLetters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResponseToTheLetters">
+              <PropertyRef Name="IdResponseToTheLetters" />
+            </Principal>
+            <Dependent Role="WhoAnswersToWhomLetters">
+              <PropertyRef Name="IdResponseToTheLetters" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WhoAnswersToWhomOrders_Orders1">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="WhoAnswersToWhomOrders" Type="Self.WhoAnswersToWhomOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IdOrders" />
+            </Principal>
+            <Dependent Role="WhoAnswersToWhomOrders">
+              <PropertyRef Name="IdOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WhoAnswersToWhomOrders_ResponseToTheOrders">
+          <End Role="ResponseToTheOrders" Type="Self.ResponseToTheOrders" Multiplicity="1" />
+          <End Role="WhoAnswersToWhomOrders" Type="Self.WhoAnswersToWhomOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResponseToTheOrders">
+              <PropertyRef Name="IdResponseToTheOrders" />
+            </Principal>
+            <Dependent Role="WhoAnswersToWhomOrders">
+              <PropertyRef Name="IdResponseToTheOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище DBModelContainer">
+          <EntitySet Name="Director" EntityType="Self.Director" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Graphics" EntityType="Self.Graphics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobTitle" EntityType="Self.JobTitle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Letters" EntityType="Self.Letters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Passport" EntityType="Self.Passport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResponseToTheLetters" EntityType="Self.ResponseToTheLetters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResponseToTheOrders" EntityType="Self.ResponseToTheOrders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Secretary" EntityType="Self.Secretary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestTwo" EntityType="Self.TestTwo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeLetters" EntityType="Self.TypeLetters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOrders" EntityType="Self.TypeOrders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WhoAnswersToWhomLetters" EntityType="Self.WhoAnswersToWhomLetters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WhoAnswersToWhomOrders" EntityType="Self.WhoAnswersToWhomOrders" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Director_Secretary2" Association="Self.FK_Director_Secretary2">
+            <End Role="Secretary" EntitySet="Secretary" />
+            <End Role="Director" EntitySet="Director" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Director_Staff1" Association="Self.FK_Director_Staff1">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Director" EntitySet="Director" />
+          </AssociationSet>
           <AssociationSet Name="FK_Graphics_Staff" Association="Self.FK_Graphics_Staff">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Graphics" EntitySet="Graphics" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Letters_Letters1" Association="Self.FK_Letters_Letters1">
-            <End Role="Letters" EntitySet="Letters" />
-            <End Role="Letters1" EntitySet="Letters" />
           </AssociationSet>
           <AssociationSet Name="FK_Letters_Staff" Association="Self.FK_Letters_Staff">
             <End Role="Staff" EntitySet="Staff" />
@@ -303,9 +510,9 @@
             <End Role="TypeLetters" EntitySet="TypeLetters" />
             <End Role="Letters" EntitySet="Letters" />
           </AssociationSet>
-          <AssociationSet Name="FK_Orders_Orders" Association="Self.FK_Orders_Orders">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="Orders1" EntitySet="Orders" />
+          <AssociationSet Name="FK_Letters_WhoAnswersToWhomLetters" Association="Self.FK_Letters_WhoAnswersToWhomLetters">
+            <End Role="WhoAnswersToWhomLetters" EntitySet="WhoAnswersToWhomLetters" />
+            <End Role="Letters" EntitySet="Letters" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Staff" Association="Self.FK_Orders_Staff">
             <End Role="Staff" EntitySet="Staff" />
@@ -315,6 +522,26 @@
             <End Role="TypeOrders" EntitySet="TypeOrders" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
+          <AssociationSet Name="FK_Orders_WhoAnswersToWhomOrders1" Association="Self.FK_Orders_WhoAnswersToWhomOrders1">
+            <End Role="WhoAnswersToWhomOrders" EntitySet="WhoAnswersToWhomOrders" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResponseToTheLetters_Letters" Association="Self.FK_ResponseToTheLetters_Letters">
+            <End Role="Letters" EntitySet="Letters" />
+            <End Role="ResponseToTheLetters" EntitySet="ResponseToTheLetters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResponseToTheOrders_Orders" Association="Self.FK_ResponseToTheOrders_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="ResponseToTheOrders" EntitySet="ResponseToTheOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Secretary_Staff1" Association="Self.FK_Secretary_Staff1">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Secretary" EntitySet="Secretary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Director1" Association="Self.FK_Staff_Director1">
+            <End Role="Director" EntitySet="Director" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
           <AssociationSet Name="FK_Staff_Gender" Association="Self.FK_Staff_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Staff" EntitySet="Staff" />
@@ -323,17 +550,41 @@
             <End Role="JobTitle" EntitySet="JobTitle" />
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
-          <AssociationSet Name="FK_Staff_Staff" Association="Self.FK_Staff_Staff">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="Staff1" EntitySet="Staff" />
-          </AssociationSet>
           <AssociationSet Name="FK_Staff_User" Association="Self.FK_Staff_User">
             <End Role="User" EntitySet="User" />
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
+          <AssociationSet Name="FK_Test_Staff" Association="Self.FK_Test_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Test" EntitySet="Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_TestTwo" Association="Self.FK_Test_TestTwo">
+            <End Role="TestTwo" EntitySet="TestTwo" />
+            <End Role="Test" EntitySet="Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestTwo_Staff" Association="Self.FK_TestTwo_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="TestTwo" EntitySet="TestTwo" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WhoAnswersToWhomLetters_Letters" Association="Self.FK_WhoAnswersToWhomLetters_Letters">
+            <End Role="Letters" EntitySet="Letters" />
+            <End Role="WhoAnswersToWhomLetters" EntitySet="WhoAnswersToWhomLetters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WhoAnswersToWhomLetters_ResponseToTheLetters1" Association="Self.FK_WhoAnswersToWhomLetters_ResponseToTheLetters1">
+            <End Role="ResponseToTheLetters" EntitySet="ResponseToTheLetters" />
+            <End Role="WhoAnswersToWhomLetters" EntitySet="WhoAnswersToWhomLetters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WhoAnswersToWhomOrders_Orders1" Association="Self.FK_WhoAnswersToWhomOrders_Orders1">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="WhoAnswersToWhomOrders" EntitySet="WhoAnswersToWhomOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WhoAnswersToWhomOrders_ResponseToTheOrders" Association="Self.FK_WhoAnswersToWhomOrders_ResponseToTheOrders">
+            <End Role="ResponseToTheOrders" EntitySet="ResponseToTheOrders" />
+            <End Role="WhoAnswersToWhomOrders" EntitySet="WhoAnswersToWhomOrders" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -341,6 +592,17 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Director">
+          <Key>
+            <PropertyRef Name="IdDirector" />
+          </Key>
+          <Property Name="IdDirector" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdStaff" Type="Int32" Nullable="false" />
+          <Property Name="IdSecretary" Type="Int32" />
+          <NavigationProperty Name="Secretary" Relationship="Self.FK_Director_Secretary2" FromRole="Director" ToRole="Secretary" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Director_Staff1" FromRole="Director" ToRole="Staff" />
+          <NavigationProperty Name="Staff1" Relationship="Self.FK_Staff_Director1" FromRole="Director" ToRole="Staff" />
+        </EntityType>
         <EntityType Name="Gender">
           <Key>
             <PropertyRef Name="IdGender" />
@@ -384,11 +646,12 @@
           <Property Name="TextLetters" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FromWhomLetters" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="ToWhomLetters" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="IdResponseToTheLetters" Type="Int32" />
-          <NavigationProperty Name="Letters1" Relationship="Self.FK_Letters_Letters1" FromRole="Letters" ToRole="Letters1" />
-          <NavigationProperty Name="Letters2" Relationship="Self.FK_Letters_Letters1" FromRole="Letters1" ToRole="Letters" />
+          <Property Name="IdWhoAnswersToWhomLetters" Type="Int32" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_Letters_Staff" FromRole="Letters" ToRole="Staff" />
           <NavigationProperty Name="TypeLetters" Relationship="Self.FK_Letters_TypeLetters" FromRole="Letters" ToRole="TypeLetters" />
+          <NavigationProperty Name="WhoAnswersToWhomLetters" Relationship="Self.FK_Letters_WhoAnswersToWhomLetters" FromRole="Letters" ToRole="WhoAnswersToWhomLetters" />
+          <NavigationProperty Name="ResponseToTheLetters" Relationship="Self.FK_ResponseToTheLetters_Letters" FromRole="Letters" ToRole="ResponseToTheLetters" />
+          <NavigationProperty Name="WhoAnswersToWhomLetters1" Relationship="Self.FK_WhoAnswersToWhomLetters_Letters" FromRole="Letters" ToRole="WhoAnswersToWhomLetters" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -403,19 +666,30 @@
           <Property Name="TextOrders" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FromWhomOrders" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="ToWhomOrders" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="IdResponseToTheOrders" Type="Int32" />
-          <NavigationProperty Name="Orders1" Relationship="Self.FK_Orders_Orders" FromRole="Orders" ToRole="Orders1" />
-          <NavigationProperty Name="Orders2" Relationship="Self.FK_Orders_Orders" FromRole="Orders1" ToRole="Orders" />
+          <Property Name="IdWhoAnswersToWhomOrders" Type="Int32" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_Orders_Staff" FromRole="Orders" ToRole="Staff" />
           <NavigationProperty Name="TypeOrders" Relationship="Self.FK_Orders_TypeOrders" FromRole="Orders" ToRole="TypeOrders" />
+          <NavigationProperty Name="WhoAnswersToWhomOrders" Relationship="Self.FK_Orders_WhoAnswersToWhomOrders1" FromRole="Orders" ToRole="WhoAnswersToWhomOrders" />
+          <NavigationProperty Name="ResponseToTheOrders" Relationship="Self.FK_ResponseToTheOrders_Orders" FromRole="Orders" ToRole="ResponseToTheOrders" />
+          <NavigationProperty Name="WhoAnswersToWhomOrders1" Relationship="Self.FK_WhoAnswersToWhomOrders_Orders1" FromRole="Orders" ToRole="WhoAnswersToWhomOrders" />
         </EntityType>
-        <EntityType Name="Passport">
+        <EntityType Name="ResponseToTheLetters">
           <Key>
-            <PropertyRef Name="IdPassport" />
+            <PropertyRef Name="IdResponseToTheLetters" />
           </Key>
-          <Property Name="IdPassport" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SeriesPassport" Type="Int32" Nullable="false" />
-          <Property Name="NumberPassport" Type="Int32" Nullable="false" />
+          <Property Name="IdResponseToTheLetters" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdLetters" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Letters" Relationship="Self.FK_ResponseToTheLetters_Letters" FromRole="ResponseToTheLetters" ToRole="Letters" />
+          <NavigationProperty Name="WhoAnswersToWhomLetters" Relationship="Self.FK_WhoAnswersToWhomLetters_ResponseToTheLetters1" FromRole="ResponseToTheLetters" ToRole="WhoAnswersToWhomLetters" />
+        </EntityType>
+        <EntityType Name="ResponseToTheOrders">
+          <Key>
+            <PropertyRef Name="IdResponseToTheOrders" />
+          </Key>
+          <Property Name="IdResponseToTheOrders" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrders" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_ResponseToTheOrders_Orders" FromRole="ResponseToTheOrders" ToRole="Orders" />
+          <NavigationProperty Name="WhoAnswersToWhomOrders" Relationship="Self.FK_WhoAnswersToWhomOrders_ResponseToTheOrders" FromRole="ResponseToTheOrders" ToRole="WhoAnswersToWhomOrders" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -425,6 +699,15 @@
           <Property Name="NameRole" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
+        <EntityType Name="Secretary">
+          <Key>
+            <PropertyRef Name="IdSecretary" />
+          </Key>
+          <Property Name="IdSecretary" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdStaff" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Director" Relationship="Self.FK_Director_Secretary2" FromRole="Secretary" ToRole="Director" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Secretary_Staff1" FromRole="Secretary" ToRole="Staff" />
+        </EntityType>
         <EntityType Name="Staff">
           <Key>
             <PropertyRef Name="IdStaff" />
@@ -432,26 +715,29 @@
           <Property Name="IdStaff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstNameStaff" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SurNameStaff" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MiddleName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
-          <Property Name="NumberPhoneStaff" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleNameStaff" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="NumberPhoneStaff" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfBirthStaff" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="SeriesPassport" Type="Int32" Nullable="false" />
           <Property Name="IdGender" Type="Int32" Nullable="false" />
           <Property Name="IdJobTitle" Type="Int32" Nullable="false" />
           <Property Name="IdUser" Type="Int32" Nullable="false" />
-          <Property Name="IdSecretary" Type="Int32" />
           <Property Name="AdressStaff" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PhotoStaff" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="NumberPassport" Type="Int32" Nullable="false" />
+          <Property Name="IdDirector" Type="Int32" />
+          <NavigationProperty Name="Director" Relationship="Self.FK_Director_Staff1" FromRole="Staff" ToRole="Director" />
+          <NavigationProperty Name="Director1" Relationship="Self.FK_Staff_Director1" FromRole="Staff" ToRole="Director" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Staff_Gender" FromRole="Staff" ToRole="Gender" />
           <NavigationProperty Name="Graphics" Relationship="Self.FK_Graphics_Staff" FromRole="Staff" ToRole="Graphics" />
           <NavigationProperty Name="JobTitle" Relationship="Self.FK_Staff_JobTitle" FromRole="Staff" ToRole="JobTitle" />
           <NavigationProperty Name="Letters" Relationship="Self.FK_Letters_Staff" FromRole="Staff" ToRole="Letters" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Staff" FromRole="Staff" ToRole="Orders" />
-          <NavigationProperty Name="Staff1" Relationship="Self.FK_Staff_Staff" FromRole="Staff" ToRole="Staff1" />
-          <NavigationProperty Name="Staff2" Relationship="Self.FK_Staff_Staff" FromRole="Staff1" ToRole="Staff" />
+          <NavigationProperty Name="Secretary" Relationship="Self.FK_Secretary_Staff1" FromRole="Staff" ToRole="Secretary" />
           <NavigationProperty Name="User" Relationship="Self.FK_Staff_User" FromRole="Staff" ToRole="User" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_Test_Staff" FromRole="Staff" ToRole="Test" />
+          <NavigationProperty Name="TestTwo" Relationship="Self.FK_TestTwo_Staff" FromRole="Staff" ToRole="TestTwo" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -462,6 +748,25 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="IdTest" />
+          </Key>
+          <Property Name="IdTest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdStaff" Type="Int32" Nullable="false" />
+          <Property Name="IdTestTwo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Test_Staff" FromRole="Test" ToRole="Staff" />
+          <NavigationProperty Name="TestTwo" Relationship="Self.FK_Test_TestTwo" FromRole="Test" ToRole="TestTwo" />
+        </EntityType>
+        <EntityType Name="TestTwo">
+          <Key>
+            <PropertyRef Name="IdTestTwo" />
+          </Key>
+          <Property Name="IdTestTwo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdStaff" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_TestTwo_Staff" FromRole="TestTwo" ToRole="Staff" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_Test_TestTwo" FromRole="TestTwo" ToRole="Test" />
         </EntityType>
         <EntityType Name="TypeLetters">
           <Key>
@@ -490,6 +795,64 @@
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_User" FromRole="User" ToRole="Staff" />
         </EntityType>
+        <EntityType Name="WhoAnswersToWhomLetters">
+          <Key>
+            <PropertyRef Name="IdWhoAnswersToWhomLetters" />
+          </Key>
+          <Property Name="IdWhoAnswersToWhomLetters" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdLetters" Type="Int32" Nullable="false" />
+          <Property Name="IdResponseToTheLetters" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Letters" Relationship="Self.FK_Letters_WhoAnswersToWhomLetters" FromRole="WhoAnswersToWhomLetters" ToRole="Letters" />
+          <NavigationProperty Name="Letters1" Relationship="Self.FK_WhoAnswersToWhomLetters_Letters" FromRole="WhoAnswersToWhomLetters" ToRole="Letters" />
+          <NavigationProperty Name="ResponseToTheLetters" Relationship="Self.FK_WhoAnswersToWhomLetters_ResponseToTheLetters1" FromRole="WhoAnswersToWhomLetters" ToRole="ResponseToTheLetters" />
+        </EntityType>
+        <EntityType Name="WhoAnswersToWhomOrders">
+          <Key>
+            <PropertyRef Name="IdWhoAnswersToWhomOrders" />
+          </Key>
+          <Property Name="IdWhoAnswersToWhomOrders" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrders" Type="Int32" Nullable="false" />
+          <Property Name="IdResponseToTheOrders" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_WhoAnswersToWhomOrders1" FromRole="WhoAnswersToWhomOrders" ToRole="Orders" />
+          <NavigationProperty Name="Orders1" Relationship="Self.FK_WhoAnswersToWhomOrders_Orders1" FromRole="WhoAnswersToWhomOrders" ToRole="Orders" />
+          <NavigationProperty Name="ResponseToTheOrders" Relationship="Self.FK_WhoAnswersToWhomOrders_ResponseToTheOrders" FromRole="WhoAnswersToWhomOrders" ToRole="ResponseToTheOrders" />
+        </EntityType>
+        <Association Name="FK_Director_Secretary2">
+          <End Role="Secretary" Type="Self.Secretary" Multiplicity="0..1" />
+          <End Role="Director" Type="Self.Director" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Secretary">
+              <PropertyRef Name="IdSecretary" />
+            </Principal>
+            <Dependent Role="Director">
+              <PropertyRef Name="IdSecretary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Director_Staff1">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Director" Type="Self.Director" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Director">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Director1">
+          <End Role="Director" Type="Self.Director" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Director">
+              <PropertyRef Name="IdDirector" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="IdDirector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Staff_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
@@ -526,18 +889,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Letters_Letters1">
-          <End Role="Letters" Type="Self.Letters" Multiplicity="0..1" />
-          <End Role="Letters1" Type="Self.Letters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Letters">
-              <PropertyRef Name="IdLetters" />
-            </Principal>
-            <Dependent Role="Letters1">
-              <PropertyRef Name="IdResponseToTheLetters" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Letters_Staff">
           <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
           <End Role="Letters" Type="Self.Letters" Multiplicity="*" />
@@ -562,15 +913,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Orders_Orders">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
-          <End Role="Orders1" Type="Self.Orders" Multiplicity="*" />
+        <Association Name="FK_Letters_WhoAnswersToWhomLetters">
+          <End Role="WhoAnswersToWhomLetters" Type="Self.WhoAnswersToWhomLetters" Multiplicity="0..1" />
+          <End Role="Letters" Type="Self.Letters" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Orders">
-              <PropertyRef Name="IdOrders" />
+            <Principal Role="WhoAnswersToWhomLetters">
+              <PropertyRef Name="IdWhoAnswersToWhomLetters" />
             </Principal>
-            <Dependent Role="Orders1">
-              <PropertyRef Name="IdResponseToTheOrders" />
+            <Dependent Role="Letters">
+              <PropertyRef Name="IdWhoAnswersToWhomLetters" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResponseToTheLetters_Letters">
+          <End Role="Letters" Type="Self.Letters" Multiplicity="1" />
+          <End Role="ResponseToTheLetters" Type="Self.ResponseToTheLetters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Letters">
+              <PropertyRef Name="IdLetters" />
+            </Principal>
+            <Dependent Role="ResponseToTheLetters">
+              <PropertyRef Name="IdLetters" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WhoAnswersToWhomLetters_Letters">
+          <End Role="Letters" Type="Self.Letters" Multiplicity="1" />
+          <End Role="WhoAnswersToWhomLetters" Type="Self.WhoAnswersToWhomLetters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Letters">
+              <PropertyRef Name="IdLetters" />
+            </Principal>
+            <Dependent Role="WhoAnswersToWhomLetters">
+              <PropertyRef Name="IdLetters" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -598,6 +973,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Orders_WhoAnswersToWhomOrders1">
+          <End Role="WhoAnswersToWhomOrders" Type="Self.WhoAnswersToWhomOrders" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WhoAnswersToWhomOrders">
+              <PropertyRef Name="IdWhoAnswersToWhomOrders" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IdWhoAnswersToWhomOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResponseToTheOrders_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="ResponseToTheOrders" Type="Self.ResponseToTheOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IdOrders" />
+            </Principal>
+            <Dependent Role="ResponseToTheOrders">
+              <PropertyRef Name="IdOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WhoAnswersToWhomOrders_Orders1">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="WhoAnswersToWhomOrders" Type="Self.WhoAnswersToWhomOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IdOrders" />
+            </Principal>
+            <Dependent Role="WhoAnswersToWhomOrders">
+              <PropertyRef Name="IdOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WhoAnswersToWhomLetters_ResponseToTheLetters1">
+          <End Role="ResponseToTheLetters" Type="Self.ResponseToTheLetters" Multiplicity="1" />
+          <End Role="WhoAnswersToWhomLetters" Type="Self.WhoAnswersToWhomLetters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResponseToTheLetters">
+              <PropertyRef Name="IdResponseToTheLetters" />
+            </Principal>
+            <Dependent Role="WhoAnswersToWhomLetters">
+              <PropertyRef Name="IdResponseToTheLetters" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WhoAnswersToWhomOrders_ResponseToTheOrders">
+          <End Role="ResponseToTheOrders" Type="Self.ResponseToTheOrders" Multiplicity="1" />
+          <End Role="WhoAnswersToWhomOrders" Type="Self.WhoAnswersToWhomOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResponseToTheOrders">
+              <PropertyRef Name="IdResponseToTheOrders" />
+            </Principal>
+            <Dependent Role="WhoAnswersToWhomOrders">
+              <PropertyRef Name="IdResponseToTheOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -610,15 +1045,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Staff_Staff">
-          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
-          <End Role="Staff1" Type="Self.Staff" Multiplicity="*" />
+        <Association Name="FK_Secretary_Staff1">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Secretary" Type="Self.Secretary" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Staff">
               <PropertyRef Name="IdStaff" />
             </Principal>
-            <Dependent Role="Staff1">
-              <PropertyRef Name="IdSecretary" />
+            <Dependent Role="Secretary">
+              <PropertyRef Name="IdStaff" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -634,19 +1069,74 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Test_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestTwo_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="TestTwo" Type="Self.TestTwo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="TestTwo">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_TestTwo">
+          <End Role="TestTwo" Type="Self.TestTwo" Multiplicity="1" />
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestTwo">
+              <PropertyRef Name="IdTestTwo" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="IdTestTwo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Director" EntityType="Self.Director" />
           <EntitySet Name="Gender" EntityType="Self.Gender" />
           <EntitySet Name="Graphics" EntityType="Self.Graphics" />
           <EntitySet Name="JobTitle" EntityType="Self.JobTitle" />
           <EntitySet Name="Letters" EntityType="Self.Letters" />
           <EntitySet Name="Orders" EntityType="Self.Orders" />
-          <EntitySet Name="Passport" EntityType="Self.Passport" />
+          <EntitySet Name="ResponseToTheLetters" EntityType="Self.ResponseToTheLetters" />
+          <EntitySet Name="ResponseToTheOrders" EntityType="Self.ResponseToTheOrders" />
           <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Secretary" EntityType="Self.Secretary" />
           <EntitySet Name="Staff" EntityType="Self.Staff" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Test" EntityType="Self.Test" />
+          <EntitySet Name="TestTwo" EntityType="Self.TestTwo" />
           <EntitySet Name="TypeLetters" EntityType="Self.TypeLetters" />
           <EntitySet Name="TypeOrders" EntityType="Self.TypeOrders" />
           <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="WhoAnswersToWhomLetters" EntityType="Self.WhoAnswersToWhomLetters" />
+          <EntitySet Name="WhoAnswersToWhomOrders" EntityType="Self.WhoAnswersToWhomOrders" />
+          <AssociationSet Name="FK_Director_Secretary2" Association="Self.FK_Director_Secretary2">
+            <End Role="Secretary" EntitySet="Secretary" />
+            <End Role="Director" EntitySet="Director" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Director_Staff1" Association="Self.FK_Director_Staff1">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Director" EntitySet="Director" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Director1" Association="Self.FK_Staff_Director1">
+            <End Role="Director" EntitySet="Director" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
           <AssociationSet Name="FK_Staff_Gender" Association="Self.FK_Staff_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Staff" EntitySet="Staff" />
@@ -659,10 +1149,6 @@
             <End Role="JobTitle" EntitySet="JobTitle" />
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
-          <AssociationSet Name="FK_Letters_Letters1" Association="Self.FK_Letters_Letters1">
-            <End Role="Letters" EntitySet="Letters" />
-            <End Role="Letters1" EntitySet="Letters" />
-          </AssociationSet>
           <AssociationSet Name="FK_Letters_Staff" Association="Self.FK_Letters_Staff">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Letters" EntitySet="Letters" />
@@ -671,9 +1157,17 @@
             <End Role="TypeLetters" EntitySet="TypeLetters" />
             <End Role="Letters" EntitySet="Letters" />
           </AssociationSet>
-          <AssociationSet Name="FK_Orders_Orders" Association="Self.FK_Orders_Orders">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="Orders1" EntitySet="Orders" />
+          <AssociationSet Name="FK_Letters_WhoAnswersToWhomLetters" Association="Self.FK_Letters_WhoAnswersToWhomLetters">
+            <End Role="WhoAnswersToWhomLetters" EntitySet="WhoAnswersToWhomLetters" />
+            <End Role="Letters" EntitySet="Letters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResponseToTheLetters_Letters" Association="Self.FK_ResponseToTheLetters_Letters">
+            <End Role="Letters" EntitySet="Letters" />
+            <End Role="ResponseToTheLetters" EntitySet="ResponseToTheLetters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WhoAnswersToWhomLetters_Letters" Association="Self.FK_WhoAnswersToWhomLetters_Letters">
+            <End Role="Letters" EntitySet="Letters" />
+            <End Role="WhoAnswersToWhomLetters" EntitySet="WhoAnswersToWhomLetters" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Staff" Association="Self.FK_Orders_Staff">
             <End Role="Staff" EntitySet="Staff" />
@@ -683,17 +1177,49 @@
             <End Role="TypeOrders" EntitySet="TypeOrders" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
+          <AssociationSet Name="FK_Orders_WhoAnswersToWhomOrders1" Association="Self.FK_Orders_WhoAnswersToWhomOrders1">
+            <End Role="WhoAnswersToWhomOrders" EntitySet="WhoAnswersToWhomOrders" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResponseToTheOrders_Orders" Association="Self.FK_ResponseToTheOrders_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="ResponseToTheOrders" EntitySet="ResponseToTheOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WhoAnswersToWhomOrders_Orders1" Association="Self.FK_WhoAnswersToWhomOrders_Orders1">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="WhoAnswersToWhomOrders" EntitySet="WhoAnswersToWhomOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WhoAnswersToWhomLetters_ResponseToTheLetters1" Association="Self.FK_WhoAnswersToWhomLetters_ResponseToTheLetters1">
+            <End Role="ResponseToTheLetters" EntitySet="ResponseToTheLetters" />
+            <End Role="WhoAnswersToWhomLetters" EntitySet="WhoAnswersToWhomLetters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WhoAnswersToWhomOrders_ResponseToTheOrders" Association="Self.FK_WhoAnswersToWhomOrders_ResponseToTheOrders">
+            <End Role="ResponseToTheOrders" EntitySet="ResponseToTheOrders" />
+            <End Role="WhoAnswersToWhomOrders" EntitySet="WhoAnswersToWhomOrders" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Staff_Staff" Association="Self.FK_Staff_Staff">
+          <AssociationSet Name="FK_Secretary_Staff1" Association="Self.FK_Secretary_Staff1">
             <End Role="Staff" EntitySet="Staff" />
-            <End Role="Staff1" EntitySet="Staff" />
+            <End Role="Secretary" EntitySet="Secretary" />
           </AssociationSet>
           <AssociationSet Name="FK_Staff_User" Association="Self.FK_Staff_User">
             <End Role="User" EntitySet="User" />
             <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Staff" Association="Self.FK_Test_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Test" EntitySet="Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestTwo_Staff" Association="Self.FK_TestTwo_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="TestTwo" EntitySet="TestTwo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_TestTwo" Association="Self.FK_Test_TestTwo">
+            <End Role="TestTwo" EntitySet="TestTwo" />
+            <End Role="Test" EntitySet="Test" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -702,6 +1228,15 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище DBModelContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="Director">
+            <EntityTypeMapping TypeName="DBModel.Director">
+              <MappingFragment StoreEntitySet="Director">
+                <ScalarProperty Name="IdDirector" ColumnName="IdDirector" />
+                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
+                <ScalarProperty Name="IdSecretary" ColumnName="IdSecretary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Gender">
             <EntityTypeMapping TypeName="DBModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
@@ -744,7 +1279,7 @@
                 <ScalarProperty Name="TextLetters" ColumnName="TextLetters" />
                 <ScalarProperty Name="FromWhomLetters" ColumnName="FromWhomLetters" />
                 <ScalarProperty Name="ToWhomLetters" ColumnName="ToWhomLetters" />
-                <ScalarProperty Name="IdResponseToTheLetters" ColumnName="IdResponseToTheLetters" />
+                <ScalarProperty Name="IdWhoAnswersToWhomLetters" ColumnName="IdWhoAnswersToWhomLetters" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -760,16 +1295,23 @@
                 <ScalarProperty Name="TextOrders" ColumnName="TextOrders" />
                 <ScalarProperty Name="FromWhomOrders" ColumnName="FromWhomOrders" />
                 <ScalarProperty Name="ToWhomOrders" ColumnName="ToWhomOrders" />
-                <ScalarProperty Name="IdResponseToTheOrders" ColumnName="IdResponseToTheOrders" />
+                <ScalarProperty Name="IdWhoAnswersToWhomOrders" ColumnName="IdWhoAnswersToWhomOrders" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Passport">
-            <EntityTypeMapping TypeName="DBModel.Passport">
-              <MappingFragment StoreEntitySet="Passport">
-                <ScalarProperty Name="IdPassport" ColumnName="IdPassport" />
-                <ScalarProperty Name="SeriesPassport" ColumnName="SeriesPassport" />
-                <ScalarProperty Name="NumberPassport" ColumnName="NumberPassport" />
+          <EntitySetMapping Name="ResponseToTheLetters">
+            <EntityTypeMapping TypeName="DBModel.ResponseToTheLetters">
+              <MappingFragment StoreEntitySet="ResponseToTheLetters">
+                <ScalarProperty Name="IdResponseToTheLetters" ColumnName="IdResponseToTheLetters" />
+                <ScalarProperty Name="IdLetters" ColumnName="IdLetters" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResponseToTheOrders">
+            <EntityTypeMapping TypeName="DBModel.ResponseToTheOrders">
+              <MappingFragment StoreEntitySet="ResponseToTheOrders">
+                <ScalarProperty Name="IdResponseToTheOrders" ColumnName="IdResponseToTheOrders" />
+                <ScalarProperty Name="IdOrders" ColumnName="IdOrders" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -781,24 +1323,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Secretary">
+            <EntityTypeMapping TypeName="DBModel.Secretary">
+              <MappingFragment StoreEntitySet="Secretary">
+                <ScalarProperty Name="IdSecretary" ColumnName="IdSecretary" />
+                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Staff">
             <EntityTypeMapping TypeName="DBModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
                 <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
                 <ScalarProperty Name="FirstNameStaff" ColumnName="FirstNameStaff" />
                 <ScalarProperty Name="SurNameStaff" ColumnName="SurNameStaff" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="MiddleNameStaff" ColumnName="MiddleNameStaff" />
                 <ScalarProperty Name="NumberPhoneStaff" ColumnName="NumberPhoneStaff" />
                 <ScalarProperty Name="DateOfBirthStaff" ColumnName="DateOfBirthStaff" />
                 <ScalarProperty Name="SeriesPassport" ColumnName="SeriesPassport" />
                 <ScalarProperty Name="IdGender" ColumnName="IdGender" />
                 <ScalarProperty Name="IdJobTitle" ColumnName="IdJobTitle" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="IdSecretary" ColumnName="IdSecretary" />
                 <ScalarProperty Name="AdressStaff" ColumnName="AdressStaff" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="PhotoStaff" ColumnName="PhotoStaff" />
                 <ScalarProperty Name="NumberPassport" ColumnName="NumberPassport" />
+                <ScalarProperty Name="IdDirector" ColumnName="IdDirector" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -810,6 +1360,23 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test">
+            <EntityTypeMapping TypeName="DBModel.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="IdTest" ColumnName="IdTest" />
+                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
+                <ScalarProperty Name="IdTestTwo" ColumnName="IdTestTwo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestTwo">
+            <EntityTypeMapping TypeName="DBModel.TestTwo">
+              <MappingFragment StoreEntitySet="TestTwo">
+                <ScalarProperty Name="IdTestTwo" ColumnName="IdTestTwo" />
+                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -836,6 +1403,24 @@
                 <ScalarProperty Name="LoginUser" ColumnName="LoginUser" />
                 <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
                 <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WhoAnswersToWhomLetters">
+            <EntityTypeMapping TypeName="DBModel.WhoAnswersToWhomLetters">
+              <MappingFragment StoreEntitySet="WhoAnswersToWhomLetters">
+                <ScalarProperty Name="IdWhoAnswersToWhomLetters" ColumnName="IdWhoAnswersToWhomLetters" />
+                <ScalarProperty Name="IdLetters" ColumnName="IdLetters" />
+                <ScalarProperty Name="IdResponseToTheLetters" ColumnName="IdResponseToTheLetters" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WhoAnswersToWhomOrders">
+            <EntityTypeMapping TypeName="DBModel.WhoAnswersToWhomOrders">
+              <MappingFragment StoreEntitySet="WhoAnswersToWhomOrders">
+                <ScalarProperty Name="IdWhoAnswersToWhomOrders" ColumnName="IdWhoAnswersToWhomOrders" />
+                <ScalarProperty Name="IdOrders" ColumnName="IdOrders" />
+                <ScalarProperty Name="IdResponseToTheOrders" ColumnName="IdResponseToTheOrders" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

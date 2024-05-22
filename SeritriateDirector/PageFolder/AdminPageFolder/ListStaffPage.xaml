@@ -241,7 +241,8 @@ TextAlignment="Center"
             Grid.RowSpan="3"
             Background="{StaticResource FillFon}"/>
 
-                        <TextBlock Grid.Column="1"
+                        <TextBlock x:Name="FirstNameStaffTb"
+                            Grid.Column="1"
             TextWrapping="WrapWithOverflow"
             Text="Фамилия:"
                                    Style="{DynamicResource TBlListBox}"
@@ -287,12 +288,7 @@ Text="Пол:"
                                    TextWrapping="WrapWithOverflow"
                                    TextAlignment="Right"/>
 
-                        <TextBlock Grid.Column="9"
-                      Grid.Row="2"
-Text="Должность:"
-                          Style="{DynamicResource TBlListBox}"
-                      TextWrapping="WrapWithOverflow"
-                      TextAlignment="Right"/>
+                       
 
                         <TextBlock Grid.Column="13"
              Text="Логин:"
@@ -339,14 +335,14 @@ Text="Должность:"
            TextWrapping="WrapWithOverflow"/>
                         <TextBlock Grid.Column="7"
                                    Grid.Row="1"
-                                    Text="{Binding Passport.NumberPassport}"
+                                    Text="{Binding SeriesPassport}"
                                    Style="{DynamicResource TBlListBox}"
                                    TextAlignment="Left"
                                    Margin="0, 0, 40, 0"
                                    TextWrapping="WrapWithOverflow"/>
                         <TextBlock Grid.Column="7"
            Grid.Row="1"
-            Text="{Binding Passport.SeriesPassport}"
+            Text="{Binding NumberPassport}"
            Style="{DynamicResource TBlListBox}"
                                    Margin="40, 0, 0, 0"
            TextAlignment="Left"
@@ -368,12 +364,7 @@ Text="Должность:"
                                    Style="{DynamicResource TBlListBox}"
                                    TextAlignment="Left"
                                    TextWrapping="WrapWithOverflow"/>
-                        <TextBlock Grid.Column="11"
-                                   Grid.Row="2"
-                                    Text="{Binding JobTitle.NameJobTitle}"
-                                   Style="{DynamicResource TBlListBox}"
-                                   TextAlignment="Left"
-                                   TextWrapping="WrapWithOverflow"/>
+                        
                         <TextBlock Grid.Column="15"
                                     Text="{Binding User.LoginUser}"
                                    Style="{DynamicResource TBlListBox}"
@@ -391,6 +382,38 @@ Text="Должность:"
                                TextAlignment="Left"
                                Style="{DynamicResource TBlListBox}"
                                TextWrapping="WrapWithOverflow"/>
+                        
+                        <TextBlock Grid.Column="11"
+                                   Grid.Row="2"
+                                   Text="{Binding JobTitle.NameJobTitle}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Stretch"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="9"
+                                    Grid.Row="2"
+                                    Text="Должность:"
+                                   VerticalAlignment="Stretch"
+                                    Style="{DynamicResource TBlListBox}"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Right"/>
+
+                        <TextBlock Grid.Column="11"
+                                    Grid.Row="2"
+                                   VerticalAlignment="Bottom"
+                                   Margin="0, 0, 0, 5"
+                                    Text="{Binding Director1.Secretary.Staff.FullName}"
+                                    Style="{DynamicResource TBlListBox}"
+                                    TextAlignment="Left"
+                                    TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="9"
+                                   Grid.Row="2"
+                                   Margin="0, 0, 0, 5"
+                                   VerticalAlignment="Bottom"
+                                   Text="Секретар:"
+                                   Style="{DynamicResource TBlListBox}"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

@@ -17,7 +17,8 @@ namespace SeritriateDirector.DataFolder
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Letters()
         {
-            this.Letters1 = new HashSet<Letters>();
+            this.ResponseToTheLetters = new HashSet<ResponseToTheLetters>();
+            this.WhoAnswersToWhomLetters1 = new HashSet<WhoAnswersToWhomLetters>();
         }
     
         public int IdLetters { get; set; }
@@ -29,12 +30,14 @@ namespace SeritriateDirector.DataFolder
         public string TextLetters { get; set; }
         public string FromWhomLetters { get; set; }
         public string ToWhomLetters { get; set; }
-        public Nullable<int> IdResponseToTheLetters { get; set; }
+        public Nullable<int> IdWhoAnswersToWhomLetters { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Letters> Letters1 { get; set; }
-        public virtual Letters Letters2 { get; set; }
         public virtual Staff Staff { get; set; }
         public virtual TypeLetters TypeLetters { get; set; }
+        public virtual WhoAnswersToWhomLetters WhoAnswersToWhomLetters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ResponseToTheLetters> ResponseToTheLetters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WhoAnswersToWhomLetters> WhoAnswersToWhomLetters1 { get; set; }
     }
 }

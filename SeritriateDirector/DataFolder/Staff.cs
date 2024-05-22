@@ -17,28 +17,34 @@ namespace SeritriateDirector.DataFolder
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Staff()
         {
+            this.Director = new HashSet<Director>();
             this.Graphics = new HashSet<Graphics>();
             this.Letters = new HashSet<Letters>();
             this.Orders = new HashSet<Orders>();
-            this.Staff1 = new HashSet<Staff>();
+            this.Secretary = new HashSet<Secretary>();
+            this.Test = new HashSet<Test>();
+            this.TestTwo = new HashSet<TestTwo>();
         }
     
         public int IdStaff { get; set; }
         public string FirstNameStaff { get; set; }
         public string SurNameStaff { get; set; }
-        public string MiddleName { get; set; }
+        public string MiddleNameStaff { get; set; }
         public string NumberPhoneStaff { get; set; }
         public System.DateTime DateOfBirthStaff { get; set; }
         public int SeriesPassport { get; set; }
         public int IdGender { get; set; }
         public int IdJobTitle { get; set; }
         public int IdUser { get; set; }
-        public Nullable<int> IdSecretary { get; set; }
         public string AdressStaff { get; set; }
         public string FullName { get; set; }
         public byte[] PhotoStaff { get; set; }
         public int NumberPassport { get; set; }
+        public Nullable<int> IdDirector { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Director> Director { get; set; }
+        public virtual Director Director1 { get; set; }
         public virtual Gender Gender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Graphics> Graphics { get; set; }
@@ -48,8 +54,11 @@ namespace SeritriateDirector.DataFolder
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff> Staff1 { get; set; }
-        public virtual Staff Staff2 { get; set; }
+        public virtual ICollection<Secretary> Secretary { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Test> Test { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TestTwo> TestTwo { get; set; }
     }
 }

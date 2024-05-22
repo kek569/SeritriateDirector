@@ -60,30 +60,26 @@ Margin="10,4,0,14"/>
                                     HorizontalAlignment="Center"
                                     Grid.Column="1"
                                     Grid.Row="1">
-                            <Button x:Name="ListStaffBtn"
+                            <ToggleButton x:Name="ListStaffBtn"
                                     Content="Список сотрудников"
-                                    Style="{StaticResource InvisibleButton}"
                                     Click="ListStaffBtn_Click"/>
                             
                             <StackPanel Width="20"/>
                             
-                            <Button x:Name="ListOfLettersBtn"
+                            <ToggleButton x:Name="ListOfLettersBtn"
                                     Content="Список писем"
-                                    Style="{StaticResource InvisibleButton}"
                                     Click="ListOfLettersBtn_Click"/>
 
                             <StackPanel Width="20"/>
 
-                            <Button x:Name="ListOfOrdersBtn"
+                            <ToggleButton x:Name="ListOfOrdersBtn"
                                     Content="Список приказов"
-                                    Style="{StaticResource InvisibleButton}"
                                     Click="ListOfOrdersBtn_Click"/>
 
                             <StackPanel Width="20"/>
 
-                            <Button x:Name="ListOfChartsBtn"
+                            <ToggleButton x:Name="ListOfChartsBtn"
                                     Content="Список графиков"
-                                    Style="{StaticResource InvisibleButton}"
                                     Click="ListOfChartsBtn_Click"/>
                         </StackPanel>
 
@@ -91,7 +87,7 @@ Margin="10,4,0,14"/>
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="120"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -100,17 +96,50 @@ Margin="10,4,0,14"/>
                             <RowDefinition Height="10"/>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="10"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="10"/>
                         </Grid.RowDefinitions>
-                        <Button x:Name="BackBtn"
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Content="Назад"
-                    Click="BackBtn_Click"/>
+                        <Button x:Name="BugsBtn"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Click="BugsBtn_Click">
+                            <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Margin="5">
+                                <Image Style="{StaticResource BugsIm}"/>
+                                <TextBlock x:Name="BugsTb" Text="  Баги" VerticalAlignment="Center" 
+                                        Style="{StaticResource TextBlockInBtn}"/>
+                            </StackPanel>
+                        </Button>
+
                         <Button x:Name="ThemeBtn"
-                                Content="Тема"
-                    Grid.Row="1"
-                    Grid.Column="1"
-            Click="ThemeBtn_Click"/>
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Click="ThemeBtn_Click">
+                            <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Margin="5">
+                                <Image Style="{StaticResource ThemeIm}"/>
+                                <TextBlock x:Name="ThemeTb" Text="  Тема" VerticalAlignment="Center" 
+                                    Style="{StaticResource TextBlockInBtn}"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="BackBtn"
+        Grid.Row="5"
+        Grid.Column="1"
+        Click="BackBtn_Click">
+                            <StackPanel Orientation="Horizontal"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Margin="5">
+                                <Image x:Name="BackIm" Style="{StaticResource BackIm}"/>
+                                <TextBlock x:Name="BackTb" Text="  Назад" VerticalAlignment="Center" 
+                    Style="{StaticResource TextBlockInBtn}"/>
+                            </StackPanel>
+                        </Button>
                     </Grid>
                     <Grid Grid.Row="3">
                         <Grid.RowDefinitions>
@@ -119,7 +148,7 @@ Margin="10,4,0,14"/>
                             <RowDefinition Height="700"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="130"/>
                             <ColumnDefinition Width="1200"/>
                             <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>

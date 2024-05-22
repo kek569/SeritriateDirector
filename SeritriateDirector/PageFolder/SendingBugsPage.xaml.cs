@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SeritriateDirector.DataFolder;
+using SeritriateDirector.PageFolder.AdminPageFolder;
 
 namespace SeritriateDirector.PageFolder
 {
@@ -69,6 +70,7 @@ namespace SeritriateDirector.PageFolder
         string selectedFileOneName = "";
         string selectedFileTwoName = "";
         private string theme;
+        private string leng;
         private bool TwoImage = false;
         AlternateView jpeg_view;
 
@@ -150,11 +152,43 @@ namespace SeritriateDirector.PageFolder
                             mailMessage.AlternateViews.Add(html_view);
                             smtpClient.Send(mailMessage);
 
-                            MBClass.InfoMB("Сообщение успешно отправлено.", "");
+                            string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                            if (globalSettingLanguage == "ru")
+                            {
+                                leng = "Сообщение об ошибке успешно отправлено";
+                            }
+                            else if (globalSettingLanguage == "en")
+                            {
+                                leng = "Message bug sent successfully";
+                            }
+                            else
+                            {
+                                leng = "Сообщение об ошибке успешно отправлено";
+                            }
+
+                            MBClass.InfoMB(leng, "");
+
+                            NavigationService.GoBack();
                         }
                         catch (Exception ex)
                         {
-                            MBClass.ErrorMB($"Ошибка отправки сообщения: {ex.Message}", "");
+                            string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                            if (globalSettingLanguage == "ru")
+                            {
+                                leng = $"Ошибка отправки сообщения: {ex.Message}";
+                            }
+                            else if (globalSettingLanguage == "en")
+                            {
+                                leng = $"Error sending message: {ex.Message}";
+                            }
+                            else
+                            {
+                                leng = $"Ошибка отправки сообщения: {ex.Message}";
+                            }
+
+                            MBClass.ErrorMB(leng, "");
                         }
                     }
                 }
@@ -200,11 +234,43 @@ namespace SeritriateDirector.PageFolder
                             mailMessage.AlternateViews.Add(jpeg_view);
                             smtpClient.Send(mailMessage);
 
-                            MBClass.InfoMB("Сообщение успешно отправлено.", "");
+                            string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                            if (globalSettingLanguage == "ru")
+                            {
+                                leng = "Сообщение об ошибке успешно отправлено";
+                            }
+                            else if (globalSettingLanguage == "en")
+                            {
+                                leng = "Message bug sent successfully";
+                            }
+                            else
+                            {
+                                leng = "Сообщение об ошибке успешно отправлено";
+                            }
+
+                            MBClass.InfoMB(leng, "");
+
+                            NavigationService.GoBack();
                         }
                         catch (Exception ex)
                         {
-                            MBClass.ErrorMB($"Ошибка отправки сообщения: {ex.Message}", "");
+                            string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                            if (globalSettingLanguage == "ru")
+                            {
+                                leng = $"Ошибка отправки сообщения: {ex.Message}";
+                            }
+                            else if (globalSettingLanguage == "en")
+                            {
+                                leng = $"Error sending message: {ex.Message}";
+                            }
+                            else
+                            {
+                                leng = $"Ошибка отправки сообщения: {ex.Message}";
+                            }
+
+                            MBClass.ErrorMB(leng, "");
                         }
                     }
                 }
@@ -249,11 +315,43 @@ namespace SeritriateDirector.PageFolder
                             mailMessage.AlternateViews.Add(jpeg_viewTwo);
                             smtpClient.Send(mailMessage);
 
-                            MBClass.InfoMB("Сообщение успешно отправлено.", "");
+                            string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                            if (globalSettingLanguage == "ru")
+                            {
+                                leng = "Сообщение об ошибке успешно отправлено";
+                            }
+                            else if (globalSettingLanguage == "en")
+                            {
+                                leng = "Message bug sent successfully";
+                            }
+                            else
+                            {
+                                leng = "Сообщение об ошибке успешно отправлено";
+                            }
+
+                            MBClass.InfoMB(leng, "");
+
+                            NavigationService.GoBack();
                         }
                         catch (Exception ex)
                         {
-                            MBClass.ErrorMB($"Ошибка отправки сообщения: {ex.Message}", "");
+                            string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                            if (globalSettingLanguage == "ru")
+                            {
+                                leng = $"Ошибка отправки сообщения: {ex.Message}";
+                            }
+                            else if (globalSettingLanguage == "en")
+                            {
+                                leng = $"Error sending message: {ex.Message}";
+                            }
+                            else
+                            {
+                                leng = $"Ошибка отправки сообщения: {ex.Message}";
+                            }
+
+                            MBClass.ErrorMB(leng, "");
                         }
                     }
                 }

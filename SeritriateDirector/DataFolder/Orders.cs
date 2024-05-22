@@ -17,7 +17,8 @@ namespace SeritriateDirector.DataFolder
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Orders()
         {
-            this.Orders1 = new HashSet<Orders>();
+            this.ResponseToTheOrders = new HashSet<ResponseToTheOrders>();
+            this.WhoAnswersToWhomOrders1 = new HashSet<WhoAnswersToWhomOrders>();
         }
     
         public int IdOrders { get; set; }
@@ -29,12 +30,14 @@ namespace SeritriateDirector.DataFolder
         public string TextOrders { get; set; }
         public string FromWhomOrders { get; set; }
         public string ToWhomOrders { get; set; }
-        public Nullable<int> IdResponseToTheOrders { get; set; }
+        public Nullable<int> IdWhoAnswersToWhomOrders { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Orders> Orders1 { get; set; }
-        public virtual Orders Orders2 { get; set; }
         public virtual Staff Staff { get; set; }
         public virtual TypeOrders TypeOrders { get; set; }
+        public virtual WhoAnswersToWhomOrders WhoAnswersToWhomOrders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ResponseToTheOrders> ResponseToTheOrders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WhoAnswersToWhomOrders> WhoAnswersToWhomOrders1 { get; set; }
     }
 }

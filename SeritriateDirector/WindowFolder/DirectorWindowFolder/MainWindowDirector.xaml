@@ -153,7 +153,7 @@ Grid.Column="1"
                             <RowDefinition Height="700"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="130"/>
                             <ColumnDefinition Width="1200"/>
                             <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
