@@ -60,23 +60,35 @@ Margin="10,4,0,14"/>
                                     HorizontalAlignment="Center"
                                     Grid.Column="1"
                                     Grid.Row="1">
+                            <Image Style="{StaticResource StaffIm}"/>
+                            <StackPanel Width="5"/>
+
                             <ToggleButton x:Name="ListStaffBtn"
                                     Content="Список сотрудников"
                                     Click="ListStaffBtn_Click"/>
                             
                             <StackPanel Width="20"/>
                             
+                            <Image Style="{StaticResource LettersIm}"/>
+                            <StackPanel Width="5"/>
+
                             <ToggleButton x:Name="ListOfLettersBtn"
                                     Content="Список писем"
                                     Click="ListOfLettersBtn_Click"/>
 
                             <StackPanel Width="20"/>
 
+                            <Image Style="{StaticResource OrdersIm}"/>
+                            <StackPanel Width="5"/>
+
                             <ToggleButton x:Name="ListOfOrdersBtn"
                                     Content="Список приказов"
                                     Click="ListOfOrdersBtn_Click"/>
 
                             <StackPanel Width="20"/>
+
+                            <Image Style="{StaticResource ScheduleIm}"/>
+                            <StackPanel Width="5"/>
 
                             <ToggleButton x:Name="ListOfChartsBtn"
                                     Content="Список графиков"
@@ -145,7 +157,7 @@ Margin="10,4,0,14"/>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="60"/>
-                            <RowDefinition Height="700"/>
+                            <RowDefinition Height="720"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="130"/>

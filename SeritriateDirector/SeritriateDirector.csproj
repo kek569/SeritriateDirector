@@ -383,6 +383,20 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\SendMessagesLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\SendMessagesDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\LoadPhotoLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\LoadPhotoDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\AddLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\AddDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\ExportLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\StaffLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\ExportDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\StaffDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\CloseEyesLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\OpenEyesLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\CloseEyesDark.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\OpenEyesDark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

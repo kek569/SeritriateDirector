@@ -2,8 +2,10 @@
 using SeritriateDirector.DataFolder;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,26 +41,40 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
             {
                 Title = "Список сотрудников";
                 SearchLb.Content = "Поиск";
-                AddBtn.Content = "Добавить";
-                ExportBtn.Content = "Экспорт";
+                AddTb.Text = " Добавить";
+                ExportTb.Text = " Экспорт";
+                StaffListRusB.IsEnabled = true;
+                StaffListRusB.Opacity = 1;
+                StaffListRusB.ItemsSource = DBEntities.GetContext()
+                        .Staff.ToList().OrderBy(s => s.IdStaff);
+                selectedList = StaffListRusB;
             }
             else if (globalSettingLanguage == "en")
             {
                 Title = "List staff";
                 SearchLb.Content = "Search";
-                AddBtn.Content = "Add";
-                ExportBtn.Content = "Export";
+                AddTb.Text = " Add";
+                ExportTb.Text = " Export";
+                StaffListEngB.IsEnabled = true;
+                StaffListEngB.Opacity = 1;
+                StaffListEngB.ItemsSource = DBEntities.GetContext()
+                        .Staff.ToList().OrderBy(s => s.IdStaff);
+                selectedList = StaffListEngB;
             }
             else
             {
                 Title = "Список сотрудников";
+                StaffListRusB.IsEnabled = true;
+                StaffListRusB.Opacity = 1;
+                StaffListRusB.ItemsSource = DBEntities.GetContext()
+                        .Staff.ToList().OrderBy(s => s.IdStaff);
+                selectedList = StaffListRusB;
 
                 MBClass.ErrorMB("Языковая настройка слетела! Язык по умолчанию русский!\n\n" +
                     "The language setting is gone! The default language is Russian!", "");
             }
 
-            StaffListB.ItemsSource = DBEntities.GetContext()
-                .Staff.ToList().OrderBy(s => s.IdStaff);
+            
 
             ListStaffDg.ItemsSource = DBEntities.GetContext()
                 .Staff.ToList().OrderBy(s => s.IdStaff);
@@ -69,6 +85,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
 
         Staff staff = new Staff();
         private string leng;
+        private ListBox selectedList;
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -77,7 +94,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
 
         private void EditStaffMi_Click(object sender, RoutedEventArgs e)
         {
-            if (StaffListB.SelectedItem == null)
+            if (selectedList.SelectedItem == null)
             {
                 string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
@@ -99,15 +116,15 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
             else
             {
 
-                Staff staff = StaffListB.SelectedItem as Staff;
+                Staff staff = selectedList.SelectedItem as Staff;
                 NavigationService.Navigate
-                    (new EditStaffPage(StaffListB.SelectedItem as Staff));
+                    (new EditStaffPage(selectedList.SelectedItem as Staff));
             }
         }
 
         private void DeleteStafffMi_Click(object sender, RoutedEventArgs e)
         {
-            if (StaffListB.SelectedItem == null)
+            if (selectedList.SelectedItem == null)
             {
                 string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
@@ -146,7 +163,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 bool ret = MBClass.QestionMB(leng, "");
                 if (ret == true)
                 {
-                    Staff staff = StaffListB.SelectedItem as Staff;
+                    Staff staff = selectedList.SelectedItem as Staff;
                     User user = UserListB.SelectedItem as User;
 
                     staff = DBEntities.GetContext().Staff
@@ -182,6 +199,12 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
         private void UpdateStaffMi_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ListStaffPage());
+
+            using (DBEntities db = new DBEntities())
+            {
+                int IdA = db.Staff.Max(a => a.IdStaff);
+                MBClass.InfoMB(IdA.ToString(), "");
+            }
         }
 
         private void ExportBtn_Click(object sender, RoutedEventArgs e)
@@ -192,7 +215,23 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 int colCount = ListStaffDg.SelectedCells.Count;
                 ListStaffDg.SelectedIndex = ListStaffDg.Items.Count - 1;
                 int a = colCount / (ListStaffDg.SelectedIndex + 1);
-                string selectedFileName = "Excel";
+
+                string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                if (globalSettingLanguage == "ru")
+                {
+                    leng = "Эксел";
+                }
+                else if (globalSettingLanguage == "en")
+                {
+                    leng = "Excel";
+                }
+                else
+                {
+                    leng = "Эксел";
+                }
+
+                string selectedFileName = leng;
                 ExportClass.ToExcelFile(ListStaffDg, selectedFileName, a);
             }
             catch (Exception ex)
@@ -205,7 +244,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
         {
             try
             {
-                StaffListB.ItemsSource = DataFolder.DBEntities.GetContext().Staff.
+                selectedList.ItemsSource = DataFolder.DBEntities.GetContext().Staff.
                     Where(s => s.FirstNameStaff.StartsWith(SearchTb.Text) ||
                     s.SurNameStaff.StartsWith(SearchTb.Text) ||
                     s.MiddleNameStaff.StartsWith(SearchTb.Text) ||

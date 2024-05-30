@@ -32,5 +32,7 @@ namespace SeritriateDirector
         public MainWindowAdmin MainWindowAdmin { get; set; }
 
         public MainWindowSecretary MainWindowSecretary { get; set; }
+
+        public string AddLoginName { get; set; }
     }
 }

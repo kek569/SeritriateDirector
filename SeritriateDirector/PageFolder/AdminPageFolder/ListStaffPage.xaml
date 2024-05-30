@@ -13,9 +13,9 @@
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="160"/>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="160"/>
             <ColumnDefinition Width="25"/>
             <ColumnDefinition Width="0"/>
         </Grid.ColumnDefinitions>
@@ -33,13 +33,29 @@
 
         <Button x:Name="AddBtn"
 Grid.Column="4"
-        Content="Добавить"
-       Click="AddBtn_Click"/>
+       Click="AddBtn_Click">
+            <StackPanel Orientation="Horizontal"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center">
+                <Image Style="{StaticResource AddIm}" 
+           Margin="7"/>
+                <TextBlock x:Name="AddTb" Text=" Добавить" VerticalAlignment="Center" 
+        Style="{StaticResource TextBlockInBtn}"/>
+            </StackPanel>
+        </Button>
 
         <Button x:Name="ExportBtn"
 Grid.Column="6"
-        Content="Экспорт"
-       Click="ExportBtn_Click"/>
+       Click="ExportBtn_Click">
+            <StackPanel Orientation="Horizontal"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+                <Image Style="{StaticResource ExportIm}" 
+                       Margin="7"/>
+                <TextBlock x:Name="ExportTb" Text=" Экспорт" VerticalAlignment="Center" 
+                    Style="{StaticResource TextBlockInBtn}"/>
+            </StackPanel>
+        </Button>
 
         <DataGrid x:Name="ListStaffDg"
             Grid.Column="10"
@@ -156,24 +172,26 @@ TextAlignment="Center"
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <ListBox x:Name="StaffListB"
+        <ListBox x:Name="StaffListRusB"
                  SelectionMode="Single"
                  Grid.Row="3"
                  Grid.Column="0"
                  Grid.ColumnSpan="7"
                  HorizontalContentAlignment="Stretch"
                 ItemsSource="{Binding Path=ResizeItems}" 
-                BorderThickness="0">
+                BorderThickness="0"
+                 IsEnabled="False"
+                 Opacity="0">
             <ListBox.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Редактирование"
-                          Name="EditStaffMi"
+                          Name="EditStaffRusMi"
                           Click="EditStaffMi_Click"/>
                     <MenuItem Header="Удаление"
-      Name="DeleteStafffMi"
-      Click="DeleteStafffMi_Click"/>
+                          Name="DeleteStafffRusMi"
+                          Click="DeleteStafffMi_Click"/>
                     <MenuItem Header="Обновить страницу"
-                          Name="UpdateStaffMi"
+                          Name="UpdateStaffRusMi"
                           Click="UpdateStaffMi_Click"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
@@ -207,19 +225,19 @@ TextAlignment="Center"
 
                         <StackPanel Grid.Column="1"
                                     Grid.RowSpan="3"
-                                    Background="#1C1D22"/>
+                                    Background="{StaticResource FillLb}"/>
 
                         <StackPanel Grid.Column="5"
             Grid.RowSpan="3"
-            Background="#1C1D22"/>
+            Background="{StaticResource FillLb}"/>
 
                         <StackPanel Grid.Column="9"
             Grid.RowSpan="3"
-            Background="#1C1D22"/>
+            Background="{StaticResource FillLb}"/>
 
                         <StackPanel Grid.Column="13"
             Grid.RowSpan="3"
-            Background="#1C1D22"/>
+            Background="{StaticResource FillLb}"/>
 
                         <StackPanel Grid.Column="2"
                                     Grid.ColumnSpan="3"
@@ -411,6 +429,271 @@ Text="Пол:"
                                    Margin="0, 0, 0, 5"
                                    VerticalAlignment="Bottom"
                                    Text="Секретар:"
+                                   Style="{DynamicResource TBlListBox}"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox x:Name="StaffListEngB"
+                 SelectionMode="Multiple"
+                 Grid.Row="3"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="7"
+                 HorizontalContentAlignment="Stretch"
+                ItemsSource="{Binding Path=ResizeItems}" 
+                BorderThickness="0"
+                 IsEnabled="False"
+                 Opacity="0">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Editing"
+                          Name="EditStaffEngMi"
+                          Click="EditStaffMi_Click"/>
+                    <MenuItem Header="Removal"
+                          Name="DeleteStafffEngMi"
+                          Click="DeleteStafffMi_Click"/>
+                    <MenuItem Header="Refresh the page"
+                          Name="UpdateStaffEngMi"
+                          Click="UpdateStaffMi_Click"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="65"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="225"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Column="1"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="5"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="9"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="13"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="2"
+                                    Grid.ColumnSpan="3"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillFon}"/>
+
+                        <StackPanel Grid.Column="6"
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillFon}"/>
+
+                        <StackPanel Grid.Column="10"
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillFon}"/>
+
+                        <StackPanel Grid.Column="14"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillFon}"/>
+
+                        <TextBlock x:Name="FirstNameStaffTb"
+                            Grid.Column="1"
+            TextWrapping="WrapWithOverflow"
+            Text="First name:"
+                                   Style="{DynamicResource TBlListBox}"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="1"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Sur name:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="2"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Middle name:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+Text="Gender:"
+                          Style="{DynamicResource TBlListBox}"
+                      TextWrapping="WrapWithOverflow"
+                      TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+                                   Grid.Row="1"
+             Text="Passport details:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+                                   Grid.Row="2"
+             Text="Birthday:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="9"
+             Text="Address:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="9"
+                                   Grid.Row="1"
+             Text="Number phone:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+
+
+
+                        <TextBlock Grid.Column="13"
+             Text="Login:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="13"
+                                   Grid.Row="1"
+             Text="Password:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="13"
+                      Grid.Row="2"
+                        Text="Role:"
+                          Style="{DynamicResource TBlListBox}"
+                      TextWrapping="WrapWithOverflow"
+                      TextAlignment="Right"/>
+                        <Image Source="{Binding PhotoStaff}"
+                               Width="200" Grid.RowSpan="3"
+                               Margin="10"
+                               Stretch="Uniform"/>
+                        <TextBlock Grid.Column="3"
+                                   Text="{Binding FirstNameStaff}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="1"
+                                   Text="{Binding SurNameStaff}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="2"
+                                   Text="{Binding MiddleNameStaff}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+           Text="{Binding Gender.NameGender}"
+           Style="{DynamicResource TBlListBox}"
+           TextAlignment="Left"
+           TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+                                   Grid.Row="1"
+                                    Text="{Binding SeriesPassport}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   TextAlignment="Left"
+                                   Margin="0, 0, 40, 0"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+           Grid.Row="1"
+            Text="{Binding NumberPassport}"
+           Style="{DynamicResource TBlListBox}"
+                                   Margin="40, 0, 0, 0"
+           TextAlignment="Left"
+           TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+                                   Grid.Row="2"
+                                    Text="{Binding DateOfBirthStaff, StringFormat={}{0:yyyy.MM.dd}}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="11"
+                                    Text="{Binding AdressStaff}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="11"
+                                   Grid.Row="1"
+                                    Text="{Binding NumberPhoneStaff}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+
+                        <TextBlock Grid.Column="15"
+                                    Text="{Binding User.LoginUser}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="15"
+                                   Grid.Row="1"
+                                    Text="*****"
+                                   TextAlignment="Left"
+                                   Style="{DynamicResource TBlListBox}"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="15"
+                               Grid.Row="2"
+                                Text="{Binding User.Role.NameRole}"
+                               TextAlignment="Left"
+                               Style="{DynamicResource TBlListBox}"
+                               TextWrapping="WrapWithOverflow"/>
+
+                        <TextBlock Grid.Column="11"
+                                   Grid.Row="2"
+                                   Text="{Binding JobTitle.NameJobTitle}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Stretch"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="9"
+                                    Grid.Row="2"
+                                    Text="Job title:"
+                                   VerticalAlignment="Stretch"
+                                    Style="{DynamicResource TBlListBox}"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Right"/>
+
+                        <TextBlock Grid.Column="11"
+                                    Grid.Row="2"
+                                   VerticalAlignment="Bottom"
+                                   Margin="0, 0, 0, 5"
+                                    Text="{Binding Director1.Secretary.Staff.FullName}"
+                                    Style="{DynamicResource TBlListBox}"
+                                    TextAlignment="Left"
+                                    TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="9"
+                                   Grid.Row="2"
+                                   Margin="0, 0, 0, 5"
+                                   VerticalAlignment="Bottom"
+                                   Text="Secretary:"
                                    Style="{DynamicResource TBlListBox}"
                                    TextWrapping="WrapWithOverflow"
                                    TextAlignment="Right"/>

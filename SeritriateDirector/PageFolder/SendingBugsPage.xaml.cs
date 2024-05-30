@@ -42,15 +42,15 @@ namespace SeritriateDirector.PageFolder
             if (globalSettingLanguage == "ru")
             {
                 Title = "Отправка сообщения об баге";
-                SendingBugsBtn.Content = "Отправить сообщения";
-                LoadPhotoBtn.Content = "Загрузить фото";
+                SendingBugsTb.Text = " Отправить сообщения";
+                LoadPhotoTb.Text = " Загрузить фото";
                 theme = "Баги";
             }
             else if (globalSettingLanguage == "en")
             {
                 Title = "Submitting a bug report";
-                SendingBugsBtn.Content = "Send messages";
-                LoadPhotoBtn.Content = "Load a photo";
+                SendingBugsTb.Text = " Send messages";
+                LoadPhotoTb.Text = " Load photo";
                 theme = "Bugs";
             }
             else

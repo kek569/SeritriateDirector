@@ -7,6 +7,8 @@ using System.Windows.Controls;
 using System.Windows;
 using System.Data.Entity.Validation;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Office.Core;
+using System.CodeDom.Compiler;
 
 namespace SeritriateDirector.ClassFolder
 {
