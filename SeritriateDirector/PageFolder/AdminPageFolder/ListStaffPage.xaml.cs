@@ -199,12 +199,6 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
         private void UpdateStaffMi_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ListStaffPage());
-
-            using (DBEntities db = new DBEntities())
-            {
-                int IdA = db.Staff.Max(a => a.IdStaff);
-                MBClass.InfoMB(IdA.ToString(), "");
-            }
         }
 
         private void ExportBtn_Click(object sender, RoutedEventArgs e)
