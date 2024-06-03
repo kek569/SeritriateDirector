@@ -369,6 +369,7 @@ namespace SeritriateDirector.WindowFolder
                         switch (user.IdRole)
                         {
                             case 1:
+                                (App.Current as App).DeptName = LoginSave;
                                 new AdminWindowFolder.MainWindowAdmin().Show();
                                 this.Close();
                                 break;

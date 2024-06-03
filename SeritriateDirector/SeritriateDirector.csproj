@@ -383,6 +383,8 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\ResetPasswordLight.png" />
+    <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\ResetPasswordDark.png" />
     <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\SendMessagesLight.png" />
     <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\SendMessagesDark.png" />
     <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\LoadPhotoLight.png" />

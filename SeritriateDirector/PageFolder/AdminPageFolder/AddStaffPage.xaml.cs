@@ -102,6 +102,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
 
         Staff staff = new Staff();
         string selectedFileName = "";
+        private string leng;
         private string TextPassword;
         private string MiddleName;
         private string MiddleNameFull;
@@ -109,6 +110,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
         private int LastIdUser;
         private int LastIdSecretary;
         private int LastIdDirector;
+        private int LastIdStaff;
 
         private void AddPhoto()
         {
@@ -246,8 +248,14 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                 LastIdDirector = db.Director.Max(a => a.IdDirector);
                             }
 
+                            using (DBEntities db = new DBEntities())
+                            {
+                                LastIdStaff = db.Staff.Max(a => a.IdStaff);
+                            }
+
                             LastIdSecretary = LastIdSecretary + 1;
                             LastIdDirector = LastIdDirector + 1;
+                            LastIdStaff = LastIdStaff + 1;
 
                             if (selectedFileName == "")
                             {
@@ -267,7 +275,8 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                 DBEntities.GetContext().SaveChanges();
                                 var directorAdd = new Director()
                                 {
-                                    IdSecretary = LastIdSecretary
+                                    IdSecretary = LastIdSecretary,
+                                    IdStaff = LastIdStaff
                                 };
                                 DBEntities.GetContext().Director.Add(directorAdd);
                                 DBEntities.GetContext().SaveChanges();
@@ -282,8 +291,8 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                                     + MiddleNameFull),
                                     NumberPhoneStaff = NumberPhoneStaffTb.Text,
                                     DateOfBirthStaff = System.DateTime.Parse(DateOfBirthStaffDp.Text),
-                                    SeriesPassport = Int32.Parse(SeriesPassportTb.Text),
-                                    NumberPassport = Int32.Parse(NumberPassportTb.Text),
+                                    SeriesPassport = Int32.Parse(NumberPassportTb.Text),
+                                    NumberPassport = Int32.Parse(SeriesPassportTb.Text),
                                     IdGender = Int32.Parse(GenderCb.SelectedValue.ToString()),
                                     IdUser = LastIdUser,
                                     IdDirector = LastIdDirector,
@@ -306,6 +315,19 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                 };
                                 DBEntities.GetContext().User.Add(userAdd);
                                 DBEntities.GetContext().SaveChanges();
+                                var secretaryAdd = new Secretary()
+                                {
+                                    IdStaff = Int32.Parse(SecretaryCb.SelectedValue.ToString())
+                                };
+                                DBEntities.GetContext().Secretary.Add(secretaryAdd);
+                                DBEntities.GetContext().SaveChanges();
+                                var directorAdd = new Director()
+                                {
+                                    IdSecretary = LastIdSecretary,
+                                    IdStaff = LastIdStaff
+                                };
+                                DBEntities.GetContext().Director.Add(directorAdd);
+                                DBEntities.GetContext().SaveChanges();
                                 var staffAdd = new Staff()
                                 {
                                     SurNameStaff = LastNameStaffTb.Text,
@@ -316,10 +338,11 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                                     + MiddleNameFull),
                                     NumberPhoneStaff = NumberPhoneStaffTb.Text,
                                     DateOfBirthStaff = System.DateTime.Parse(DateOfBirthStaffDp.Text),
-                                    SeriesPassport = Int32.Parse(SeriesPassportTb.Text),
-                                    NumberPassport = Int32.Parse(NumberPassportTb.Text),
+                                    SeriesPassport = Int32.Parse(NumberPassportTb.Text),
+                                    NumberPassport = Int32.Parse(SeriesPassportTb.Text),
                                     IdGender = Int32.Parse(GenderCb.SelectedValue.ToString()),
                                     IdUser = LastIdUser,
+                                    IdDirector = LastIdDirector,
                                     AdressStaff = AdressStaffTb.Text,
                                     IdJobTitle = Int32.Parse(JobTitleCb.SelectedValue.ToString()),
                                     PhotoStaff = ClassImage.ConvertImageToArray(selectedFileName)
@@ -354,8 +377,8 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                                     + MiddleNameFull),
                                     NumberPhoneStaff = NumberPhoneStaffTb.Text,
                                     DateOfBirthStaff = System.DateTime.Parse(DateOfBirthStaffDp.Text),
-                                    SeriesPassport = Int32.Parse(SeriesPassportTb.Text),
-                                    NumberPassport = Int32.Parse(NumberPassportTb.Text),
+                                    SeriesPassport = Int32.Parse(NumberPassportTb.Text),
+                                    NumberPassport = Int32.Parse(SeriesPassportTb.Text),
                                     IdGender = Int32.Parse(GenderCb.SelectedValue.ToString()),
                                     IdUser = LastIdUser,
                                     AdressStaff = AdressStaffTb.Text,
@@ -387,8 +410,8 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                                     + MiddleNameFull),
                                     NumberPhoneStaff = NumberPhoneStaffTb.Text,
                                     DateOfBirthStaff = System.DateTime.Parse(DateOfBirthStaffDp.Text),
-                                    SeriesPassport = Int32.Parse(SeriesPassportTb.Text),
-                                    NumberPassport = Int32.Parse(NumberPassportTb.Text),
+                                    SeriesPassport = Int32.Parse(NumberPassportTb.Text),
+                                    NumberPassport = Int32.Parse(SeriesPassportTb.Text),
                                     IdGender = Int32.Parse(GenderCb.SelectedValue.ToString()),
                                     IdUser = LastIdUser,
                                     AdressStaff = AdressStaffTb.Text,

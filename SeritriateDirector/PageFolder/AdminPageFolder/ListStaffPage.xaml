@@ -438,7 +438,7 @@ Text="Пол:"
         </ListBox>
 
         <ListBox x:Name="StaffListEngB"
-                 SelectionMode="Multiple"
+                 SelectionMode="Single"
                  Grid.Row="3"
                  Grid.Column="0"
                  Grid.ColumnSpan="7"

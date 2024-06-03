@@ -121,6 +121,11 @@ Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/Theme.png"/>
                  Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/LightThemeImageFolder/SendMessagesLight.png"/>
     </Style>
 
+    <Style x:Key="ResetPasswordIm" TargetType="Image">
+        <Setter Property="Source" 
+             Value="/SeritriateDirector;component/ResourceFolder/ImageFolder/LightThemeImageFolder/ResetPasswordLight.png"/>
+    </Style>
+
     <Style x:Key="InvisibleButton" TargetType="Button">
         <Setter Property="Margin" Value="1"/>
         <Setter Property="FontSize" Value="16"/>

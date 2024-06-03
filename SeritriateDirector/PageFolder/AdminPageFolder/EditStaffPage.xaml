@@ -5,9 +5,232 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SeritriateDirector.PageFolder.AdminPageFolder"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800">
-
+      d:DesignHeight="720" d:DesignWidth="1200">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label x:Name="FirstNameLb"
+            Content="Фамилия"
+Grid.Row="1" Grid.Column="1"
+Style="{DynamicResource LabelNormal}"/>
+        <TextBox x:Name="FirstNameStaffTb"
+  Grid.Row="1"
+  Grid.Column="2"
+                 Text="{Binding FirstNameStaff}"/>
+
+        <Label x:Name="SurNameLb"
+            Content="Имя"
+Grid.Row="3" Grid.Column="1"
+Style="{DynamicResource LabelNormal}"/>
+        <TextBox x:Name="LastNameStaffTb"
+  Grid.Row="3"
+  Grid.Column="2"
+                 Text="{Binding SurNameStaff}"/>
+
+        <Label x:Name="MiddleNameLb"
+            Content="Отчество"
+Grid.Row="5" Grid.Column="1"
+Style="{DynamicResource LabelNormal}"/>
+        <TextBox x:Name="MiddleNameStaffTb"
+  Grid.Row="5"
+  Grid.Column="2"
+                 Text="{Binding MiddleNameStaff}"/>
+
+        <Label x:Name="PassportLb"
+            Content="Серия и № паспорта"
+Grid.Row="7" Grid.Column="1"
+Style="{DynamicResource LabelNormal}"/>
+
+        <TextBox x:Name="NumberPassportTb"
+                 Grid.Row="7"
+                 Grid.Column="2" Margin="10,10,10,10"
+                 Text="{Binding SeriesPassport}"/>
+        <TextBox x:Name="SeriesPassportTb"
+                 Grid.Row="7"
+                 Grid.Column="2" Margin="103,10,10,10"
+                 Text="{Binding NumberPassport}"/>
+
+        <Label x:Name="GenderLb"
+            Content="Пол"
+    Grid.Row="9" Grid.Column="1"
+    Style="{DynamicResource LabelNormal}"/>
+        <ComboBox x:Name="GenderCb"
+   Grid.Column="2"
+   Grid.Row="9"
+SelectedItem="{Binding Gender}"
+          SelectedValuePath="IdGender"
+          DisplayMemberPath="NameGender"/>
+
+        <Label x:Name="DateOfBirthLb"
+            Content="День рождения"
+    Grid.Row="1" Grid.Column="4"
+    Style="{DynamicResource LabelNormal}"/>
+        <DatePicker x:Name="DateOfBirthStaffDp"
+    Grid.Row="1"
+    Grid.Column="5"
+                    Text="{Binding DateOfBirthStaff}"/>
+        <Label x:Name="AdressLb"
+            Content="Адрес"
+    Grid.Row="3" Grid.Column="4"
+    Style="{DynamicResource LabelNormal}"/>
+        <TextBox x:Name="AdressStaffTb"
+    Grid.Row="3"
+    Grid.Column="5"
+                 Text="{Binding AdressStaff}"/>
+
+        <Label x:Name="NumberPhoneLb"
+            Content="Номер телефона"
+    Grid.Row="5" Grid.Column="4"
+    Style="{DynamicResource LabelNormal}"/>
+        <TextBox x:Name="NumberPhoneStaffTb"
+    Grid.Row="5"
+    Grid.Column="5"
+                 Text="{Binding NumberPhoneStaff}"/>
+
+        <Button x:Name="ResetPasswordBtn"
+                Grid.Column="4"
+                Grid.Row="7"
+                Grid.ColumnSpan="2"
+                IsEnabled="False"
+                Opacity="0"
+                Click="ResetPasswordBtn_Click">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Image Style="{StaticResource ResetPasswordIm}" 
+                        Margin="2"/>
+                <TextBlock x:Name="ResetPasswordTb" Text="  Сбросить пароль" VerticalAlignment="Center" 
+                             Style="{StaticResource TextBlockInBtn}"/>
+            </StackPanel>
+        </Button>
+
+        <Label x:Name="PasswordLb"
+            Content="Пароль"
+Grid.Row="7" Grid.Column="4"
+Style="{DynamicResource LabelNormal}"/>
+        <TextBox x:Name="PasswordTb"
+Grid.Row="7"
+Grid.Column="5"
+                                      IsEnabled="False"
+Opacity="0"
+                 TextChanged="PasswordTb_TextChanged"/>
+        <PasswordBox x:Name="PasswordPb"
+Grid.Row="7"
+Grid.Column="5"
+                     
+                 PasswordChanged="PasswordPb_PasswordChanged"/>
+        <Image x:Name="CloseEyesIm"
+               Style="{StaticResource CloseEyesIm}"
+       Grid.Column="5"
+       Grid.Row="7"
+       HorizontalAlignment="Right"/>
+        <Image x:Name="OpenEyesIm"
+               Style="{StaticResource OpenEyesIm}"
+               Opacity="0"
+   Grid.Column="5"
+   Grid.Row="7"
+   HorizontalAlignment="Right"
+   MouseLeftButtonDown="OpenEyesIm_MouseLeftButtonDown"/>
+
+        <Label x:Name="JobTitleLb"
+            Content="Должность"
+Grid.Row="11" Grid.Column="1"
+Style="{DynamicResource LabelNormal}"/>
+        <ComboBox x:Name="JobTitleCb"
+Grid.Row="11"
+Grid.Column="2"
+                  SelectedItem="{Binding JobTitle}"
+          SelectedValuePath="IdJobTitle"
+          DisplayMemberPath="NameJobTitle"/>
+
+        <Label x:Name="RoleLb"
+            Content="Роль"
+Grid.Row="13" Grid.Column="1"
+Style="{DynamicResource LabelNormal}"/>
+        <ComboBox x:Name="RoleCb"
+Grid.Row="13"
+Grid.Column="2"
+                  SelectedItem="{Binding Role}"
+                  SelectionChanged="RoleCb_SelectionChanged"
+          SelectedValuePath="IdRole"
+          DisplayMemberPath="NameRole"/>
+
+        <Label x:Name="SecretaryLb"
+            Content="Секретарь"
+               Opacity="0"
+Grid.Row="15" Grid.Column="1"
+Style="{DynamicResource LabelNormal}"/>
+
+        <ComboBox x:Name="SecretaryCb"
+                  IsEditable="False"
+                  Opacity="0"
+Grid.Row="15"
+Grid.Column="2"
+                  SelectedItem="{Binding Staff}"
+          SelectedValuePath="IdStaff"
+          DisplayMemberPath="FullName"/>
+
+        <Image x:Name="PhotoIM"
+       Grid.Row="11"
+               Grid.RowSpan="5"
+       Grid.Column="4"
+       Grid.ColumnSpan="2"/>
+
+        <Button x:Name="LoadPhotoBtn"
+    Grid.Column="2"
+    Grid.Row="17"
+    Click="LoadPhotoBtn_Click">
+            <StackPanel Orientation="Horizontal"
+  HorizontalAlignment="Center"
+  VerticalAlignment="Center">
+                <Image Style="{StaticResource LoadPhotoIm}" 
+   Margin="7"/>
+                <TextBlock x:Name="LoadPhotoTb" Text=" Загрузить фото" VerticalAlignment="Center" 
+Style="{StaticResource TextBlockInBtn}"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="SaveBtn"
+ Grid.Column="5"
+ Grid.Row="17"
+ Click="SaveBtn_Click">
+            <StackPanel Orientation="Horizontal"
+  HorizontalAlignment="Center"
+  VerticalAlignment="Center">
+                <Image Style="{StaticResource SaveIm}" 
+                        Margin="7"/>
+                <TextBlock x:Name="SaveTb" Text=" Сохранить изменения" VerticalAlignment="Center" 
+                            Style="{StaticResource TextBlockInBtn}"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Page>
