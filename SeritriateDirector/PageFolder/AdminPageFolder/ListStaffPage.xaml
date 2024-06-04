@@ -57,10 +57,12 @@ Grid.Column="6"
             </StackPanel>
         </Button>
 
-        <DataGrid x:Name="ListStaffDg"
+        <DataGrid x:Name="ListStaffRusDg"
             Grid.Column="10"
             AutoGenerateColumns="False"
-            IsReadOnly="True">
+            IsReadOnly="True"
+                  IsEnabled="False"
+                  Opacity="0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ФИО"
                         Binding="{Binding FullName}"
@@ -69,10 +71,10 @@ Grid.Column="6"
                         Binding="{Binding Gender.GenderStaff}"
                         Width="*"/>
                 <DataGridTextColumn Header="Серия паспорта"
-                        Binding="{Binding Passport.NumberPassport}"
+                        Binding="{Binding SeriesPassport}"
                         Width="*"/>
                 <DataGridTextColumn Header="Номер паспорта"
-                        Binding="{Binding Passport.SeriesPassport}"
+                        Binding="{Binding NumberPassport}"
                         Width="*"/>
                 <DataGridTextColumn Header="День рождения"
                         Binding="{Binding DateOfBirthStaff}"
@@ -83,18 +85,61 @@ Grid.Column="6"
                 <DataGridTextColumn Header="Номер телефона"
                         Binding="{Binding NumberPhoneStaff}"
                         Width="*"/>
-                <DataGridTextColumn Header="должность"
+                <DataGridTextColumn Header="Должность"
                         Binding="{Binding JobTitle.NameJobTitle}"
+                        Width="*"/>
+                <DataGridTextColumn Header="Секретар"
+                        Binding="{Binding Director1.Secretary.Staff.FullName}"
                         Width="*"/>
                 <DataGridTextColumn Header="Логин"
                         Binding="{Binding User.LoginUser}"
                         Width="*"/>
-                <DataGridTextColumn Header="Пароль"
-                        Binding="{Binding User.PasswordUser}"
-                        Width="*"/>
                 <DataGridTextColumn Header="Роль"
                         Binding="{Binding User.Role.NameRole}"
                         Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="ListStaffEngDg"
+    Grid.Column="10"
+    AutoGenerateColumns="False"
+    IsReadOnly="True"
+                  IsEnabled="False"
+                  Opacity="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Full name"
+                Binding="{Binding FullName}"
+                Width="*"/>
+                <DataGridTextColumn Header="Gender"
+                Binding="{Binding Gender.GenderStaff}"
+                Width="*"/>
+                <DataGridTextColumn Header="Series passport"
+                Binding="{Binding SeriesPassport}"
+                Width="*"/>
+                <DataGridTextColumn Header="Number passport"
+                Binding="{Binding NumberPassport}"
+                Width="*"/>
+                <DataGridTextColumn Header="Birthday"
+                Binding="{Binding DateOfBirthStaff}"
+                Width="*"/>
+                <DataGridTextColumn Header="Address"
+                Binding="{Binding AdressStaff}"
+                Width="*"/>
+                <DataGridTextColumn Header="Number phone"
+                Binding="{Binding NumberPhoneStaff}"
+                Width="*"/>
+                <DataGridTextColumn Header="Job title"
+                Binding="{Binding JobTitle.NameJobTitle}"
+                Width="*"/>
+                <DataGridTextColumn Header="Secretary"
+                Binding="{Binding Director1.Secretary.Staff.FullName}"
+                Width="*"/>
+                <DataGridTextColumn Header="Login"
+                Binding="{Binding User.LoginUser}"
+                Width="*"/>
+                <DataGridTextColumn Header="Role"
+                Binding="{Binding User.Role.NameRole}"
+                Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -103,7 +148,8 @@ Grid.Column="6"
      Grid.Column="9"
      HorizontalContentAlignment="Stretch"
     ItemsSource="{Binding Path=ResizeItems}" 
-    BorderThickness="0">
+    BorderThickness="0"
+                 Opacity="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>

@@ -1,5 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+                    xmlns:Input="clr-namespace:Syncfusion.Windows.Controls.Input;assembly=Syncfusion.SfInput.WPF"
+                    xmlns:converter="clr-namespace:Syncfusion.Windows.Converters;assembly=Syncfusion.SfInput.WPF">
 
     <SolidColorBrush x:Key="FillFon" Color="#16171B"/>
     <SolidColorBrush x:Key="FillFont" Color="#FFFFFF"/>

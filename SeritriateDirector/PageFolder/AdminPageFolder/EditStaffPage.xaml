@@ -114,7 +114,18 @@ SelectedItem="{Binding Gender}"
         <TextBox x:Name="NumberPhoneStaffTb"
     Grid.Row="5"
     Grid.Column="5"
-                 Text="{Binding NumberPhoneStaff}"/>
+                 Text="{Binding NumberPhoneStaff}"
+                 TextChanged="NumberPhoneStaffTb_TextChanged"
+                 PreviewKeyDown="NumberPhoneStaffTb_PreviewKeyDown"
+                 PreviewTextInput="NumberPhoneStaffTb_PreviewTextInput"/>
+
+        <StackPanel x:Name="SelectionSp"
+            Grid.Row="5"
+    Grid.Column="5"
+    MouseLeftButtonDown="SelectionSp_MouseLeftButtonDown"
+    Background="{StaticResource FillFon}"
+    Opacity="0"
+    Margin="10"/>
 
         <Button x:Name="ResetPasswordBtn"
                 Grid.Column="4"

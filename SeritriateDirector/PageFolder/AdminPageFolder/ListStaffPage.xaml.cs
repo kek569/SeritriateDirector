@@ -45,9 +45,13 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 ExportTb.Text = " Экспорт";
                 StaffListRusB.IsEnabled = true;
                 StaffListRusB.Opacity = 1;
+                StaffListRusB.IsEnabled = true;
                 StaffListRusB.ItemsSource = DBEntities.GetContext()
                         .Staff.ToList().OrderBy(s => s.IdStaff);
+                ListStaffRusDg.ItemsSource = DBEntities.GetContext()
+                        .Staff.ToList().OrderBy(s => s.IdStaff);
                 selectedList = StaffListRusB;
+                selectedGrid = ListStaffRusDg;
             }
             else if (globalSettingLanguage == "en")
             {
@@ -57,18 +61,26 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 ExportTb.Text = " Export";
                 StaffListEngB.IsEnabled = true;
                 StaffListEngB.Opacity = 1;
+                ListStaffEngDg.IsEnabled = true;
                 StaffListEngB.ItemsSource = DBEntities.GetContext()
                         .Staff.ToList().OrderBy(s => s.IdStaff);
+                ListStaffEngDg.ItemsSource = DBEntities.GetContext()
+                        .Staff.ToList().OrderBy(s => s.IdStaff);
                 selectedList = StaffListEngB;
+                selectedGrid = ListStaffEngDg;
             }
             else
             {
                 Title = "Список сотрудников";
                 StaffListRusB.IsEnabled = true;
                 StaffListRusB.Opacity = 1;
+                ListStaffRusDg.IsEnabled = true;
                 StaffListRusB.ItemsSource = DBEntities.GetContext()
                         .Staff.ToList().OrderBy(s => s.IdStaff);
+                ListStaffRusDg.ItemsSource = DBEntities.GetContext()
+                        .Staff.ToList().OrderBy(s => s.IdStaff);
                 selectedList = StaffListRusB;
+                selectedGrid = ListStaffRusDg;
 
                 MBClass.ErrorMB("Языковая настройка слетела! Язык по умолчанию русский!\n\n" +
                     "The language setting is gone! The default language is Russian!", "");
@@ -76,8 +88,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
 
             
 
-            ListStaffDg.ItemsSource = DBEntities.GetContext()
-                .Staff.ToList().OrderBy(s => s.IdStaff);
+            
 
             UserListB.ItemsSource = DBEntities.GetContext()
                 .User.ToList().OrderBy(u => u.IdUser);
@@ -86,6 +97,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
         Staff staff = new Staff();
         private string leng;
         private ListBox selectedList;
+        private DataGrid selectedGrid;
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -205,10 +217,10 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
         {
             try
             {
-                ListStaffDg.SelectAllCells();
-                int colCount = ListStaffDg.SelectedCells.Count;
-                ListStaffDg.SelectedIndex = ListStaffDg.Items.Count - 1;
-                int a = colCount / (ListStaffDg.SelectedIndex + 1);
+                selectedGrid.SelectAllCells();
+                int colCount = selectedGrid.SelectedCells.Count;
+                selectedGrid.SelectedIndex = selectedGrid.Items.Count - 1;
+                int a = colCount / (selectedGrid.SelectedIndex + 1);
 
                 string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
@@ -226,7 +238,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 }
 
                 string selectedFileName = leng;
-                ExportClass.ToExcelFile(ListStaffDg, selectedFileName, a);
+                ExportClass.ToExcelFile(selectedGrid, selectedFileName, a);
             }
             catch (Exception ex)
             {

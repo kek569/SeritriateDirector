@@ -154,17 +154,59 @@ namespace SeritriateDirector.WindowFolder.AdminWindowFolder
 
         private void ListOfLettersBtn_Click(object sender, RoutedEventArgs e)
         {
+            string check = this.MainFrame.Content.ToString();
+            check = new string(check.Reverse().ToArray()).Remove(15);
+            check = new string(check.Reverse().ToArray());
 
+            if (check == "ListLettersPage")
+            {
+                ListOfLettersBtn.IsChecked = true;
+            }
+            else
+            {
+                MainFrame.Navigate(new ListLettersPage());
+                ListOfOrdersBtn.IsChecked = false;
+                ListOfChartsBtn.IsChecked = false;
+                ListStaffBtn.IsChecked = false;
+            }
         }
 
         private void ListOfOrdersBtn_Click(object sender, RoutedEventArgs e)
         {
+            string check = this.MainFrame.Content.ToString();
+            check = new string(check.Reverse().ToArray()).Remove(14);
+            check = new string(check.Reverse().ToArray());
 
+            if (check == "ListOrdersPage")
+            {
+                ListOfOrdersBtn.IsChecked = true;
+            }
+            else
+            {
+                MainFrame.Navigate(new ListOrdersPage());
+                ListOfLettersBtn.IsChecked = false;
+                ListOfChartsBtn.IsChecked = false;
+                ListStaffBtn.IsChecked = false;
+            }
         }
 
         private void ListOfChartsBtn_Click(object sender, RoutedEventArgs e)
         {
+            string check = this.MainFrame.Content.ToString();
+            check = new string(check.Reverse().ToArray()).Remove(16);
+            check = new string(check.Reverse().ToArray());
 
+            if (check == "ListGraphicsPage")
+            {
+                ListOfChartsBtn.IsChecked = true;
+            }
+            else
+            {
+                MainFrame.Navigate(new ListGraphicsPage());
+                ListOfLettersBtn.IsChecked = false;
+                ListOfOrdersBtn.IsChecked = false;
+                ListStaffBtn.IsChecked = false;
+            }
         }
 
         private void ThemeBtn_Click(object sender, RoutedEventArgs e)

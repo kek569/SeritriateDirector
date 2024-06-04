@@ -106,7 +106,19 @@ SelectedItem="{Binding Gender}"
     Style="{DynamicResource LabelNormal}"/>
         <TextBox x:Name="NumberPhoneStaffTb"
     Grid.Row="5"
-    Grid.Column="5"/>
+    Grid.Column="5"
+                 Text="+7 (   )       -  "
+                 TextChanged="NumberPhoneStaffTb_TextChanged"
+                 PreviewKeyDown="NumberPhoneStaffTb_PreviewKeyDown"
+                 PreviewTextInput="NumberPhoneStaffTb_PreviewTextInput"/>
+
+        <StackPanel x:Name="SelectionSp"
+                    Grid.Row="5"
+            Grid.Column="5"
+            MouseLeftButtonDown="SelectionSp_MouseLeftButtonDown"
+            Background="{StaticResource FillFon}"
+            Opacity="0"
+            Margin="10"/>
         <Label x:Name="LoginLb"
             Content="Логин"
     Grid.Row="7" Grid.Column="4"

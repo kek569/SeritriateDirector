@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity.Validation;
+using System.Text.RegularExpressions;
+using System.Reflection;
 
 namespace SeritriateDirector.PageFolder.AdminPageFolder
 {
@@ -88,6 +90,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
             RoleCb.ItemsSource = DBEntities.GetContext().Role.ToList();
             NumberPassportTb.MaxLength = 4;
             SeriesPassportTb.MaxLength = 6;
+            NumberPhoneStaffTb.MaxLength = 28;
 
             PasswordPb.PasswordChar = '*';
 
@@ -111,6 +114,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
         private int LastIdSecretary;
         private int LastIdDirector;
         private int LastIdStaff;
+        private int Rem = 0;
 
         private void AddPhoto()
         {
@@ -152,68 +156,263 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 {
                     if (string.IsNullOrWhiteSpace(LastNameStaffTb.Text))
                     {
-                        MBClass.ErrorMB("Введите имя", "");
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введите имя";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Enter first name";
+                        }
+                        else
+                        {
+                            leng = "Введите имя";
+                        }
+
+                        MBClass.ErrorMB(leng, "");
                         LastNameStaffTb.Focus();
                     }
                     else if (string.IsNullOrWhiteSpace(FirstNameStaffTb.Text))
                     {
-                        MBClass.ErrorMB("Введите фамилию", "");
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введите фамилию";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Enter last name";
+                        }
+                        else
+                        {
+                            leng = "Введите фамилию";
+                        }
+
+                        MBClass.ErrorMB(leng, "");
                         FirstNameStaffTb.Focus();
                     }
-                    else if (string.IsNullOrWhiteSpace(NumberPhoneStaffTb.Text))
+                    else if (NumberPhoneStaffTb.Text.Length != 28)
                     {
-                        MBClass.ErrorMB("Введите номер телефона", "");
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введите номер телефона";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Enter number phone";
+                        }
+                        else
+                        {
+                            leng = "Введите номер телефона";
+                        }
+
+                        MBClass.ErrorMB(leng, "");
                         NumberPhoneStaffTb.Focus();
                     }
                     else if (string.IsNullOrWhiteSpace(DateOfBirthStaffDp.Text))
                     {
-                        MBClass.ErrorMB("Введите дату рождения", "");
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введите дату рождения";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Enter date of birth";
+                        }
+                        else
+                        {
+                            leng = "Введите дату рождения";
+                        }
+
+                        MBClass.ErrorMB(leng, "");
                         DateOfBirthStaffDp.Focus();
                     }
                     else if (string.IsNullOrWhiteSpace(AdressStaffTb.Text))
                     {
-                        MBClass.ErrorMB("Введите адрес", "");
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введите адрес";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Enter address";
+                        }
+                        else
+                        {
+                            leng = "Введите адрес";
+                        }
+
+                        MBClass.ErrorMB(leng, "");
                         AdressStaffTb.Focus();
                     }
                     else if (string.IsNullOrWhiteSpace(LoginTb.Text))
                     {
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введите логин";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Enter login";
+                        }
+                        else
+                        {
+                            leng = "Введите логин";
+                        }
+
                         MBClass.ErrorMB("Введите логин", "");
                         LoginTb.Focus();
                     }
                     else if (string.IsNullOrWhiteSpace(TextPassword))
                     {
-                        MBClass.ErrorMB("Введите пароль", "");
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введите пароль";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Enter password";
+                        }
+                        else
+                        {
+                            leng = "Введите пароль";
+                        }
+
+                        MBClass.ErrorMB(leng, "");
                         PasswordTb.Focus();
                     }
                     else if (string.IsNullOrWhiteSpace(NumberPassportTb.Text))
                     {
-                        MBClass.ErrorMB("Введите серию паспорта", "");
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введите серию паспорта";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Enter passport series";
+                        }
+                        else
+                        {
+                            leng = "Введите серию паспорта";
+                        }
+
+                        MBClass.ErrorMB(leng, "");
                         NumberPassportTb.Focus();
                     }
                     else if (string.IsNullOrWhiteSpace(SeriesPassportTb.Text))
                     {
-                        MBClass.ErrorMB("Введите номер паспорта", "");
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введите номер паспорта";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Enter passport number";
+                        }
+                        else
+                        {
+                            leng = "Введите номер паспорта";
+                        }
+
+                        MBClass.ErrorMB(leng, "");
                         SeriesPassportTb.Focus();
                     }
                     else if (GenderCb.SelectedIndex <= -1)
                     {
-                        MBClass.ErrorMB("Введите пол", "");
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введите пол";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Enter gender";
+                        }
+                        else
+                        {
+                            leng = "Введите пол";
+                        }
+
+                        MBClass.ErrorMB(leng, "");
                         GenderCb.Focus();
                     }
                     else if (JobTitleCb.SelectedIndex <= -1)
                     {
-                        MBClass.ErrorMB("Введите должность", "");
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введите должность";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Enter job title";
+                        }
+                        else
+                        {
+                            leng = "Введите должность";
+                        }
+
+                        MBClass.ErrorMB(leng, "");
                         JobTitleCb.Focus();
                     }
                     else if (RoleCb.SelectedIndex <= -1)
                     {
-                        MBClass.ErrorMB("Введите роль", "");
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введите роль";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Enter role";
+                        }
+                        else
+                        {
+                            leng = "Введите роль";
+                        }
+
+                        MBClass.ErrorMB(leng, "");
                         RoleCb.Focus();
                     }
                     else if (SecretaryCb.IsEditable == true &&
                             SecretaryCb.SelectedIndex <= -1)
                     {
-                        MBClass.ErrorMB("Введите секретаря", "");
+                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                        if (globalSettingLanguage == "ru")
+                        {
+                            leng = "Введите секретаря";
+                        }
+                        else if (globalSettingLanguage == "en")
+                        {
+                            leng = "Enter the secretary";
+                        }
+                        else
+                        {
+                            leng = "Введите секретаря";
+                        }
+
+                        MBClass.ErrorMB(leng, "");
                         SecretaryCb.Focus();
                     }
                     else
@@ -289,7 +488,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                     FullName = (FirstNameStaffTb.Text + " " +
                                                     LastNameStaffTb.Text + " "
                                                     + MiddleNameFull),
-                                    NumberPhoneStaff = NumberPhoneStaffTb.Text,
+                                    NumberPhoneStaff = NumberPhoneStaffTb.Text.Remove(NumberPhoneStaffTb.Text.Length - 10, 10),
                                     DateOfBirthStaff = System.DateTime.Parse(DateOfBirthStaffDp.Text),
                                     SeriesPassport = Int32.Parse(NumberPassportTb.Text),
                                     NumberPassport = Int32.Parse(SeriesPassportTb.Text),
@@ -302,7 +501,22 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                 DBEntities.GetContext().Staff.Add(staffAdd);
                                 DBEntities.GetContext().SaveChanges();
 
-                                MBClass.InfoMB("Данные о сотруднике успешно добавлены", "");
+                                string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                                if (globalSettingLanguage == "ru")
+                                {
+                                    leng = "Данные о сотруднике успешно добавлены";
+                                }
+                                else if (globalSettingLanguage == "en")
+                                {
+                                    leng = "Staff details added successfully";
+                                }
+                                else
+                                {
+                                    leng = "Данные о сотруднике успешно добавлены";
+                                }
+
+                                MBClass.InfoMB(leng, "");
                                 NavigationService.Navigate(new ListStaffPage());
                             }
                             else
@@ -336,7 +550,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                     FullName = (FirstNameStaffTb.Text + " " +
                                                     LastNameStaffTb.Text + " "
                                                     + MiddleNameFull),
-                                    NumberPhoneStaff = NumberPhoneStaffTb.Text,
+                                    NumberPhoneStaff = NumberPhoneStaffTb.Text.Remove(NumberPhoneStaffTb.Text.Length - 10, 10),
                                     DateOfBirthStaff = System.DateTime.Parse(DateOfBirthStaffDp.Text),
                                     SeriesPassport = Int32.Parse(NumberPassportTb.Text),
                                     NumberPassport = Int32.Parse(SeriesPassportTb.Text),
@@ -350,7 +564,22 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                 DBEntities.GetContext().Staff.Add(staffAdd);
                                 DBEntities.GetContext().SaveChanges();
 
-                                MBClass.InfoMB("Данные о сотруднике успешно добавлены", "");
+                                string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                                if (globalSettingLanguage == "ru")
+                                {
+                                    leng = "Данные о сотруднике успешно добавлены";
+                                }
+                                else if (globalSettingLanguage == "en")
+                                {
+                                    leng = "Staff details added successfully";
+                                }
+                                else
+                                {
+                                    leng = "Данные о сотруднике успешно добавлены";
+                                }
+
+                                MBClass.InfoMB(leng, "");
                                 NavigationService.Navigate(new ListStaffPage());
                             }
                         }
@@ -375,7 +604,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                     FullName = (FirstNameStaffTb.Text + " " +
                                                     LastNameStaffTb.Text + " "
                                                     + MiddleNameFull),
-                                    NumberPhoneStaff = NumberPhoneStaffTb.Text,
+                                    NumberPhoneStaff = NumberPhoneStaffTb.Text.Remove(NumberPhoneStaffTb.Text.Length - 10, 10),
                                     DateOfBirthStaff = System.DateTime.Parse(DateOfBirthStaffDp.Text),
                                     SeriesPassport = Int32.Parse(NumberPassportTb.Text),
                                     NumberPassport = Int32.Parse(SeriesPassportTb.Text),
@@ -387,7 +616,22 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                 DBEntities.GetContext().Staff.Add(staffAdd);
                                 DBEntities.GetContext().SaveChanges();
 
-                                MBClass.InfoMB("Данные о сотруднике успешно добавлены", "");
+                                string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                                if (globalSettingLanguage == "ru")
+                                {
+                                    leng = "Данные о сотруднике успешно добавлены";
+                                }
+                                else if (globalSettingLanguage == "en")
+                                {
+                                    leng = "Staff details added successfully";
+                                }
+                                else
+                                {
+                                    leng = "Данные о сотруднике успешно добавлены";
+                                }
+
+                                MBClass.InfoMB(leng, "");
                                 NavigationService.Navigate(new ListStaffPage());
                             }
                             else
@@ -408,7 +652,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                     FullName = (FirstNameStaffTb.Text + " " +
                                                     LastNameStaffTb.Text + " "
                                                     + MiddleNameFull),
-                                    NumberPhoneStaff = NumberPhoneStaffTb.Text,
+                                    NumberPhoneStaff = NumberPhoneStaffTb.Text.Remove(NumberPhoneStaffTb.Text.Length - 10, 10),
                                     DateOfBirthStaff = System.DateTime.Parse(DateOfBirthStaffDp.Text),
                                     SeriesPassport = Int32.Parse(NumberPassportTb.Text),
                                     NumberPassport = Int32.Parse(SeriesPassportTb.Text),
@@ -421,7 +665,22 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                 DBEntities.GetContext().Staff.Add(staffAdd);
                                 DBEntities.GetContext().SaveChanges();
 
-                                MBClass.InfoMB("Данные о сотруднике успешно добавлены", "");
+                                string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                                if (globalSettingLanguage == "ru")
+                                {
+                                    leng = "Данные о сотруднике успешно добавлены";
+                                }
+                                else if (globalSettingLanguage == "en")
+                                {
+                                    leng = "Staff details added successfully";
+                                }
+                                else
+                                {
+                                    leng = "Данные о сотруднике успешно добавлены";
+                                }
+
+                                MBClass.InfoMB(leng, "");
                                 NavigationService.Navigate(new ListStaffPage());
                             }
                         }
@@ -429,7 +688,22 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 }
                 else
                 {
-                    MBClass.ErrorMB("Данный логин уже существует", "");
+                    string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+                    if (globalSettingLanguage == "ru")
+                    {
+                        leng = "Данный логин уже существует";
+                    }
+                    else if (globalSettingLanguage == "en")
+                    {
+                        leng = "This login already exists";
+                    }
+                    else
+                    {
+                        leng = "Данный логин уже существует";
+                    }
+
+                    MBClass.ErrorMB(leng, "");
                 }
             }
             catch (DbEntityValidationException ex)
@@ -504,6 +778,92 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 SecretaryCb.IsEnabled = false;
                 SecretaryCb.Opacity = 0;
             }
+        }
+
+        private void NumberPhoneStaffTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (NumberPhoneStaffTb.SelectionStart != 0)
+            {
+                int a = NumberPhoneStaffTb.SelectionStart;
+                NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Remove(a, 1) + " ";
+                Return();
+            }
+        }
+
+        private void NumberPhoneStaffTb_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete ||
+                e.Key == Key.Space || e.Key == Key.LeftShift ||
+                e.Key == Key.LeftAlt || e.Key == Key.LeftCtrl ||
+                e.Key == Key.Tab || e.Key == Key.RightCtrl ||
+                e.Key == Key.RightShift || e.Key == Key.Right ||
+                e.Key == Key.Left || e.Key == Key.Up ||
+                e.Key == Key.Down)
+            {
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Back && NumberPhoneStaffTb.Text.Length != 18)
+            {
+                e.Handled = true;
+                if (NumberPhoneStaffTb.SelectionStart == 21)
+                {
+
+                }
+                int a = NumberPhoneStaffTb.SelectionStart;
+                NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Remove(a - 1, 1);
+                NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Remove(NumberPhoneStaffTb.Text.Length - 1, 1);
+                NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Insert(a - 1, new string(' ', 1));
+                /*MBClass.InfoMB(NumberPhoneStaffTb.Text.Length.ToString() + 
+                    "\n|" + NumberPhoneStaffTb.Text + "|", "");*/
+
+                Rem = 1;
+                Return();
+            }
+            else if (e.Key == Key.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void NumberPhoneStaffTb_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void SelectionSp_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Return();
+        }
+
+        private void Return()
+        {
+            if (NumberPhoneStaffTb.Text.Length >= 18 &&
+                NumberPhoneStaffTb.Text.Length <= 20 + Rem)
+            {
+                NumberPhoneStaffTb.SelectionStart = NumberPhoneStaffTb.Text.Length - 14;
+                NumberPhoneStaffTb.Focus();
+            }
+            else if (NumberPhoneStaffTb.Text.Length >= 21 + Rem &&
+                     NumberPhoneStaffTb.Text.Length <= 23 + Rem)
+            {
+                NumberPhoneStaffTb.SelectionStart = NumberPhoneStaffTb.Text.Length - 12;
+                NumberPhoneStaffTb.Focus();
+            }
+            else if (NumberPhoneStaffTb.Text.Length >= 24 + Rem &&
+                     NumberPhoneStaffTb.Text.Length <= 25 + Rem)
+            {
+                NumberPhoneStaffTb.SelectionStart = NumberPhoneStaffTb.Text.Length - 11;
+                NumberPhoneStaffTb.Focus();
+            }
+            else if (NumberPhoneStaffTb.Text.Length >= 26 + Rem &&
+                     NumberPhoneStaffTb.Text.Length <= 28)
+            {
+                NumberPhoneStaffTb.SelectionStart = NumberPhoneStaffTb.Text.Length - 10;
+                NumberPhoneStaffTb.Focus();
+            }
+
+            Rem = 0;
         }
     }
 }

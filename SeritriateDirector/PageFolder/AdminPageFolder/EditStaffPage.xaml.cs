@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity.Validation;
 using System.Windows.Threading;
+using System.Text.RegularExpressions;
 
 namespace SeritriateDirector.PageFolder.AdminPageFolder
 {
@@ -95,6 +96,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
             RoleCb.ItemsSource = DBEntities.GetContext().Role.ToList();
             NumberPassportTb.MaxLength = 4;
             SeriesPassportTb.MaxLength = 6;
+            NumberPhoneStaffTb.MaxLength = 28;
 
             PasswordPb.PasswordChar = '*';
 
@@ -114,6 +116,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 timer.Stop();
                 RoleCb.SelectedValue = staffLogin.User.Role.IdRole;
                 DateOfBirthStaffDp.Text = staffLogin.DateOfBirthStaff.ToString();
+                NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text + "          ";
             };
 
             if (staffLogin.User.LoginUser != deptName)
@@ -165,6 +168,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
         private string MiddleName;
         private string MiddleNameFull;
         private int Check = 0;
+        private int Rem = 0;
         private bool EditedPassword = true;
 
         private void AddPhoto()
@@ -239,7 +243,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                     MBClass.ErrorMB(leng, "");
                     FirstNameStaffTb.Focus();
                 }
-                else if (string.IsNullOrWhiteSpace(NumberPhoneStaffTb.Text))
+                else if (NumberPhoneStaffTb.Text.Length != 28)
                 {
                     string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
@@ -473,7 +477,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                     staff.FullName = (FirstNameStaffTb.Text + " " +
                                     LastNameStaffTb.Text + " "
                                     + MiddleNameFull);
-                    staff.NumberPhoneStaff = NumberPhoneStaffTb.Text;
+                    staff.NumberPhoneStaff = NumberPhoneStaffTb.Text.Remove(NumberPhoneStaffTb.Text.Length - 10, 10);
                     staff.DateOfBirthStaff = System.DateTime.Parse(DateOfBirthStaffDp.Text);
                     staff.SeriesPassport = Int32.Parse(NumberPassportTb.Text);
                     staff.NumberPassport = Int32.Parse(SeriesPassportTb.Text);
@@ -501,7 +505,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                         leng = "Данные о сотруднике успешно отредактированы";
                     }
 
-                    MBClass.InfoMB("Данные о сотруднике успешно отредактированы", "");
+                    MBClass.InfoMB(leng, "");
                     NavigationService.Navigate(new ListStaffPage());
 
                 }
@@ -555,7 +559,22 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
 
             staff.User.PasswordUser = "123456789";
 
-            MBClass.InfoMB("Пароль успешно сброшен на 123456789", "");
+            string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+
+            if (globalSettingLanguage == "ru")
+            {
+                leng = "Пароль успешно сброшен на 123456789";
+            }
+            else if (globalSettingLanguage == "en")
+            {
+                leng = "Password successfully reset to 123456789";
+            }
+            else
+            {
+                leng = "Пароль успешно сброшен на 123456789";
+            }
+
+            MBClass.InfoMB(leng, "");
             NavigationService.Navigate(new ListStaffPage());
         }
 
@@ -589,6 +608,85 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 SecretaryCb.IsEnabled = false;
                 SecretaryCb.Opacity = 0;
             }
+        }
+
+        private void NumberPhoneStaffTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (NumberPhoneStaffTb.SelectionStart != 0)
+            {
+                int a = NumberPhoneStaffTb.SelectionStart;
+                NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Remove(a, 1) + " ";
+                Return();
+            }
+        }
+
+        private void NumberPhoneStaffTb_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete ||
+                e.Key == Key.Space || e.Key == Key.LeftShift ||
+                e.Key == Key.LeftAlt || e.Key == Key.LeftCtrl ||
+                e.Key == Key.Tab || e.Key == Key.RightCtrl ||
+                e.Key == Key.RightShift || e.Key == Key.Right ||
+                e.Key == Key.Left || e.Key == Key.Up ||
+                e.Key == Key.Down)
+            {
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Back && NumberPhoneStaffTb.Text.Length != 18)
+            {
+                e.Handled = true;
+                int a = NumberPhoneStaffTb.SelectionStart;
+                NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Remove(a - 1, 1);
+                NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Remove(NumberPhoneStaffTb.Text.Length - 1, 1);
+                NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Insert(a, new string(' ', 1));
+                Rem = 1;
+                Return();
+            }
+            else if (e.Key == Key.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void NumberPhoneStaffTb_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void SelectionSp_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Return();
+        }
+
+        private void Return()
+        {
+            if (NumberPhoneStaffTb.Text.Length >= 18 &&
+                NumberPhoneStaffTb.Text.Length <= 20 + Rem)
+            {
+                NumberPhoneStaffTb.SelectionStart = NumberPhoneStaffTb.Text.Length - 14;
+                NumberPhoneStaffTb.Focus();
+            }
+            else if (NumberPhoneStaffTb.Text.Length >= 21 + Rem &&
+                     NumberPhoneStaffTb.Text.Length <= 23 + Rem)
+            {
+                NumberPhoneStaffTb.SelectionStart = NumberPhoneStaffTb.Text.Length - 12;
+                NumberPhoneStaffTb.Focus();
+            }
+            else if (NumberPhoneStaffTb.Text.Length >= 24 + Rem &&
+                     NumberPhoneStaffTb.Text.Length <= 25 + Rem)
+            {
+                NumberPhoneStaffTb.SelectionStart = NumberPhoneStaffTb.Text.Length - 11;
+                NumberPhoneStaffTb.Focus();
+            }
+            else if (NumberPhoneStaffTb.Text.Length >= 26 + Rem &&
+                     NumberPhoneStaffTb.Text.Length <= 28)
+            {
+                NumberPhoneStaffTb.SelectionStart = NumberPhoneStaffTb.Text.Length - 10;
+                NumberPhoneStaffTb.Focus();
+            }
+
+            Rem = 0;
         }
     }
 }
