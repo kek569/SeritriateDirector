@@ -115,6 +115,10 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
             {
                 timer.Stop();
                 RoleCb.SelectedValue = staffLogin.User.Role.IdRole;
+                if (staffLogin.Director1 != null)
+                {
+                    SecretaryCb.SelectedValue = staffLogin.Director1.Secretary.Staff.IdStaff;
+                }
                 DateOfBirthStaffDp.Text = staffLogin.DateOfBirthStaff.ToString();
                 NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text + "          ";
             };
@@ -303,7 +307,8 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                     MBClass.ErrorMB(leng, "");
                     AdressStaffTb.Focus();
                 }
-                else if (string.IsNullOrWhiteSpace(TextPassword))
+                else if (string.IsNullOrWhiteSpace(TextPassword) && 
+                    EditedPassword == true)
                 {
                     string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
@@ -638,7 +643,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 int a = NumberPhoneStaffTb.SelectionStart;
                 NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Remove(a - 1, 1);
                 NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Remove(NumberPhoneStaffTb.Text.Length - 1, 1);
-                NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Insert(a, new string(' ', 1));
+                NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Insert(a - 1, new string(' ', 1));
                 Rem = 1;
                 Return();
             }

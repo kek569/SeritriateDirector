@@ -427,16 +427,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataFolder\DBModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModel.edmx</DependentUpon>
-      <LastGenOutput>DBModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataFolder\DBModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModel.edmx</DependentUpon>
-      <LastGenOutput>DBModel.cs</LastGenOutput>
-    </Content>
     <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\ResetPasswordLight.png" />
     <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\ResetPasswordDark.png" />
     <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\SendMessagesLight.png" />
@@ -453,6 +443,19 @@
     <Resource Include="ResourceFolder\ImageFolder\LightThemeImageFolder\OpenEyesLight.png" />
     <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\CloseEyesDark.png" />
     <Resource Include="ResourceFolder\ImageFolder\DarkThemeImageFolder\OpenEyesDark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataFolder\DBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBModel.edmx</DependentUpon>
+      <LastGenOutput>DBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataFolder\DBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBModel.edmx</DependentUpon>
+      <LastGenOutput>DBModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataFolder\user512.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

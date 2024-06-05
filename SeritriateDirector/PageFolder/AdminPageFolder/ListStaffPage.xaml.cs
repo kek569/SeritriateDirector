@@ -45,7 +45,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 ExportTb.Text = " Экспорт";
                 StaffListRusB.IsEnabled = true;
                 StaffListRusB.Opacity = 1;
-                StaffListRusB.IsEnabled = true;
+                ListStaffRusDg.IsEnabled = true;
                 StaffListRusB.ItemsSource = DBEntities.GetContext()
                         .Staff.ToList().OrderBy(s => s.IdStaff);
                 ListStaffRusDg.ItemsSource = DBEntities.GetContext()

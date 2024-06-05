@@ -20,6 +20,7 @@
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="160"/>
                 <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="0"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
@@ -34,7 +35,9 @@
                  Grid.Column="2"
                  TextChanged="SearchTb_TextChanged"/>
 
-        <DatePicker Grid.Column="4"/>
+        <DatePicker x:Name="DateEventDp"
+                    Grid.Column="4"
+                    SelectedDateChanged="DateEventDp_SelectedDateChanged"/>
 
         <TextBox x:Name="TimePickerTb"
                  Grid.Column="6"
@@ -76,5 +79,381 @@ Grid.Column="10"
                     Style="{StaticResource TextBlockInBtn}"/>
                 </StackPanel>
             </Button>
-        </Grid>
+
+        <DataGrid x:Name="ListGraphicsRusDg"
+    Grid.Column="14"
+    AutoGenerateColumns="False"
+    IsReadOnly="True"
+          IsEnabled="False"
+          Opacity="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название мероприятия"
+                Binding="{Binding NameEvents}"
+                Width="*"/>
+                <DataGridTextColumn Header="Место проведения"
+                Binding="{Binding PlaceEvents}"
+                Width="*"/>
+                <DataGridTextColumn Header="Дата проведения"
+                Binding="{Binding DateEvents, StringFormat={}{0:yyyy.MM.dd}}"
+                Width="*"/>
+                <DataGridTextColumn Header="Время начало проведения"
+                Binding="{Binding TimeEvents, StringFormat={}{0:hh':'mm}}"
+                Width="*"/>
+                <DataGridTextColumn Header="Цель проведения"
+                Binding="{Binding TargetEvents}"
+                Width="*"/>
+                <DataGridTextColumn Header="Назначено на директора"
+                Binding="{Binding Staff.FullName}"
+                Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="ListGraphicsEngDg"
+Grid.Column="14"
+AutoGenerateColumns="False"
+IsReadOnly="True"
+      IsEnabled="False"
+      Opacity="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name event"
+            Binding="{Binding NameEvents}"
+            Width="*"/>
+                <DataGridTextColumn Header="Place event"
+            Binding="{Binding PlaceEvents}"
+            Width="*"/>
+                <DataGridTextColumn Header="Date event"
+            Binding="{Binding DateEvents, StringFormat={}{0:yyyy.MM.dd}}"
+            Width="*"/>
+                <DataGridTextColumn Header="Start time event"
+            Binding="{Binding TimeEvents, StringFormat={}{0:hh':'mm}}"
+            Width="*"/>
+                <DataGridTextColumn Header="Target event"
+            Binding="{Binding TargetEvents}"
+            Width="*"/>
+                <DataGridTextColumn Header="Assigned to Director"
+            Binding="{Binding Staff.FullName}"
+            Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <ListBox x:Name="GraphicsListRusB"
+                 SelectionMode="Single"
+                 Grid.Row="3"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="11"
+                 HorizontalContentAlignment="Stretch"
+                ItemsSource="{Binding Path=ResizeItems}" 
+                BorderThickness="0"
+                 IsEnabled="False"
+                 Opacity="0">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Редактирование"
+                          Name="EditGraphicsRusMi"
+                          Click="EditGraphicsMi_Click"/>
+                    <MenuItem Header="Удаление"
+                          Name="DeleteGraphicsRusMi"
+                          Click="DeleteGraphicsMi_Click"/>
+                    <MenuItem Header="Обновить страницу"
+                          Name="UpdateGraphicsRusMi"
+                          Click="UpdateGraphicsMi_Click"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Column="1"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="5"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="2"
+                                    Grid.ColumnSpan="3"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillFon}"/>
+
+                        <StackPanel Grid.Column="6"
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillFon}"/>
+
+                        <TextBlock x:Name="FirstNameStaffTb"
+                            Grid.Column="1"
+            TextWrapping="WrapWithOverflow"
+            Text="Название мероприятия:"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="1"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Место проведения:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="2"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Дата проведения:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+Text="Время начало проведения:"
+                          Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                      TextWrapping="WrapWithOverflow"
+                      TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+                                   Grid.Row="1"
+             Text="Цель проведения:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+                                   Grid.Row="2"
+             Text="Назначено на директора:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+
+                        <Image Source="{Binding PhotoEvents}"
+                               Width="200" Grid.RowSpan="3"
+                               Margin="10"
+                               Stretch="Uniform"/>
+                        <TextBlock Grid.Column="3"
+                                   Text="{Binding NameEvents}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="1"
+                                   Text="{Binding PlaceEvents}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="2"
+                                   Text="{Binding DateEvents, StringFormat={}{0:yyyy.MM.dd}}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+           Text="{Binding TimeEvents, StringFormat={}{0:hh':'mm}}"
+           Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+           TextAlignment="Left"
+           TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+                                   Grid.Row="1"
+                                    Text="{Binding TargetEvents}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+                                   Grid.Row="2"
+                                   Text="{Binding Staff.FullName}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+
+                        <Image Source="{Binding Staff.PhotoStaff}"
+                               Grid.Column="9"
+                               Width="200" Grid.RowSpan="3"
+                               Margin="10"
+                               Stretch="Uniform"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox x:Name="GraphicsListEngB"
+                 SelectionMode="Single"
+                 Grid.Row="3"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="11"
+                 HorizontalContentAlignment="Stretch"
+                ItemsSource="{Binding Path=ResizeItems}" 
+                BorderThickness="0"
+                 IsEnabled="False"
+                 Opacity="0">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Editing"
+                          Name="EditGraphicsEngMi"
+                          Click="EditGraphicsMi_Click"/>
+                    <MenuItem Header="Removal"
+                          Name="DeleteGraphicsEngMi"
+                          Click="DeleteGraphicsMi_Click"/>
+                    <MenuItem Header="Refresh the page"
+                          Name="UpdateGraphicsEngMi"
+                          Click="UpdateGraphicsMi_Click"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Column="1"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="5"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="2"
+                                    Grid.ColumnSpan="3"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillFon}"/>
+
+                        <StackPanel Grid.Column="6"
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillFon}"/>
+
+                        <TextBlock x:Name="FirstNameStaffTb"
+                            Grid.Column="1"
+            TextWrapping="WrapWithOverflow"
+            Text="Name event:"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="1"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Place event:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="2"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Date event:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+Text="Start time event:"
+                          Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                      TextWrapping="WrapWithOverflow"
+                      TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+                                   Grid.Row="1"
+             Text="Target event:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+                                   Grid.Row="2"
+             Text="Assigned to Director:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+
+                        <Image Source="{Binding PhotoEvents}"
+                               Width="200" Grid.RowSpan="3"
+                               Margin="10"
+                               Stretch="Uniform"/>
+                        <TextBlock Grid.Column="3"
+                                   Text="{Binding NameEvents}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="1"
+                                   Text="{Binding PlaceEvents}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="2"
+                                   Text="{Binding DateEvents, StringFormat={}{0:yyyy.MM.dd}}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+           Text="{Binding TimeEvents, StringFormat={}{0:hh':'mm}}"
+           Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+           TextAlignment="Left"
+           TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+                                   Grid.Row="1"
+                                    Text="{Binding TargetEvents}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+                                   Grid.Row="2"
+                                   Text="{Binding Staff.FullName}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+
+                        <Image Source="{Binding Staff.PhotoStaff}"
+                               Grid.Column="9"
+                               Width="200" Grid.RowSpan="3"
+                               Margin="10"
+                               Stretch="Uniform"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
 </Page>

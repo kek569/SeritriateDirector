@@ -77,7 +77,7 @@ Grid.Column="6"
                         Binding="{Binding NumberPassport}"
                         Width="*"/>
                 <DataGridTextColumn Header="День рождения"
-                        Binding="{Binding DateOfBirthStaff}"
+                        Binding="{Binding DateOfBirthStaff, StringFormat={}{0:yyyy.MM.dd}}"
                         Width="*"/>
                 <DataGridTextColumn Header="Адрес"
                         Binding="{Binding AdressStaff}"
@@ -111,7 +111,7 @@ Grid.Column="6"
                 Binding="{Binding FullName}"
                 Width="*"/>
                 <DataGridTextColumn Header="Gender"
-                Binding="{Binding Gender.GenderStaff}"
+                Binding="{Binding Gender.NameGender}"
                 Width="*"/>
                 <DataGridTextColumn Header="Series passport"
                 Binding="{Binding SeriesPassport}"
@@ -120,7 +120,7 @@ Grid.Column="6"
                 Binding="{Binding NumberPassport}"
                 Width="*"/>
                 <DataGridTextColumn Header="Birthday"
-                Binding="{Binding DateOfBirthStaff}"
+                Binding="{Binding DateOfBirthStaff, StringFormat={}{0:yyyy.MM.dd}}"
                 Width="*"/>
                 <DataGridTextColumn Header="Address"
                 Binding="{Binding AdressStaff}"
