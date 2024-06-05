@@ -805,9 +805,17 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
             else if (e.Key == Key.Back && NumberPhoneStaffTb.Text.Length != 18)
             {
                 e.Handled = true;
-                if (NumberPhoneStaffTb.SelectionStart == 21)
+                if (NumberPhoneStaffTb.SelectionStart == 9)
                 {
-
+                    NumberPhoneStaffTb.SelectionStart = 7;
+                }
+                else if (NumberPhoneStaffTb.SelectionStart == 13)
+                {
+                    NumberPhoneStaffTb.SelectionStart = 12;
+                }
+                else if (NumberPhoneStaffTb.SelectionStart == 16)
+                {
+                    NumberPhoneStaffTb.SelectionStart = 15;
                 }
                 int a = NumberPhoneStaffTb.SelectionStart;
                 NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Remove(a - 1, 1);
@@ -815,7 +823,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 NumberPhoneStaffTb.Text = NumberPhoneStaffTb.Text.Insert(a - 1, new string(' ', 1));
                 /*MBClass.InfoMB(NumberPhoneStaffTb.Text.Length.ToString() + 
                     "\n|" + NumberPhoneStaffTb.Text + "|", "");*/
-
+                
                 Rem = 1;
                 Return();
             }
