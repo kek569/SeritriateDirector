@@ -57,7 +57,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
             }
             else if (globalSettingLanguage == "en")
             {
-                Title = "List charts";
+                Title = "List graphics";
                 SearchLb.Content = "Search";
                 AddTb.Text = " Add";
                 ExportTb.Text = " Export";
@@ -122,7 +122,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddGraphicsPage());
         }
 
         private void ExportBtn_Click(object sender, RoutedEventArgs e)

@@ -57,7 +57,7 @@ namespace SeritriateDirector.WindowFolder.AdminWindowFolder
                 ListStaffBtn.Content = "List staff";
                 ListOfLettersBtn.Content = "List letters";
                 ListOfOrdersBtn.Content = "List orders";
-                ListOfChartsBtn.Content = "List charts";
+                ListOfChartsBtn.Content = "List graphics";
                 BugsTb.Text = "  Bugs";
                 ThemeTb.Text = "  Theme";
                 BackTb.Text = "  Back";
@@ -203,9 +203,18 @@ namespace SeritriateDirector.WindowFolder.AdminWindowFolder
             else
             {
                 MainFrame.Navigate(new ListGraphicsPage());
-                ListOfLettersBtn.IsChecked = false;
-                ListOfOrdersBtn.IsChecked = false;
-                ListStaffBtn.IsChecked = false;
+
+                if (check == ".AddGraphicsPage" ||
+                        check == "EditGraphicsPage")
+                {
+                    ListOfChartsBtn.IsChecked = true;
+                }
+                else
+                {
+                    ListOfLettersBtn.IsChecked = false;
+                    ListOfOrdersBtn.IsChecked = false;
+                    ListStaffBtn.IsChecked = false;
+                }
             }
         }
 

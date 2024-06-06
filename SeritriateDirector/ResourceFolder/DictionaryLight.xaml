@@ -664,6 +664,7 @@ Value="{StaticResource FillAccentuation}"/>
 
     <Style x:Key="TBlListBox" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource FillFont}"/>
+	<Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Background" 
 Value="{x:Null}"/>
     </Style>

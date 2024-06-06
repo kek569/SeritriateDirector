@@ -183,6 +183,9 @@
     <Compile Include="DataFolder\WhoAnswersToWhomOrders.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\AdminPageFolder\AddGraphicsPage.xaml.cs">
+      <DependentUpon>AddGraphicsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\AdminPageFolder\AddStaffPage.xaml.cs">
       <DependentUpon>AddStaffPage.xaml</DependentUpon>
     </Compile>
@@ -280,6 +283,10 @@
     <Resource Include="ResourceFolder\ImageFolder\Russia.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="PageFolder\AdminPageFolder\AddGraphicsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\AdminPageFolder\AddStaffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
