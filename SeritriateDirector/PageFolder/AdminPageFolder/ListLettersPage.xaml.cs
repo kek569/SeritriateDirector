@@ -1,4 +1,5 @@
 ﻿using SeritriateDirector.ClassFolder;
+using SeritriateDirector.DataFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,12 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
     {
         public ListLettersPage()
         {
+            string pathDictionary = (App.Current as App).PathDictionary;
+
+            if (pathDictionary != null && pathDictionary != "")
+            {
+                this.Resources = new ResourceDictionary() { Source = new Uri(pathDictionary) };
+            }
             InitializeComponent();
 
             string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
@@ -30,10 +37,18 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
             if (globalSettingLanguage == "ru")
             {
                 Title = "Список писем";
+                SearchLb.Content = "Поиск";
+                TypeLeettersLb.Content = "Тип письма";
+                AddTb.Text = " Добавить";
+                ExportTb.Text = " Экспорт";
             }
             else if (globalSettingLanguage == "en")
             {
                 Title = "List letters";
+                SearchLb.Content = "Search";
+                TypeLeettersLb.Content = "Type letter";
+                AddTb.Text = " Add";
+                ExportTb.Text = " Export";
             }
             else
             {
@@ -42,6 +57,28 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 MBClass.ErrorMB("Языковая настройка слетела! Язык по умолчанию русский!\n\n" +
                     "The language setting is gone! The default language is Russian!", "");
             }
+
+            TypeLettersCb.ItemsSource = DBEntities.GetContext().TypeLetters.ToList();
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExportBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TypeLettersCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

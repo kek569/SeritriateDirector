@@ -5,9 +5,71 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SeritriateDirector.PageFolder.AdminPageFolder"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800">
-
+      d:DesignHeight="720" d:DesignWidth="1200">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="175"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="0"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="SearchLb"
+               Content="Поиск"
+               Style="{StaticResource LabelNormal}"
+               Grid.Column="1"/>
+        <TextBox x:Name="SearchTb"
+                 Grid.Column="2"
+                 TextChanged="SearchTb_TextChanged"/>
+
+        <Label x:Name="TypeLeettersLb"
+               Content="Тип письма"
+               Style="{StaticResource LabelNormal}"
+               Grid.Column="4"/>
+        <ComboBox x:Name="TypeLettersCb"
+                    Grid.Column="6"
+                    SelectionChanged="TypeLettersCb_SelectionChanged"
+                    SelectedItem="{Binding TypeLetters}"
+                  SelectedValuePath="IdTypeLetters"
+                    DisplayMemberPath="NameTypeLetters"/>
+
+        <Button x:Name="AddBtn"
+Grid.Column="8"
+       Click="AddBtn_Click">
+            <StackPanel Orientation="Horizontal"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center">
+                <Image Style="{StaticResource AddIm}" 
+           Margin="7"/>
+                <TextBlock x:Name="AddTb" Text=" Добавить" VerticalAlignment="Center" 
+        Style="{StaticResource TextBlockInBtn}"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="ExportBtn"
+Grid.Column="10"
+       Click="ExportBtn_Click">
+            <StackPanel Orientation="Horizontal"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+                <Image Style="{StaticResource ExportIm}" 
+                       Margin="7"/>
+                <TextBlock x:Name="ExportTb" Text=" Экспорт" VerticalAlignment="Center" 
+                    Style="{StaticResource TextBlockInBtn}"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Page>
