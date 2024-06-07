@@ -194,8 +194,8 @@ Grid.Column="2"
           DisplayMemberPath="FullName"/>
 
         <Image x:Name="PhotoIM"
-       Grid.Row="11"
-               Grid.RowSpan="5"
+       Grid.Row="9"
+               Grid.RowSpan="7"
        Grid.Column="4"
        Grid.ColumnSpan="2"/>
 

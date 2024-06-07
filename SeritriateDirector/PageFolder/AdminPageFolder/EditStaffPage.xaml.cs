@@ -483,7 +483,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                                     LastNameStaffTb.Text + " "
                                     + MiddleNameFull);
                     staff.NumberPhoneStaff = NumberPhoneStaffTb.Text.Remove(NumberPhoneStaffTb.Text.Length - 10, 10);
-                    staff.DateOfBirthStaff = System.DateTime.Parse(DateOfBirthStaffDp.Text);
+                    staff.DateOfBirthStaff = DateTime.Parse(DateOfBirthStaffDp.Text);
                     staff.SeriesPassport = Int32.Parse(NumberPassportTb.Text);
                     staff.NumberPassport = Int32.Parse(SeriesPassportTb.Text);
                     staff.IdGender = Int32.Parse(GenderCb.SelectedValue.ToString());

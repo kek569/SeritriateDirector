@@ -127,8 +127,6 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
             }
             else
             {
-
-                Staff staff = selectedList.SelectedItem as Staff;
                 NavigationService.Navigate
                     (new EditStaffPage(selectedList.SelectedItem as Staff));
             }

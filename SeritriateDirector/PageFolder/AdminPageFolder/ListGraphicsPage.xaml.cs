@@ -101,7 +101,30 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
 
         private void EditGraphicsMi_Click(object sender, RoutedEventArgs e)
         {
+            if (selectedList.SelectedItem == null)
+            {
+                string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
+                if (globalSettingLanguage == "ru")
+                {
+                    leng = "Выберите строку для редактирование";
+                }
+                else if (globalSettingLanguage == "en")
+                {
+                    leng = "Select line to edit";
+                }
+                else
+                {
+                    leng = "Выберите строку для редактирование";
+                }
+
+                MBClass.ErrorMB(leng, "");
+            }
+            else
+            {
+                NavigationService.Navigate
+                    (new EditGraphicsPage(selectedList.SelectedItem as Graphics));
+            }
         }
 
         private void DeleteGraphicsMi_Click(object sender, RoutedEventArgs e)

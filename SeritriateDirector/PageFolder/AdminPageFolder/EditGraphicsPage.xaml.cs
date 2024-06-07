@@ -3,9 +3,9 @@ using SeritriateDirector.DataFolder;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,17 +17,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity.Validation;
+using System.Text.RegularExpressions;
+using System.Windows.Threading;
 
 namespace SeritriateDirector.PageFolder.AdminPageFolder
 {
     /// <summary>
-    /// Логика взаимодействия для AddGraphicsPage.xaml
+    /// Логика взаимодействия для EditGraphicsPage.xaml
     /// </summary>
-    public partial class AddGraphicsPage : Page
+    public partial class EditGraphicsPage : Page
     {
-        Graphics graphics = new Graphics(); 
+        DataFolder.Graphics graphics = new DataFolder.Graphics();
 
-        public AddGraphicsPage()
+        public EditGraphicsPage(DataFolder.Graphics graphics)
         {
             string pathDictionary = (App.Current as App).PathDictionary;
 
@@ -47,7 +49,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 TargetEventsLb.Content = "Цель";
                 DirectorTbl.Text = "Назначено на директора";
                 LoadPhotoTb.Text = " Загрузить фото";
-                AddGraphicsTb.Text = " Добавить график";
+                SaveTb.Text = " Сохранить изменения";
                 Title = "добавление графика";
             }
             else if (globalSettingLanguage == "en")
@@ -58,7 +60,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 TargetEventsLb.Content = "Target";
                 DirectorTbl.Text = "Assigned to Director";
                 LoadPhotoTb.Text = " Load photo";
-                AddGraphicsTb.Text = " Add graphic";
+                SaveTb.Text = " Save changes";
                 Title = "Add graphic";
             }
             else
@@ -69,19 +71,31 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                     "The language setting is gone! The default language is Russian!", "");
             }
 
+            DataContext = graphics;
+            this.graphics.IdGraphics = graphics.IdGraphics;
+
             DirectorCb.ItemsSource = DBEntities.GetContext().Staff.ToList();
             DirectorCb.ItemsSource = DataFolder.DBEntities.GetContext().Staff.
                         Where(s => s.User.Role.NameRole.StartsWith("Директор")).ToList();
             TimeEventsTb.MaxLength = 5;
 
-            Graphics graphics = new Graphics();
-            DataContext = graphics;
+            var timer = new DispatcherTimer
+            { Interval = TimeSpan.FromSeconds(0.01) };
+            timer.Start();
+            timer.Tick += (senders, args) =>
+            {
+                timer.Stop();
+                graphics = DBEntities.GetContext().Graphics
+                                .FirstOrDefault(g => g.IdGraphics == graphics.IdGraphics);
+                DateEventsDp.Text = graphics.DateEvents.ToString();
+            };
         }
 
         private void LoadPhotoBtn_Click(object sender, RoutedEventArgs e)
         {
             AddPhoto();
         }
+
         string selectedFileName = "";
         private string leng;
         private string TimeSearch = "";
@@ -115,7 +129,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
             }
         }
 
-        private void AddGraphicsBtn_Click(object sender, RoutedEventArgs e)
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -263,71 +277,37 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 }
                 else
                 {
-                    if (selectedFileName == "")
+                    graphics = DBEntities.GetContext().Graphics
+                            .FirstOrDefault(g => g.IdGraphics == graphics.IdGraphics);
+                    graphics.NameEvents = NameEventsTb.Text;
+                    graphics.PlaceEvents = PlaceEventsTb.Text;
+                    graphics.DateEvents = DateTime.Parse(DateEventsDp.Text);
+                    graphics.TimeEvents = TimeSpan.Parse(TimeEventsTb.Text);
+                    graphics.TargetEvents = TargetEventsTb.Text;
+                    graphics.IdStaff = Int32.Parse(DirectorCb.SelectedValue.ToString());
+                    if (selectedFileName != "")
                     {
-                        var graphicsAdd = new Graphics()
-                        {
-                            NameEvents = NameEventsTb.Text,
-                            PlaceEvents = PlaceEventsTb.Text,
-                            DateEvents = DateTime.Parse(DateEventsDp.Text),
-                            TimeEvents = TimeSpan.Parse(TimeEventsTb.Text),
-                            TargetEvents = TargetEventsTb.Text,
-                            IdStaff = Int32.Parse(DirectorCb.SelectedValue.ToString())
-                        };
-                        DBEntities.GetContext().Graphics.Add(graphicsAdd);
-                        DBEntities.GetContext().SaveChanges();
+                        graphics.PhotoEvents = ClassImage.ConvertImageToArray(selectedFileName);
+                    }
+                    DBEntities.GetContext().SaveChanges();
 
-                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
+                    string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
 
-                        if (globalSettingLanguage == "ru")
-                        {
-                            leng = "Данные о графике успешно добавлены";
-                        }
-                        else if (globalSettingLanguage == "en")
-                        {
-                            leng = "Graphic data added successfully";
-                        }
-                        else
-                        {
-                            leng = "Данные о графике успешно добавлены";
-                        }
-
-                        MBClass.InfoMB(leng, "");
-                        NavigationService.Navigate(new ListGraphicsPage());
+                    if (globalSettingLanguage == "ru")
+                    {
+                        leng = "Данные о графике успешно отредактированы";
+                    }
+                    else if (globalSettingLanguage == "en")
+                    {
+                        leng = "Graphic data successfully edited";
                     }
                     else
                     {
-                        var graphicsAdd = new Graphics()
-                        {
-                            NameEvents = NameEventsTb.Text,
-                            PlaceEvents = PlaceEventsTb.Text,
-                            DateEvents = DateTime.Parse(DateEventsDp.Text),
-                            TimeEvents = TimeSpan.Parse(TimeEventsTb.Text),
-                            TargetEvents = TargetEventsTb.Text,
-                            IdStaff = Int32.Parse(DirectorCb.SelectedValue.ToString()),
-                            PhotoEvents = ClassImage.ConvertImageToArray(selectedFileName)
-                        };
-                        DBEntities.GetContext().Graphics.Add(graphicsAdd);
-                        DBEntities.GetContext().SaveChanges();
-
-                        string globalSettingLanguage = (App.Current as App).GlobalSettingLanguage;
-
-                        if (globalSettingLanguage == "ru")
-                        {
-                            leng = "Данные о графике успешно добавлены";
-                        }
-                        else if (globalSettingLanguage == "en")
-                        {
-                            leng = "Graphic data added successfully";
-                        }
-                        else
-                        {
-                            leng = "Данные о графике успешно добавлены";
-                        }
-
-                        MBClass.InfoMB(leng, "");
-                        NavigationService.Navigate(new ListGraphicsPage());
+                        leng = "Данные о графике успешно отредактированы";
                     }
+
+                    MBClass.InfoMB(leng, "");
+                    NavigationService.Navigate(new ListGraphicsPage());
                 }
             }
             catch (DbEntityValidationException ex)
@@ -341,6 +321,10 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
             if (TimeEventsTb.Text.Length == 3)
             {
                 TimeEventsTb.SelectionStart = 3;
+            }
+            else if (TimeEventsTb.Text.Length > 5)
+            {
+                TimeEventsTb.Text = TimeEventsTb.Text.Remove(5, 3);
             }
         }
 
