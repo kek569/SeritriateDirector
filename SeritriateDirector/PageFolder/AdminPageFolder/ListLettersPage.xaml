@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SeritriateDirector.PageFolder.AdminPageFolder"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="1200">
+      d:DesignHeight="720" d:DesignWidth="1200"
+      Loaded="Page_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -71,5 +72,60 @@ Grid.Column="10"
                     Style="{StaticResource TextBlockInBtn}"/>
             </StackPanel>
         </Button>
+
+        <DataGrid x:Name="ListLettersIncomingRusDg"
+Grid.Column="14"
+AutoGenerateColumns="False"
+IsReadOnly="True"
+      IsEnabled="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="От кого"
+            Binding="{Binding WhereLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="Тип письма"
+            Binding="{Binding TypeLetters.NameTypeLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="Тема письма"
+            Binding="{Binding SubjectLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="Дата получения"
+            Binding="{Binding DateReceivingOrDeparturesLetters, StringFormat={}{0:yyyy.MM.dd}}"
+            Width="*"/>
+                <DataGridTextColumn Header="Кому"
+            Binding="{Binding Staff.FullName}"
+            Width="*"/>
+                <DataGridTextColumn Header="Текст"
+            Binding="{Binding TextLetters}"
+            Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="ListLettersOutgoingRusDg"
+Grid.Column="14"
+AutoGenerateColumns="False"
+IsReadOnly="True"
+      IsEnabled="False"
+      Opacity="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ответ на письмо"
+            Binding="{Binding WhoAnswersToWhomLetters.ResponseToTheLetters.Letters.SubjectLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="Тип письма"
+            Binding="{Binding TypeLetters.NameTypeLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="Тема письма"
+            Binding="{Binding SubjectLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="От кого"
+            Binding="{Binding Staff.FullName}"
+            Width="*"/>
+                <DataGridTextColumn Header="Кому"
+            Binding="{Binding FromWhomLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="Текст"
+            Binding="{Binding TextLetters}"
+            Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>
