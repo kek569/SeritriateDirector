@@ -281,10 +281,11 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
 
                     selectedListIncoming.IsEnabled = true;
                     selectedListIncoming.Opacity = 1;
-                    selectedListIncoming.Margin = new Thickness(10);
+                    selectedListIncoming.Margin = new Thickness(0);
                     selectedListOutgoing.IsEnabled = false;
                     selectedListOutgoing.Opacity = 0;
                     selectedListOutgoing.Margin = new Thickness(1000);
+                    selectedListOutgoing.SelectedIndex = -1;
                     selectedGridIncoming.IsEnabled = true;
                     selectedGridOutgoing.IsEnabled = false;
                 }
@@ -295,10 +296,11 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
 
                     selectedListOutgoing.IsEnabled = true;
                     selectedListOutgoing.Opacity = 1;
-                    selectedListOutgoing.Margin = new Thickness(10);
+                    selectedListOutgoing.Margin = new Thickness(0);
                     selectedListIncoming.IsEnabled = false;
                     selectedListIncoming.Opacity = 0;
                     selectedListIncoming.Margin = new Thickness(1000);
+                    selectedListIncoming.SelectedIndex = -1;
                     selectedGridOutgoing.IsEnabled = true;
                     selectedGridIncoming.IsEnabled = false;
                 }
@@ -327,7 +329,7 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
 
         private void UpdateLettersMi_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new ListLettersPage());
         }
     }
 }
