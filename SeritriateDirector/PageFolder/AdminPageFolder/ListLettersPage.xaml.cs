@@ -42,12 +42,22 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 TypeLeettersLb.Content = "Тип письма";
                 AddTb.Text = " Добавить";
                 ExportTb.Text = " Экспорт";
+                LettersIncomingListRusB.IsEnabled = true;
+                LettersOutgoingListRusB.IsEnabled = true;
+                LettersIncomingListRusB.Margin = new Thickness(1000);
+                LettersOutgoingListRusB.Margin = new Thickness(1000);
                 ListLettersIncomingRusDg.IsEnabled = true;
                 ListLettersOutgoingRusDg.IsEnabled = true;
+                LettersIncomingListRusB.ItemsSource = DBEntities.GetContext()
+                                .Letters.ToList().OrderBy(l => l.IdLetters);
+                LettersOutgoingListRusB.ItemsSource = DBEntities.GetContext()
+                                .Letters.ToList().OrderBy(l => l.IdLetters);
                 ListLettersIncomingRusDg.ItemsSource = DBEntities.GetContext()
                                 .Letters.ToList().OrderBy(l => l.IdLetters);
                 ListLettersOutgoingRusDg.ItemsSource = DBEntities.GetContext()
-                       .Letters.ToList().OrderBy(l => l.IdLetters);
+                                .Letters.ToList().OrderBy(l => l.IdLetters);
+                selectedListIncoming = LettersIncomingListRusB;
+                selectedListOutgoing = LettersOutgoingListRusB;
                 selectedGridIncoming = ListLettersIncomingRusDg;
                 selectedGridOutgoing = ListLettersOutgoingRusDg;
 
@@ -59,11 +69,17 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                     timer.Stop();
                     try
                     {
+                        LettersIncomingListRusB.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
+                            Where(l => l.TypeLetters.NameTypeLetters.StartsWith("Входящий")).ToList();
+                        LettersOutgoingListRusB.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
+                            Where(l => l.TypeLetters.NameTypeLetters.StartsWith("Исходящий")).ToList();
                         ListLettersIncomingRusDg.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
                             Where(l => l.TypeLetters.NameTypeLetters.StartsWith("Входящий")).ToList();
                         ListLettersOutgoingRusDg.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
                             Where(l => l.TypeLetters.NameTypeLetters.StartsWith("Исходящий")).ToList();
 
+                        LettersIncomingListRusB.IsEnabled = false;
+                        LettersOutgoingListRusB.IsEnabled = false;
                         ListLettersIncomingRusDg.IsEnabled = false;
                         ListLettersOutgoingRusDg.IsEnabled = false;
                     }
@@ -80,14 +96,24 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 TypeLeettersLb.Content = "Type letter";
                 AddTb.Text = " Add";
                 ExportTb.Text = " Export";
-                ListLettersIncomingRusDg.IsEnabled = true;
-                ListLettersOutgoingRusDg.IsEnabled = true;
-                ListLettersIncomingRusDg.ItemsSource = DBEntities.GetContext()
+                LettersIncomingListEngB.IsEnabled = true;
+                LettersOutgoingListEngB.IsEnabled = true;
+                LettersIncomingListEngB.Margin = new Thickness(1000);
+                LettersOutgoingListEngB.Margin = new Thickness(1000);
+                ListLettersIncomingEngDg.IsEnabled = true;
+                ListLettersOutgoingEngDg.IsEnabled = true;
+                LettersIncomingListEngB.ItemsSource = DBEntities.GetContext()
                                 .Letters.ToList().OrderBy(l => l.IdLetters);
-                ListLettersOutgoingRusDg.ItemsSource = DBEntities.GetContext()
-                       .Letters.ToList().OrderBy(l => l.IdLetters);
-                selectedGridIncoming = ListLettersIncomingRusDg;
-                selectedGridOutgoing = ListLettersOutgoingRusDg;
+                LettersOutgoingListEngB.ItemsSource = DBEntities.GetContext()
+                                .Letters.ToList().OrderBy(l => l.IdLetters);
+                ListLettersIncomingEngDg.ItemsSource = DBEntities.GetContext()
+                                .Letters.ToList().OrderBy(l => l.IdLetters);
+                ListLettersOutgoingEngDg.ItemsSource = DBEntities.GetContext()
+                                .Letters.ToList().OrderBy(l => l.IdLetters);
+                selectedListIncoming = LettersIncomingListEngB;
+                selectedListOutgoing = LettersOutgoingListEngB;
+                selectedGridIncoming = ListLettersIncomingEngDg;
+                selectedGridOutgoing = ListLettersOutgoingEngDg;
 
                 var timer = new DispatcherTimer
                 { Interval = TimeSpan.FromSeconds(0.01) };
@@ -97,13 +123,19 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                     timer.Stop();
                     try
                     {
-                        ListLettersIncomingRusDg.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
+                        LettersIncomingListEngB.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
                             Where(l => l.TypeLetters.NameTypeLetters.StartsWith("Входящий")).ToList();
-                        ListLettersOutgoingRusDg.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
+                        LettersOutgoingListEngB.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
+                            Where(l => l.TypeLetters.NameTypeLetters.StartsWith("Исходящий")).ToList();
+                        ListLettersIncomingEngDg.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
+                            Where(l => l.TypeLetters.NameTypeLetters.StartsWith("Входящий")).ToList();
+                        ListLettersOutgoingEngDg.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
                             Where(l => l.TypeLetters.NameTypeLetters.StartsWith("Исходящий")).ToList();
 
-                        ListLettersIncomingRusDg.IsEnabled = false;
-                        ListLettersOutgoingRusDg.IsEnabled = false;
+                        LettersIncomingListEngB.IsEnabled = false;
+                        LettersOutgoingListEngB.IsEnabled = false;
+                        ListLettersIncomingEngDg.IsEnabled = false;
+                        ListLettersOutgoingEngDg.IsEnabled = false;
                     }
                     catch (Exception ex)
                     {
@@ -114,12 +146,22 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
             else
             {
                 Title = "Список писем";
+                LettersIncomingListRusB.IsEnabled = true;
+                LettersOutgoingListRusB.IsEnabled = true;
+                LettersIncomingListRusB.Margin = new Thickness(1000);
+                LettersOutgoingListRusB.Margin = new Thickness(1000);
                 ListLettersIncomingRusDg.IsEnabled = true;
                 ListLettersOutgoingRusDg.IsEnabled = true;
+                LettersIncomingListRusB.ItemsSource = DBEntities.GetContext()
+                                .Letters.ToList().OrderBy(l => l.IdLetters);
+                LettersOutgoingListRusB.ItemsSource = DBEntities.GetContext()
+                                .Letters.ToList().OrderBy(l => l.IdLetters);
                 ListLettersIncomingRusDg.ItemsSource = DBEntities.GetContext()
                                 .Letters.ToList().OrderBy(l => l.IdLetters);
                 ListLettersOutgoingRusDg.ItemsSource = DBEntities.GetContext()
-                       .Letters.ToList().OrderBy(l => l.IdLetters);
+                                .Letters.ToList().OrderBy(l => l.IdLetters);
+                selectedListIncoming = LettersIncomingListRusB;
+                selectedListOutgoing = LettersOutgoingListRusB;
                 selectedGridIncoming = ListLettersIncomingRusDg;
                 selectedGridOutgoing = ListLettersOutgoingRusDg;
 
@@ -131,11 +173,17 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                     timer.Stop();
                     try
                     {
+                        LettersIncomingListRusB.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
+                            Where(l => l.TypeLetters.NameTypeLetters.StartsWith("Входящий")).ToList();
+                        LettersOutgoingListRusB.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
+                            Where(l => l.TypeLetters.NameTypeLetters.StartsWith("Исходящий")).ToList();
                         ListLettersIncomingRusDg.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
                             Where(l => l.TypeLetters.NameTypeLetters.StartsWith("Входящий")).ToList();
                         ListLettersOutgoingRusDg.ItemsSource = DataFolder.DBEntities.GetContext().Letters.
                             Where(l => l.TypeLetters.NameTypeLetters.StartsWith("Исходящий")).ToList();
 
+                        LettersIncomingListRusB.IsEnabled = false;
+                        LettersOutgoingListRusB.IsEnabled = false;
                         ListLettersIncomingRusDg.IsEnabled = false;
                         ListLettersOutgoingRusDg.IsEnabled = false;
                     }
@@ -230,15 +278,29 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
                 {
                     IncomingEnable = true;
                     OutgoingEnable = false;
-                    ListLettersIncomingRusDg.IsEnabled = true;
-                    ListLettersOutgoingRusDg.IsEnabled = false;
+
+                    selectedListIncoming.IsEnabled = true;
+                    selectedListIncoming.Opacity = 1;
+                    selectedListIncoming.Margin = new Thickness(10);
+                    selectedListOutgoing.IsEnabled = false;
+                    selectedListOutgoing.Opacity = 0;
+                    selectedListOutgoing.Margin = new Thickness(1000);
+                    selectedGridIncoming.IsEnabled = true;
+                    selectedGridOutgoing.IsEnabled = false;
                 }
                 else if (TypeLettersCb.Text == "Исходящий")
                 {
                     OutgoingEnable = true;
                     IncomingEnable = false;
-                    ListLettersOutgoingRusDg.IsEnabled = true;
-                    ListLettersIncomingRusDg.IsEnabled = false;
+
+                    selectedListOutgoing.IsEnabled = true;
+                    selectedListOutgoing.Opacity = 1;
+                    selectedListOutgoing.Margin = new Thickness(10);
+                    selectedListIncoming.IsEnabled = false;
+                    selectedListIncoming.Opacity = 0;
+                    selectedListIncoming.Margin = new Thickness(1000);
+                    selectedGridOutgoing.IsEnabled = true;
+                    selectedGridIncoming.IsEnabled = false;
                 }
             };
         }
@@ -249,6 +311,21 @@ namespace SeritriateDirector.PageFolder.AdminPageFolder
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditLettersMi_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteLettersMi_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UpdateLettersMi_Click(object sender, RoutedEventArgs e)
         {
 
         }

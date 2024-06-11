@@ -127,5 +127,630 @@ IsReadOnly="True"
             Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <ListBox x:Name="LettersIncomingListRusB"
+                 SelectionMode="Single"
+                 Grid.Row="3"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="11"
+                 HorizontalContentAlignment="Stretch"
+                ItemsSource="{Binding Path=ResizeItems}" 
+                BorderThickness="0"
+                 IsEnabled="False"
+                 Opacity="0">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Редактирование"
+                          Name="EditLettersIncomingRusMi"
+                          Click="EditLettersMi_Click"/>
+                    <MenuItem Header="Удаление"
+                          Name="DeleteLettersIncomingRusMi"
+                          Click="DeleteLettersMi_Click"/>
+                    <MenuItem Header="Обновить страницу"
+                          Name="UpdateLettersIncomingRusMi"
+                          Click="UpdateLettersMi_Click"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Column="1"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="5"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="2"
+                                    Grid.ColumnSpan="3"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillFon}"/>
+
+                        <StackPanel Grid.Column="6"
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillFon}"/>
+
+                        <TextBlock x:Name="FirstNameStaffTb"
+                            Grid.Column="1"
+            TextWrapping="WrapWithOverflow"
+            Text="От кого:"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="1"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Тип письма:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="2"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Тема письма:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+Text="Дата получения:"
+                          Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                      TextWrapping="WrapWithOverflow"
+                      TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+                                   Grid.Row="1"
+             Text="Кому:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+
+                        <TextBlock Grid.RowSpan="3"
+                                Text="{Binding TextLetters}"
+                                Style="{DynamicResource TBlListBox}"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left"
+                                TextWrapping="WrapWithOverflow"/>
+
+                        <TextBlock Grid.Column="3"
+                                   Text="{Binding WhereLetters}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="1"
+                                   Text="{Binding TypeLetters.NameTypeLetters}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="2"
+                                   Text="{Binding SubjectLetters}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+           Text="{Binding DateReceivingOrDeparturesLetters, StringFormat={}{0:yyyy.MM.dd}}"
+           Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+           TextAlignment="Left"
+           TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+                                   Grid.Row="1"
+                                    Text="{Binding Staff.FullName}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox x:Name="LettersOutgoingListRusB"
+                 SelectionMode="Single"
+                 Grid.Row="3"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="11"
+                 HorizontalContentAlignment="Stretch"
+                ItemsSource="{Binding Path=ResizeItems}" 
+                BorderThickness="0"
+                 IsEnabled="False"
+                 Opacity="0">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Редактирование"
+                          Name="EditLettersOutgoingRusMi"
+                          Click="EditLettersMi_Click"/>
+                    <MenuItem Header="Удаление"
+                          Name="DeleteLettersOutgoingRusMi"
+                          Click="DeleteLettersMi_Click"/>
+                    <MenuItem Header="Обновить страницу"
+                          Name="UpdateLettersOutgoingRusMi"
+                          Click="UpdateLettersMi_Click"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Column="1"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="5"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="2"
+                                    Grid.ColumnSpan="3"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillFon}"/>
+
+                        <StackPanel Grid.Column="6"
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillFon}"/>
+
+                        <TextBlock x:Name="FirstNameStaffTb"
+                            Grid.Column="1"
+            TextWrapping="WrapWithOverflow"
+            Text="Ответ на письмо:"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="1"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Тип письма:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="2"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Тема письма:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+Text="От кого:"
+                          Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                      TextWrapping="WrapWithOverflow"
+                      TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+                                   Grid.Row="1"
+             Text="Кому:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+
+                        <TextBlock Grid.RowSpan="3"
+                                Text="{Binding TextLetters}"
+                                Style="{DynamicResource TBlListBox}"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left"
+                                TextWrapping="WrapWithOverflow"/>
+
+                        <TextBlock Grid.Column="3"
+                                   Text="{Binding WhoAnswersToWhomLetters.ResponseToTheLetters.Letters.SubjectLetters}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="1"
+                                   Text="{Binding TypeLetters.NameTypeLetters}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="2"
+                                   Text="{Binding SubjectLetters}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+           Text="{Binding Staff.FullName}"
+           Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+           TextAlignment="Left"
+           TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+                                   Grid.Row="1"
+        Text="{Binding FromWhomLetters}"
+        Style="{DynamicResource TBlListBox}"
+                        VerticalAlignment="Center"
+        TextAlignment="Left"
+        TextWrapping="WrapWithOverflow"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <!--Eng-->
+
+        <DataGrid x:Name="ListLettersIncomingEngDg"
+Grid.Column="14"
+AutoGenerateColumns="False"
+IsReadOnly="True"
+      IsEnabled="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="From whom"
+            Binding="{Binding WhereLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="Type letter"
+            Binding="{Binding TypeLetters.NameTypeLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="Subject letters"
+            Binding="{Binding SubjectLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="Date of receiving"
+            Binding="{Binding DateReceivingOrDeparturesLetters, StringFormat={}{0:yyyy.MM.dd}}"
+            Width="*"/>
+                <DataGridTextColumn Header="To whom"
+            Binding="{Binding Staff.FullName}"
+            Width="*"/>
+                <DataGridTextColumn Header="Text"
+            Binding="{Binding TextLetters}"
+            Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="ListLettersOutgoingEngDg"
+Grid.Column="14"
+AutoGenerateColumns="False"
+IsReadOnly="True"
+      IsEnabled="False"
+      Opacity="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Response to the letterо"
+            Binding="{Binding WhoAnswersToWhomLetters.ResponseToTheLetters.Letters.SubjectLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="Type letters"
+            Binding="{Binding TypeLetters.NameTypeLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="Subject letters"
+            Binding="{Binding SubjectLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="From whom"
+            Binding="{Binding Staff.FullName}"
+            Width="*"/>
+                <DataGridTextColumn Header="To whom"
+            Binding="{Binding FromWhomLetters}"
+            Width="*"/>
+                <DataGridTextColumn Header="Text"
+            Binding="{Binding TextLetters}"
+            Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <ListBox x:Name="LettersIncomingListEngB"
+                 SelectionMode="Single"
+                 Grid.Row="3"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="11"
+                 HorizontalContentAlignment="Stretch"
+                ItemsSource="{Binding Path=ResizeItems}" 
+                BorderThickness="0"
+                 IsEnabled="False"
+                 Opacity="0">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Editing"
+                          Name="EditLettersIncomingEngMi"
+                          Click="EditLettersMi_Click"/>
+                    <MenuItem Header="Removal"
+                          Name="DeleteLettersIncomingEngMi"
+                          Click="DeleteLettersMi_Click"/>
+                    <MenuItem Header="Refresh the page"
+                          Name="UpdateLettersIncomingEngMi"
+                          Click="UpdateLettersMi_Click"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Column="1"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="5"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="2"
+                                    Grid.ColumnSpan="3"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillFon}"/>
+
+                        <StackPanel Grid.Column="6"
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillFon}"/>
+
+                        <TextBlock x:Name="FirstNameStaffTb"
+                            Grid.Column="1"
+            TextWrapping="WrapWithOverflow"
+            Text="From whom:"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="1"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Type letter:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="2"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Subject letters:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+Text="Date of receiving:"
+                          Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                      TextWrapping="WrapWithOverflow"
+                      TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+                                   Grid.Row="1"
+             Text="To whom:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+
+                        <TextBlock Grid.RowSpan="3"
+                                Text="{Binding TextLetters}"
+                                Style="{DynamicResource TBlListBox}"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left"
+                                TextWrapping="WrapWithOverflow"/>
+
+                        <TextBlock Grid.Column="3"
+                                   Text="{Binding WhereLetters}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="1"
+                                   Text="{Binding TypeLetters.NameTypeLetters}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="2"
+                                   Text="{Binding SubjectLetters}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+           Text="{Binding DateReceivingOrDeparturesLetters, StringFormat={}{0:yyyy.MM.dd}}"
+           Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+           TextAlignment="Left"
+           TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+                                   Grid.Row="1"
+                                    Text="{Binding Staff.FullName}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox x:Name="LettersOutgoingListEngB"
+                 SelectionMode="Single"
+                 Grid.Row="3"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="11"
+                 HorizontalContentAlignment="Stretch"
+                ItemsSource="{Binding Path=ResizeItems}" 
+                BorderThickness="0"
+                 IsEnabled="False"
+                 Opacity="0">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Editing"
+                          Name="EditLettersOutgoingEngMi"
+                          Click="EditLettersMi_Click"/>
+                    <MenuItem Header="Removal"
+                          Name="DeleteLettersOutgoingEngMi"
+                          Click="DeleteLettersMi_Click"/>
+                    <MenuItem Header="Refresh the page"
+                          Name="UpdateLettersOutgoingEngMi"
+                          Click="UpdateLettersMi_Click"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Column="1"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="5"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillLb}"/>
+
+                        <StackPanel Grid.Column="2"
+                                    Grid.ColumnSpan="3"
+                                    Grid.RowSpan="3"
+                                    Background="{StaticResource FillFon}"/>
+
+                        <StackPanel Grid.Column="6"
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="3"
+            Background="{StaticResource FillFon}"/>
+
+                        <TextBlock x:Name="FirstNameStaffTb"
+                            Grid.Column="1"
+            TextWrapping="WrapWithOverflow"
+            Text="Response to the letterо:"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="1"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Type letters:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="2"
+                                   TextWrapping="WrapWithOverflow"
+            Text="Subject letters:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+Text="From whom:"
+                          Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                      TextWrapping="WrapWithOverflow"
+                      TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5"
+                                   Grid.Row="1"
+             Text="To whom:"
+                                       Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Right"/>
+
+                        <TextBlock Grid.RowSpan="3"
+                                Text="{Binding TextLetters}"
+                                Style="{DynamicResource TBlListBox}"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left"
+                                TextWrapping="WrapWithOverflow"/>
+
+                        <TextBlock Grid.Column="3"
+                                   Text="{Binding WhoAnswersToWhomLetters.ResponseToTheLetters.Letters.SubjectLetters}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="1"
+                                   Text="{Binding TypeLetters.NameTypeLetters}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="2"
+                                   Text="{Binding SubjectLetters}"
+                                   Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Left"
+                                   TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+           Text="{Binding Staff.FullName}"
+           Style="{DynamicResource TBlListBox}"
+                                   VerticalAlignment="Center"
+           TextAlignment="Left"
+           TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Grid.Column="7"
+                                   Grid.Row="1"
+        Text="{Binding FromWhomLetters}"
+        Style="{DynamicResource TBlListBox}"
+                        VerticalAlignment="Center"
+        TextAlignment="Left"
+        TextWrapping="WrapWithOverflow"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>
